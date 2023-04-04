@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    include: ${profile}
+
+
+  redis:
+    host: redis
+    port: 6379
