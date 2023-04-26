@@ -54,6 +54,8 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           envs: GITHUB_SHA
           script: |
+            touch ./docker-compose.yml
+            echo "${{ secrets.DOCKER_COMPOSE }}" > ./docker-compose.yml
             docker stop ${{ secrets.DOCKER_REPO }}
             docker rm ${{ secrets.DOCKER_REPO }} 
             sudo docker pull ${{ secrets.DOCKER_ID }}/${{ secrets.DOCKER_REPO }} 
