@@ -1,6 +1,6 @@
 package com.kusitms.samsion.common.security.oauth;
 
-import static com.kusitms.samsion.common.consts.ApplicationStatic.*;
+import static com.kusitms.samsion.common.consts.ApplicationConst.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +11,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import com.kusitms.samsion.common.security.jwt.JwtProvider;
+import com.kusitms.samsion.common.util.HeaderUtils;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -28,14 +30,31 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 		Authentication authentication){
 		OAuth2User oAuth2User = (OAuth2User)authentication.getPrincipal();
-		generateToken(oAuth2User.getAttribute("email"), response);
+		TokenInfo tokenInfo = generateToken(oAuth2User.getAttribute("email"));
+		setTokenToHeader(tokenInfo);
 	}
 
-	private void generateToken(String email, HttpServletResponse response){
+	private TokenInfo generateToken(String email){
 		String accessToken = jwtProvider.generateAccessToken(email);
 		String refreshToken = jwtProvider.generateRefreshToken(email);
 
-		response.setHeader(ACCESS_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE+accessToken);
-		response.setHeader(REFRESH_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE+refreshToken);
+		return new TokenInfo(accessToken, refreshToken);
+	}
+
+	private void setTokenToHeader(TokenInfo tokenInfo){
+		HeaderUtils.setHeader(ACCESS_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE+tokenInfo.getAccessToken());
+		HeaderUtils.setHeader(REFRESH_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE+tokenInfo.getRefreshToken());
+	}
+
+	@Getter
+	private static class TokenInfo{
+		private final String accessToken;
+		private final String refreshToken;
+
+		public TokenInfo(String accessToken, String refreshToken) {
+			this.accessToken = accessToken;
+			this.refreshToken = refreshToken;
+		}
+
 	}
 }
