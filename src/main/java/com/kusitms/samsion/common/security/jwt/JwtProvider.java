@@ -1,6 +1,6 @@
 package com.kusitms.samsion.common.security.jwt;
 
-import static com.kusitms.samsion.common.consts.ApplicationStatic.*;
+import static com.kusitms.samsion.common.consts.ApplicationConst.*;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
@@ -65,6 +65,10 @@ public class JwtProvider {
 			TimeUnit.MILLISECONDS);
 	}
 
+	private String getRefreshToken(String email) {
+		return redisTemplate.opsForValue().get(email);
+	}
+
 	private JwtBuilder buildToken(Date now) {
 		final Key key = getSecretKey();
 		return Jwts.builder()
@@ -109,5 +113,21 @@ public class JwtProvider {
 			.getBody()
 			.getSubject();
 	}
+
+	public String reIssue(String refreshToken){
+		String email = validateRefreshToken(refreshToken);
+		return generateAccessToken(email);
+	}
+
+	public String validateRefreshToken(String refreshToken) {
+		validateToken(refreshToken);
+		final String email = extractEmail(refreshToken);
+		final String storedRefreshToken = getRefreshToken(email);
+		if(!storedRefreshToken.equals(refreshToken)){
+			throw new InvalidTokenException(Error.INVALID_TOKEN);
+		}
+		return email;
+	}
+
 
 }
