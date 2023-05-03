@@ -36,7 +36,7 @@ jobs:
         shell: bash
 
       - name: Build With Gradle
-        run: ./gradlew build -x test
+        run: ./gradlew build
 
 
       - name: Docker build & Push
