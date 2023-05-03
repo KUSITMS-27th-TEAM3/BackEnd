@@ -1,6 +1,6 @@
 package com.kusitms.samsion.common.security.jwt;
 
-import static com.kusitms.samsion.common.consts.ApplicationStatic.*;
+import static com.kusitms.samsion.common.consts.ApplicationConst.*;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
@@ -65,6 +65,10 @@ public class JwtProvider {
 			TimeUnit.MILLISECONDS);
 	}
 
+	private String getRefreshToken(String email) {
+		return redisTemplate.opsForValue().get(email);
+	}
+
 	private JwtBuilder buildToken(Date now) {
 		final Key key = getSecretKey();
 		return Jwts.builder()
@@ -83,9 +87,10 @@ public class JwtProvider {
 	}
 
 	/**
+	 * TODO : 예외 처리 관련해서 좀 더 고민해보기
 	 * @throws InvalidTokenException : 유효하지 않은 토큰
 	 * @throws ExpiredTokenException : 만료된 토큰
-	 * @throws IllegalArgumentException : 토큰이 null일 경우, 하지만 헤더에서 토큰을 가져오는 과정에서 이미 null인지 검사하므로 발생하지 않음(ignore)
+	 * @throws IllegalArgumentException : 토큰이 null일 경우
 	 */
 	public void validateToken(String token) {
 		JwtParser jwtParser = Jwts.parserBuilder()
@@ -93,11 +98,10 @@ public class JwtProvider {
 			.build();
 		try {
 			jwtParser.parse(token);
-		} catch (MalformedJwtException | SignatureException e){
+		} catch (MalformedJwtException | SignatureException | IllegalArgumentException e){
 			throw new InvalidTokenException(Error.INVALID_TOKEN);
 		} catch (ExpiredJwtException e){
 			throw new ExpiredTokenException(Error.EXPIRED_TOKEN);
-		} catch (IllegalArgumentException ignore){
 		}
 	}
 
@@ -109,5 +113,21 @@ public class JwtProvider {
 			.getBody()
 			.getSubject();
 	}
+
+	public String reIssue(String refreshToken){
+		String email = validateRefreshToken(refreshToken);
+		return generateAccessToken(email);
+	}
+
+	public String validateRefreshToken(String refreshToken) {
+		validateToken(refreshToken);
+		final String email = extractEmail(refreshToken);
+		final String storedRefreshToken = getRefreshToken(email);
+		if(!storedRefreshToken.equals(refreshToken)){
+			throw new InvalidTokenException(Error.INVALID_TOKEN);
+		}
+		return email;
+	}
+
 
 }

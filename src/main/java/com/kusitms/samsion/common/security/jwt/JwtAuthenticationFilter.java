@@ -13,11 +13,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.kusitms.samsion.common.consts.ApplicationStatic;
-import com.kusitms.samsion.common.exception.Error;
-import com.kusitms.samsion.common.security.exception.TokenNotFoundException;
+import com.kusitms.samsion.common.consts.ApplicationConst;
+import com.kusitms.samsion.common.consts.IgnoredPathConst;
+import com.kusitms.samsion.common.util.HeaderUtils;
+import com.kusitms.samsion.common.util.SecurityUtils;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,28 +37,37 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
 		FilterChain filterChain) throws ServletException, IOException {
-		final String header = request.getHeader(ApplicationStatic.ACCESS_TOKEN_HEADER);
-		validateAuthorizationHeader(header);
-
-		final String accessToken = validateAccessToken(header);
-		setAuthentication(accessToken);
-
+		if (checkNotIgnoredPath(request.getRequestURI())) {
+			final String header = HeaderUtils.getHeader(ApplicationConst.ACCESS_TOKEN_HEADER);
+			final String accessToken = validateAuthorizationHeaderAndGetToken(header);
+			validateAccessToken(accessToken);
+			setAuthentication(accessToken);
+		}
 		filterChain.doFilter(request, response);
 	}
 
-	private void validateAuthorizationHeader(final String header) {
-		if (header == null || !header.startsWith(ApplicationStatic.JWT_AUTHORIZATION_TYPE)) {
-			throw new TokenNotFoundException(Error.INVALID_TOKEN);
+	private boolean checkNotIgnoredPath(String requestURI) {
+		AntPathMatcher antPathMatcher = new AntPathMatcher();
+		for (String ignoredPath : IgnoredPathConst.IGNORED_PATHS) {
+			if(antPathMatcher.match(ignoredPath, requestURI)) {
+				return false;
+			}
 		}
+		return true;
 	}
 
-	private String validateAccessToken(final String header) {
-		final String accessToken = header.replace(ApplicationStatic.JWT_AUTHORIZATION_TYPE, "");
+	/**
+	 * TODO : header에서 유효성 검사 로직을 HeaderUtils로 분리할지 고민.
+	 */
+	private String validateAuthorizationHeaderAndGetToken(final String header) {
+		return SecurityUtils.validateHeaderAndGetToken(header);
+	}
+
+	private void validateAccessToken(final String accessToken) {
 		jwtProvider.validateToken(accessToken);
-		return accessToken;
 	}
 
-	private void setAuthentication(final String accessToken){
+	private void setAuthentication(final String accessToken) {
 		final String email = jwtProvider.extractEmail(accessToken);
 		List<GrantedAuthority> grantedAuthorities = Collections.singletonList(
 			new SimpleGrantedAuthority("ROLE_USER"));
