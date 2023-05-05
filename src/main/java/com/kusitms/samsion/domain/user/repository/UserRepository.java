@@ -9,4 +9,6 @@ import com.kusitms.samsion.domain.user.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	Optional<User> findByEmail(String email);
+
+	boolean existsByEmail(String email);
 }
