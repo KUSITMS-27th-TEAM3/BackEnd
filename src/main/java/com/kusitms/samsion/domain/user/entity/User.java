@@ -1,6 +1,7 @@
 package com.kusitms.samsion.domain.user.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,21 +25,23 @@ public class User extends BaseEntity {
 
 	private String nickname;
 	private String email;
-	private String imageUrl;
+
+	@Embedded
+	private MyPet mypet;
 
 
 	@Builder
-	public User(String nickname, String email, String imageUrl) {
+	public User(String nickname, String email) {
 		this.nickname = nickname;
 		this.email = email;
-		this.imageUrl = imageUrl;
+		this.mypet = MyPet.defaultValue();
 	}
 
-	public User update(String nickname, String imageUrl) {
-		this.nickname = nickname;
-		this.imageUrl = imageUrl;
-		return this;
+	public void updateMyPet(MyPet mypet){
+		this.mypet.updateInfo(mypet);
 	}
+
+
 
 	@Override
 	public String toString() {
@@ -46,7 +49,6 @@ public class User extends BaseEntity {
 			"id=" + id +
 			", nickname='" + nickname + '\'' +
 			", email='" + email + '\'' +
-			", imageUrl='" + imageUrl +
 			'}';
 	}
 }
