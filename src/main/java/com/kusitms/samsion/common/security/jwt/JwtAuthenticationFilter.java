@@ -56,9 +56,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		return true;
 	}
 
-	/**
-	 * TODO : header에서 유효성 검사 로직을 HeaderUtils로 분리할지 고민.
-	 */
 	private String validateAuthorizationHeaderAndGetToken(final String header) {
 		return SecurityUtils.validateHeaderAndGetToken(header);
 	}

@@ -5,6 +5,7 @@ import static com.kusitms.samsion.common.consts.ApplicationConst.*;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.data.redis.core.RedisTemplate;
@@ -65,10 +66,6 @@ public class JwtProvider {
 			TimeUnit.MILLISECONDS);
 	}
 
-	private String getRefreshToken(String email) {
-		return redisTemplate.opsForValue().get(email);
-	}
-
 	private JwtBuilder buildToken(Date now) {
 		final Key key = getSecretKey();
 		return Jwts.builder()
@@ -123,10 +120,14 @@ public class JwtProvider {
 		validateToken(refreshToken);
 		final String email = extractEmail(refreshToken);
 		final String storedRefreshToken = getRefreshToken(email);
-		if(!storedRefreshToken.equals(refreshToken)){
+		if(!Objects.equals(refreshToken, storedRefreshToken)){
 			throw new InvalidTokenException(Error.INVALID_TOKEN);
 		}
 		return email;
+	}
+
+	private String getRefreshToken(String email) {
+		return redisTemplate.opsForValue().get(email);
 	}
 
 
