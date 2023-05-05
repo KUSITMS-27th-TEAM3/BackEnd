@@ -2,6 +2,7 @@ package com.kusitms.samsion.common.security.oauth;
 
 import java.util.Collections;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -12,8 +13,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import com.kusitms.samsion.domain.user.entity.User;
-import com.kusitms.samsion.domain.user.repository.UserRepository;
+import com.kusitms.samsion.application.user.dto.request.UserSignUpRequest;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-	private final UserRepository userRepository;
+	private final ApplicationEventPublisher eventPublisher;
 
 	/**
 	 * TODO : 코드 리팩터링, 예외처리 추가하기, kakao, naver 로그인 추가하기 , Authorities 설정 변경 필요 (현재는 ROLE_USER로 고정, enum으로 관리 필요)
@@ -32,30 +32,33 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 	 */
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-		DefaultOAuth2UserService oAuth2UserService = new DefaultOAuth2UserService();
-		OAuth2User oAuth2User = oAuth2UserService.loadUser(userRequest);
+		final DefaultOAuth2UserService oAuth2UserService = new DefaultOAuth2UserService();
+		final OAuth2User oAuth2User = oAuth2UserService.loadUser(userRequest);
 
-		ClientRegistration clientRegistration = userRequest.getClientRegistration();
-
-		String registrationId = clientRegistration.getRegistrationId();
-		String userNameAttributeName = clientRegistration.getProviderDetails()
-			.getUserInfoEndpoint()
-			.getUserNameAttributeName();
+		final ClientRegistration clientRegistration = userRequest.getClientRegistration();
+		final String registrationId = clientRegistration.getRegistrationId();
+		final String userNameAttributeName = getUserNameAttributeName(clientRegistration);
 
 		OAuth2Attributes attributes = OAuth2Attributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-		saveOrUpdate(attributes);
+		saveOAuth2User(attributes);
 
-		return new DefaultOAuth2User(Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
-			, attributes.getAttributes()
-			, attributes.getNameAttributeKey());
+		return new DefaultOAuth2User(Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")),
+			attributes.getAttributes(),
+			attributes.getNameAttributeKey());
 	}
 
-	private void saveOrUpdate(OAuth2Attributes attributes) {
-		User user = userRepository.findByEmail(attributes.getEmail())
-			.map(entity -> entity.update(attributes.getName(), attributes.getImageUrl()))
-			.orElse(attributes.toEntity());
+	/**
+	 * 사용자 이름, imageUrl의 경우 사용자가 변경하기 때문에 첫 접속시에만 저장하도록 함, update는 제공하지 않음
+	 * 이밴트 기반으로 바꿀 예정
+	 */
+	private void saveOAuth2User(OAuth2Attributes attributes) {
+		eventPublisher.publishEvent(new UserSignUpRequest(attributes.getEmail(), attributes.getName()));
+	}
 
-		userRepository.save(user);
+	private String getUserNameAttributeName(ClientRegistration clientRegistration) {
+		return clientRegistration.getProviderDetails()
+			.getUserInfoEndpoint()
+			.getUserNameAttributeName();
 	}
 }
