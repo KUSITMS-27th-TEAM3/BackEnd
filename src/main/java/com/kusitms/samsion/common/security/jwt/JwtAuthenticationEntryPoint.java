@@ -11,10 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kusitms.samsion.common.exception.dto.ErrorResponse;
 import com.kusitms.samsion.common.security.exception.JwtException;
 
-import lombok.Builder;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,26 +34,15 @@ public class JwtAuthenticationEntryPoint extends OncePerRequestFilter {
 			filterChain.doFilter(request, response);
 		} catch (JwtException e){
 			log.info("JwtException: {} {}",e.getError().getMessage(), e.getError().getErrorCode());
-			setErrorCode(response, e.getError().getErrorCode());
+			setErrorCode(response, e);
 		}
 	}
 
-	private void setErrorCode(HttpServletResponse response, int errorCode) throws IOException {
-		ErrorResponse errorResponse = ErrorResponse.builder()
-			.errorCode(errorCode)
-			.build();
+	private void setErrorCode(HttpServletResponse response, JwtException e) throws IOException {
+		ErrorResponse errorResponse = ErrorResponse.from(e);
 		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
-	}
-
-	@Getter
-	private static class ErrorResponse{
-		private final int errorCode;
-		@Builder
-		public ErrorResponse(int errorCode) {
-			this.errorCode = errorCode;
-		}
 	}
 }
