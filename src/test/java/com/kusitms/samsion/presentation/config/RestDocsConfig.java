@@ -1,4 +1,4 @@
-package com.kusitms.samsion.config;
+package com.kusitms.samsion.presentation.config;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
