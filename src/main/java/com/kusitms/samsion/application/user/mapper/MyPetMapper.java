@@ -18,10 +18,10 @@ public class MyPetMapper {
 			.build();
 	}
 
-	public MyPet updateMyPetInfo(MyPetUpdateRequest request){
+	public MyPet mapToMyPetUpdateRequest(MyPetUpdateRequest request, String imageUrl){
 		return MyPet.builder()
 			.petName(request.getPetName())
-			.petImageUrl(request.getPetImageUrl())
+			.petImageUrl(imageUrl)
 			.description(request.getDescription())
 			.build();
 	}

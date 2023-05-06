@@ -7,13 +7,11 @@ import lombok.Getter;
 public class MyPetUpdateRequest {
 
 	String petName;
-	String petImageUrl;
 	String description;
 
 	@Builder
-	public MyPetUpdateRequest(String petName, String petImageUrl, String description) {
+	public MyPetUpdateRequest(String petName, String description) {
 		this.petName = petName;
-		this.petImageUrl = petImageUrl;
 		this.description = description;
 	}
 
