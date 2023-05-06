@@ -9,7 +9,7 @@ import com.kusitms.samsion.domain.user.entity.User;
 @Mapper
 public class MyPetMapper {
 
-	public MyPetResponse getMyPetInfo(User user){
+	public MyPetResponse mapToMyPetResponse(User user){
 		MyPet mypet = user.getMypet();
 		return MyPetResponse.builder()
 			.petName(mypet.getPetName())

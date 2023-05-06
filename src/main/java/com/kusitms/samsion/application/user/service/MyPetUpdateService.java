@@ -28,7 +28,7 @@ public class MyPetUpdateService {
 		User user = userUtils.getUser();
 		final MyPet myPet = myPetMapper.mapToMyPetUpdateRequest(request, imageUrl);
 		user.updateMyPet(myPet);
-		return myPetMapper.getMyPetInfo(user);
+		return myPetMapper.mapToMyPetResponse(user);
 	}
 
 }

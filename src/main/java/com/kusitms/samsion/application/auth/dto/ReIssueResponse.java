@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class ReIssueResponse {
 
-	private String accessToken;
+	private final String accessToken;
 
 	public ReIssueResponse(String accessToken) {
 		this.accessToken = accessToken;
