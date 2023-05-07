@@ -1,5 +1,6 @@
 package com.kusitms.samsion.application.user.service;
 
+import com.kusitms.samsion.infrastructure.s3.S3UploadService;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kusitms.samsion.application.user.dto.request.MyPetUpdateRequest;
@@ -18,11 +19,11 @@ public class MyPetUpdateService {
 
 	private final UserUtils userUtils;
 	private final MyPetMapper myPetMapper;
+	private final S3UploadService s3UploadService;
 
 	@Transactional
 	public MyPetResponse updateMyPetInfo(MyPetUpdateRequest request){
-		// TODO : 이미지 업로드
-		final String imageUrl = null;
+		final String imageUrl = s3UploadService.uploadImg(request.getFile());
 
 		User user = userUtils.getUser();
 		final MyPet myPet = myPetMapper.mapToMyPetUpdateRequest(request, imageUrl);

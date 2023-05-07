@@ -2,6 +2,7 @@ package com.kusitms.samsion.application.album.service;
 
 import java.util.List;
 
+import com.kusitms.samsion.infrastructure.s3.S3UploadService;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kusitms.samsion.application.album.dto.request.AlbumCreateRequest;
@@ -27,14 +28,14 @@ public class AlbumCreateService {
 	private final AlbumSaveService albumSaveService;
 	private final AlbumImageSaveService albumImageSaveService;
 	private final UserUtils userUtils;
+	private final S3UploadService s3UploadService;
 
 	/**
 	 * TODO : 리팩터링 해야함
 	 */
 	@Transactional
 	public AlbumInfoResponse createAlbum(AlbumCreateRequest albumCreateRequest){
-		// TODO : 이미지 업로드
-		List<String> imageUrls = List.of("test1", "test2", "test3");
+		List<String> imageUrls = s3UploadService.uploadImgList(albumCreateRequest.getImages());
 
 		final User user = userUtils.getUser();
 		final Album album = albumMapper.mapToAlbumWithUser(albumCreateRequest, user);
