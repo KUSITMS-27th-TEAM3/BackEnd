@@ -3,7 +3,6 @@ package com.kusitms.samsion.application.album.service;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.kusitms.samsion.application.album.dto.request.AlbumCreateRequest;
 import com.kusitms.samsion.application.album.dto.response.AlbumInfoResponse;
@@ -29,11 +28,14 @@ public class AlbumCreateService {
 	private final AlbumImageSaveService albumImageSaveService;
 	private final UserUtils userUtils;
 
+	/**
+	 * TODO : 리팩터링 해야함
+	 */
 	@Transactional
-	public AlbumInfoResponse createAlbum(List<MultipartFile> multipartFiles, AlbumCreateRequest albumCreateRequest){
+	public AlbumInfoResponse createAlbum(AlbumCreateRequest albumCreateRequest){
 		// TODO : 이미지 업로드
-		List<String> imageUrls = null;
-		// TODO : 앨범 생성
+		List<String> imageUrls = List.of("test1", "test2", "test3");
+
 		final User user = userUtils.getUser();
 		final Album album = albumMapper.mapToAlbumWithUser(albumCreateRequest, user);
 		albumSaveService.saveAlbum(album);

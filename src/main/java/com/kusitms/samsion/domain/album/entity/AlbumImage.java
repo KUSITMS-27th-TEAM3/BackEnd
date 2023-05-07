@@ -32,5 +32,6 @@ public class AlbumImage extends BaseEntity {
 	public AlbumImage(String imageUrl, Album album) {
 		this.imageUrl = imageUrl;
 		this.album = album;
+		album.addImage(this);
 	}
 }

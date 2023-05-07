@@ -1,5 +1,7 @@
 package com.kusitms.samsion.application.album.dto.response;
 
+import java.util.List;
+
 import lombok.Builder;
 import lombok.Getter;
 
@@ -9,15 +11,15 @@ import lombok.Getter;
 @Getter
 public class AlbumInfoResponse {
 
-	private final String imageUrl;
+	private final List<String> imageUrlList;
 	private final String description;
 
 	private final String writer;
 	private final String writerProfileImageUrl;
 
 	@Builder
-	public AlbumInfoResponse(String imageUrl, String description, String writer, String writerProfileImageUrl) {
-		this.imageUrl = imageUrl;
+	public AlbumInfoResponse(List<String> imageUrlList, String description, String writer, String writerProfileImageUrl) {
+		this.imageUrlList = imageUrlList;
 		this.description = description;
 		this.writer = writer;
 		this.writerProfileImageUrl = writerProfileImageUrl;
