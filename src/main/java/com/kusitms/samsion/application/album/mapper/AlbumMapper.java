@@ -16,7 +16,7 @@ import com.kusitms.samsion.domain.user.entity.User;
 public class AlbumMapper {
 
 	public Slice<AlbumSimpleResponse> mapToAlbumSimpleResponse(Slice<Album> albumSlice) {
-		return albumSlice.map(album -> new AlbumSimpleResponse(album.getId(), null));
+		return albumSlice.map(album -> new AlbumSimpleResponse(album.getId(), album.getAlbumImages().get(0).getImageUrl()));
 	}
 
 	public AlbumInfoResponse mapToAlbumInfoResponse(Album album) {
