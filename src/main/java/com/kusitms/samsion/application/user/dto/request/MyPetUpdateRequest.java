@@ -1,20 +1,21 @@
 package com.kusitms.samsion.application.user.dto.request;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 public class MyPetUpdateRequest {
 
-	String petName;
-	String petImageUrl;
-	String description;
+	private MultipartFile file;
+	private String petName;
+	private String description;
 
 	@Builder
-	public MyPetUpdateRequest(String petName, String petImageUrl, String description) {
+	public MyPetUpdateRequest(MultipartFile file, String petName, String description) {
+		this.file = file;
 		this.petName = petName;
-		this.petImageUrl = petImageUrl;
 		this.description = description;
 	}
-
 }

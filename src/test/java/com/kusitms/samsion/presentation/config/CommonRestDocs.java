@@ -1,4 +1,4 @@
-package com.kusitms.samsion.config;
+package com.kusitms.samsion.presentation.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kusitms.samsion.common.security.jwt.JwtProvider;

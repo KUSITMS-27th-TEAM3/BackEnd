@@ -34,8 +34,12 @@ public class SecurityConfig {
 					.userInfoEndpoint().userService(customOAuth2UserService)
 		);
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().anyRequest().permitAll();
+		http.csrf().disable();
 		http.cors();
+
+		http.formLogin().disable();
+		http.httpBasic().disable();
 
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(jwtAuthenticationEntryPoint, JwtAuthenticationFilter.class);

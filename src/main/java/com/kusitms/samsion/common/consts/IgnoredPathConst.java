@@ -9,6 +9,6 @@ public final class IgnoredPathConst {
 	public static final String[] IGNORED_PATHS = {
 			"/oauth2/**",
 			"/info",
-			"/auth/reissue",
+			"/reissue",
 			"/favicon.ico"};
 }

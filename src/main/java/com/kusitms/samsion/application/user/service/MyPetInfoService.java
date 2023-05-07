@@ -20,6 +20,6 @@ public class MyPetInfoService {
 
 	public MyPetResponse getMyPetInfo(){
 		User user = userUtils.getUser();
-		return myPetMapper.getMyPetInfo(user);
+		return myPetMapper.mapToMyPetResponse(user);
 	}
 }

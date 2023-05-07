@@ -21,10 +21,13 @@ public class MyPetUpdateService {
 
 	@Transactional
 	public MyPetResponse updateMyPetInfo(MyPetUpdateRequest request){
+		// TODO : 이미지 업로드
+		final String imageUrl = null;
+
 		User user = userUtils.getUser();
-		final MyPet myPet = myPetMapper.updateMyPetInfo(request);
+		final MyPet myPet = myPetMapper.mapToMyPetUpdateRequest(request, imageUrl);
 		user.updateMyPet(myPet);
-		return myPetMapper.getMyPetInfo(user);
+		return myPetMapper.mapToMyPetResponse(user);
 	}
 
 }

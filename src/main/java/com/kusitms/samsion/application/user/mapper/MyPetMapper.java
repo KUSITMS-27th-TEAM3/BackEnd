@@ -9,7 +9,7 @@ import com.kusitms.samsion.domain.user.entity.User;
 @Mapper
 public class MyPetMapper {
 
-	public MyPetResponse getMyPetInfo(User user){
+	public MyPetResponse mapToMyPetResponse(User user){
 		MyPet mypet = user.getMypet();
 		return MyPetResponse.builder()
 			.petName(mypet.getPetName())
@@ -18,10 +18,10 @@ public class MyPetMapper {
 			.build();
 	}
 
-	public MyPet updateMyPetInfo(MyPetUpdateRequest request){
+	public MyPet mapToMyPetUpdateRequest(MyPetUpdateRequest request, String imageUrl){
 		return MyPet.builder()
 			.petName(request.getPetName())
-			.petImageUrl(request.getPetImageUrl())
+			.petImageUrl(imageUrl)
 			.description(request.getDescription())
 			.build();
 	}

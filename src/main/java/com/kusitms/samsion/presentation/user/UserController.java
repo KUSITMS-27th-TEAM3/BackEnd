@@ -1,8 +1,8 @@
 package com.kusitms.samsion.presentation.user;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,8 +26,8 @@ public class UserController {
 		return myPetInfoService.getMyPetInfo();
 	}
 
-	@PostMapping("/mypet")
-	public  MyPetResponse profileUpdate(@RequestBody MyPetUpdateRequest request){
+	@PostMapping(value = "/mypet")
+	public  MyPetResponse profileUpdate(@ModelAttribute MyPetUpdateRequest request){
 		return myPetUpdateService.updateMyPetInfo(request);
 	}
 
