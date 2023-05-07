@@ -1,7 +1,6 @@
 package com.kusitms.samsion.application.user.service;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.kusitms.samsion.application.user.dto.request.MyPetUpdateRequest;
 import com.kusitms.samsion.application.user.dto.response.MyPetResponse;
@@ -21,7 +20,7 @@ public class MyPetUpdateService {
 	private final MyPetMapper myPetMapper;
 
 	@Transactional
-	public MyPetResponse updateMyPetInfo(MultipartFile multipartFile, MyPetUpdateRequest request){
+	public MyPetResponse updateMyPetInfo(MyPetUpdateRequest request){
 		// TODO : 이미지 업로드
 		final String imageUrl = null;
 
