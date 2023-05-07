@@ -1,14 +1,12 @@
 package com.kusitms.samsion.presentation.album;
 
-import java.util.List;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.kusitms.samsion.application.album.dto.request.AlbumCreateRequest;
 import com.kusitms.samsion.application.album.dto.response.AlbumInfoResponse;
@@ -36,8 +34,8 @@ public class AlbumController {
 	}
 
 	@PostMapping()
-	public AlbumInfoResponse createAlbum(List<MultipartFile> multipartFiles, AlbumCreateRequest request){
-		return albumCreateService.createAlbum(multipartFiles, request);
+	public AlbumInfoResponse createAlbum(@ModelAttribute AlbumCreateRequest request){
+		return albumCreateService.createAlbum(request);
 	}
 
 	@GetMapping("/{albumId}")

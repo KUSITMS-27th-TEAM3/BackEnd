@@ -3,6 +3,7 @@ package com.kusitms.samsion.domain.album.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -40,7 +41,7 @@ public class Album extends BaseEntity {
 	@JoinColumn(name = "user_id")
 	private User writer;
 
-	@OneToMany(mappedBy = "album")
+	@OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
 	private List<AlbumImage> albumImages = new ArrayList<>();
 
 	@Builder
@@ -52,6 +53,10 @@ public class Album extends BaseEntity {
 
 	public void addImage(AlbumImage albumImage){
 		albumImages.add(albumImage);
+	}
+
+	public void addImageList(List<AlbumImage> albumImageList){
+		albumImages.addAll(albumImageList);
 	}
 
 }
