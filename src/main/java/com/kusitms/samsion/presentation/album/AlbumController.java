@@ -1,5 +1,7 @@
 package com.kusitms.samsion.presentation.album;
 
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,7 +36,9 @@ public class AlbumController {
 	}
 
 	@PostMapping()
-	public AlbumInfoResponse createAlbum(@ModelAttribute AlbumCreateRequest request){
+	public AlbumInfoResponse createAlbum(@ModelAttribute AlbumCreateRequest request) throws
+		ExecutionException,
+		InterruptedException {
 		return albumCreateService.createAlbum(request);
 	}
 

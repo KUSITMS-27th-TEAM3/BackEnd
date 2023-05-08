@@ -15,11 +15,11 @@ import com.kusitms.samsion.domain.user.entity.User;
 @Mapper
 public class AlbumMapper {
 
-	public Slice<AlbumSimpleResponse> mapToAlbumSimpleResponse(Slice<Album> albumSlice) {
+	public static Slice<AlbumSimpleResponse> mapToAlbumSimpleResponse(Slice<Album> albumSlice) {
 		return albumSlice.map(album -> new AlbumSimpleResponse(album.getId(), album.getAlbumImages().get(0).getImageUrl()));
 	}
 
-	public AlbumInfoResponse mapToAlbumInfoResponse(Album album) {
+	public static AlbumInfoResponse mapToAlbumInfoResponse(Album album) {
 		final User writer = album.getWriter();
 		return AlbumInfoResponse.builder()
 			.imageUrlList(album.getAlbumImages().stream().map(AlbumImage::getImageUrl).collect(Collectors.toList()))
@@ -30,7 +30,7 @@ public class AlbumMapper {
 	}
 
 
-	public Album mapToAlbumWithUser(AlbumCreateRequest request, User user) {
+	public static Album mapToAlbumWithUser(AlbumCreateRequest request, User user) {
 		return Album.builder()
 			.description(request.getDescription())
 			.visibility(request.getVisibility())
