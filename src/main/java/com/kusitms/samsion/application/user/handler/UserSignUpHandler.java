@@ -17,14 +17,13 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class UserSignUpHandler {
 
-	private final UserMapper userMapper;
 	private final UserSaveService userSaveService;
 
 	@Transactional
 	@EventListener
 	public void signUp(UserSignUpRequest request){
 		log.info("request {}", request);
-		User user = userMapper.toEntity(request);
+		final User user = UserMapper.toEntity(request);
 		userSaveService.saveUser(user);
 	}
 }
