@@ -20,16 +20,16 @@ import com.kusitms.samsion.domain.user.repository.UserRepository;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("UserGetService 테스트")
-class UserGetServiceTest {
+class UserQueryServiceTest {
 
 	@Mock
 	private UserRepository userRepository;
 
-	private UserGetService userGetService;
+	private UserQueryService userQueryService;
 
 	@BeforeEach
 	void setUp() {
-		userGetService = new UserGetService(userRepository);
+		userQueryService = new UserQueryService(userRepository);
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class UserGetServiceTest {
 		User mockUser = UserTestUtils.getMockUser();
 		given(userRepository.findByEmail(TestConst.TEST_EMAIL)).willReturn(Optional.of(mockUser));
 		//when
-		User user = userGetService.getUserByEmail(mockUser.getEmail());
+		User user = userQueryService.getUserByEmail(mockUser.getEmail());
 		//then
 		Assertions.assertThat(user).isNotNull();
 		Assertions.assertThat(user).usingRecursiveComparison().isEqualTo(mockUser);
@@ -50,7 +50,7 @@ class UserGetServiceTest {
 		given(userRepository.findByEmail(TestConst.TEST_EMAIL)).willReturn(Optional.empty());
 		//when
 		//then
-		Assertions.assertThatThrownBy(() -> userGetService.getUserByEmail(TestConst.TEST_EMAIL))
+		Assertions.assertThatThrownBy(() -> userQueryService.getUserByEmail(TestConst.TEST_EMAIL))
 			.isInstanceOf(UserNotFoundException.class);
 	}
 
