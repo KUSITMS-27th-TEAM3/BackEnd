@@ -11,7 +11,7 @@ import com.kusitms.samsion.domain.album.entity.AlbumImage;
 public class AlbumImageMapper {
 
 
-	public List<AlbumImage> mapToAlbumImageListWithAlbum(List<String> imageUrls, Album album) {
+	public static List<AlbumImage> mapToAlbumImageListWithAlbum(List<String> imageUrls, Album album) {
 		return imageUrls.stream().map(imageUrl->new AlbumImage(imageUrl,album)).collect(Collectors.toList());
 	}
 }

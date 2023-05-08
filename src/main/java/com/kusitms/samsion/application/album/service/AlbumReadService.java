@@ -24,7 +24,6 @@ public class AlbumReadService {
 
 	private final AlbumQueryService albumQueryService;
 	private final AlbumValidAccessService albumValidAccessService;
-	private final AlbumMapper albumMapper;
 	private final UserUtils userUtils;
 
 	/**
@@ -32,7 +31,7 @@ public class AlbumReadService {
 	 */
 	public SliceResponse<AlbumSimpleResponse> getAlbumList(Pageable pageable){
 		Slice<AlbumSimpleResponse> albumSimpleResponses =
-			albumMapper.mapToAlbumSimpleResponse(albumQueryService.getAlbumList((pageable)));
+			AlbumMapper.mapToAlbumSimpleResponse(albumQueryService.getAlbumList((pageable)));
 		return SliceResponse.of(albumSimpleResponses);
 	}
 
@@ -40,6 +39,6 @@ public class AlbumReadService {
 		User user = userUtils.getUser();
 		Album album = albumQueryService.getAlbumById(albumId);
 		albumValidAccessService.validateAccess(album, user.getId());
-		return albumMapper.mapToAlbumInfoResponse(album);
+		return AlbumMapper.mapToAlbumInfoResponse(album);
 	}
 }

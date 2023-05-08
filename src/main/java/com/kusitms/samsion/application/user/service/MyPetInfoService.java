@@ -16,10 +16,9 @@ import lombok.RequiredArgsConstructor;
 public class MyPetInfoService {
 
 	private final UserUtils userUtils;
-	private final MyPetMapper myPetMapper;
 
 	public MyPetResponse getMyPetInfo(){
 		User user = userUtils.getUser();
-		return myPetMapper.mapToMyPetResponse(user);
+		return MyPetMapper.mapToMyPetResponse(user);
 	}
 }

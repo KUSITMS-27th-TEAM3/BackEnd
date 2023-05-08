@@ -3,7 +3,7 @@ package com.kusitms.samsion.common.util;
 import org.springframework.stereotype.Component;
 
 import com.kusitms.samsion.domain.user.entity.User;
-import com.kusitms.samsion.domain.user.service.UserGetService;
+import com.kusitms.samsion.domain.user.service.UserQueryService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -11,10 +11,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserUtils {
 
-	private final UserGetService userGetService;
+	private final UserQueryService userQueryService;
 
 	public User getUser(){
 		final String userEmail = SecurityUtils.getUserEmail();
-		return userGetService.getUserByEmail(userEmail);
+		return userQueryService.getUserByEmail(userEmail);
 	}
 }

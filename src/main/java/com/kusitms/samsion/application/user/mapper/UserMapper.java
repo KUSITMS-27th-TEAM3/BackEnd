@@ -7,7 +7,7 @@ import com.kusitms.samsion.domain.user.entity.User;
 @Mapper
 public class UserMapper {
 
-	public User toEntity(UserSignUpRequest request){
+	public static User toEntity(UserSignUpRequest request){
 		return User.builder()
 			.email(request.getEmail())
 			.nickname(request.getNickname())

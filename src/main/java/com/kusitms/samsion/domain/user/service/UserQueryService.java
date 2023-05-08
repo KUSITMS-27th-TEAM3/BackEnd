@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @DomainService
 @RequiredArgsConstructor
-public class UserGetService {
+public class UserQueryService {
 
 	private final UserRepository userRepository;
 
