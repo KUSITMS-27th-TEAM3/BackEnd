@@ -15,6 +15,9 @@ public enum Error {
 	FILE_UPLOAD_ERROR("파일 업로드에 실패했습니다.", 2003),
 	FILE_DELETE_ERROR("파일 삭제에 실패했습니다.", 2004),
 
+	// 공감
+	EMPATHY_NOT_FOUND("공감을 찾을 수 없습니다.", 3000),
+
 	// JWT
 	INVALID_TOKEN("잘못된 토큰 요청", 4001),
 	EXPIRED_TOKEN("토큰 만료", 4002);
