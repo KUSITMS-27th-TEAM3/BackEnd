@@ -18,6 +18,9 @@ public enum Error {
 	// 공감
 	EMPATHY_NOT_FOUND("공감을 찾을 수 없습니다.", 3000),
 
+	//댓글
+	COMMENT_NOT_FOUND("댓글을 찾을 수 없습니다.", 5000),
+
 	// JWT
 	INVALID_TOKEN("잘못된 토큰 요청", 4001),
 	EXPIRED_TOKEN("토큰 만료", 4002);
