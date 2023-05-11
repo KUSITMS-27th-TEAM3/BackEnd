@@ -20,6 +20,7 @@ import com.kusitms.samsion.application.user.dto.response.MyPetResponse;
 import com.kusitms.samsion.application.user.service.MyPetInfoService;
 import com.kusitms.samsion.application.user.service.MyPetUpdateService;
 import com.kusitms.samsion.common.consts.ApplicationConst;
+import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.presentation.config.CommonRestDocs;
 
 @WebMvcTest(UserController.class)
@@ -35,9 +36,9 @@ public class UserControllerTest extends CommonRestDocs {
 	void 접속한_사용자의_mypet_조회() throws Exception {
 		//given
 		MyPetResponse myPetResponse = MyPetResponse.builder()
-			.description("test")
-			.petImageUrl("test")
-			.petName("test")
+			.description(TestConst.TEST_DESCRIPTION)
+			.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
+			.petName(TestConst.TEST_PET_NAME)
 			.build();
 		MockHttpServletRequestBuilder request = get("/user/mypet").header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token");
 		given(myPetInfoService.getMyPetInfo()).willReturn(myPetResponse);
@@ -65,16 +66,16 @@ public class UserControllerTest extends CommonRestDocs {
 		MockMultipartFile multipartFile = new MockMultipartFile("file","test.png","image/png", "test".getBytes());
 
 		MyPetResponse myPetResponse = MyPetResponse.builder()
-			.description("test")
-			.petImageUrl("test")
-			.petName("test")
+			.description(TestConst.TEST_DESCRIPTION)
+			.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
+			.petName(TestConst.TEST_PET_NAME)
 			.build();
 		given(myPetUpdateService.updateMyPetInfo(any())).willReturn(myPetResponse);
 
 		MockHttpServletRequestBuilder request = multipart("/user/mypet")
 			.file(multipartFile)
-			.param("petName", "test")
-			.param("description", "test")
+			.param("petName", TestConst.TEST_UPDATE_PET_NAME)
+			.param("description", TestConst.TEST_UPDATE_DESCRIPTION)
 			.contentType(MediaType.MULTIPART_FORM_DATA)
 			.header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token");
 		//when

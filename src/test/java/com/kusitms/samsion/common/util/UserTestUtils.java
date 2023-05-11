@@ -6,16 +6,26 @@ import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.domain.user.entity.MyPet;
 import com.kusitms.samsion.domain.user.entity.User;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserTestUtils {
 
-	public static User getMockUser(){
+	private final static User mockUser = setMockUserSingleton();
+
+	private static User setMockUserSingleton(){
 		User mockUser = User.builder()
 			.email(TestConst.TEST_EMAIL)
 			.nickname(TestConst.TEST_NICKNAME)
 			.build();
 		mockUser.updateMyPet(getMockMyPet());
-		ReflectionTestUtils.setField(mockUser, "id", TestConst.TEST_ID);
+		ReflectionTestUtils.setField(mockUser, "id", TestConst.TEST_USER_ID);
 
+		return mockUser;
+	}
+
+	public static User getMockUser(){
 		return mockUser;
 	}
 
