@@ -25,7 +25,6 @@ public class CommentMapper {
                 .writer(user)
                 .parent(parent)
                 .build();
-        comment.setParent(parent);
         return comment;
     }
 
