@@ -40,11 +40,6 @@ public class Comment extends BaseEntity {
     private List<Comment> childList = new ArrayList<>();
 
     //연관관계 편의 메서드
-    public void setAlbum(Album album) {
-        this.album = album;
-        album.addComment(this);
-    }
-
     public void setParent(Comment parent){
         this.parent = parent;
         parent.addChild(this);
@@ -65,6 +60,7 @@ public class Comment extends BaseEntity {
         this.album = album;
         this.writer = writer;
         this.parent = parent;
+        album.addComment(this);
     }
 
 

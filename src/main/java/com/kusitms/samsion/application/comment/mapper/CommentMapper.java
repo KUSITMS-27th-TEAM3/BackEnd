@@ -15,7 +15,6 @@ public class CommentMapper {
                 .album(album)
                 .writer(user)
                 .build();
-        comment.setAlbum(album);
         return comment;
     }
 
@@ -26,7 +25,6 @@ public class CommentMapper {
                 .writer(user)
                 .parent(parent)
                 .build();
-        comment.setAlbum(album);
         comment.setParent(parent);
         return comment;
     }
