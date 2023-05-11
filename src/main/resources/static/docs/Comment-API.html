@@ -452,11 +452,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /album/1/comment HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 30
+Content-Length: 48
 Host: localhost:8080
 
 {
-  "description" : "test"
+  "description" : "testCommentDescription"
 }</code></pre>
 </div>
 </div>
@@ -534,12 +534,12 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 89
+Content-Length: 115
 
 {
-  "description" : "test",
+  "description" : "testCommentDescription",
   "writer" : "test",
-  "writerProfileImageUrl" : "test"
+  "writerProfileImageUrl" : "testImageUrl"
 }</code></pre>
 </div>
 </div>
@@ -589,11 +589,11 @@ Content-Length: 89
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /album/1/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 30
+Content-Length: 53
 Host: localhost:8080
 
 {
-  "description" : "test"
+  "description" : "testChildCommentDescription"
 }</code></pre>
 </div>
 </div>
@@ -675,12 +675,12 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 89
+Content-Length: 120
 
 {
-  "description" : "test",
+  "description" : "testChildCommentDescription",
   "writer" : "test",
-  "writerProfileImageUrl" : "test"
+  "writerProfileImageUrl" : "testImageUrl"
 }</code></pre>
 </div>
 </div>
@@ -730,11 +730,11 @@ Content-Length: 89
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">PUT /album/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 30
+Content-Length: 54
 Host: localhost:8080
 
 {
-  "description" : "test"
+  "description" : "testUpdateCommentDescription"
 }</code></pre>
 </div>
 </div>
@@ -812,12 +812,12 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 89
+Content-Length: 121
 
 {
-  "description" : "test",
+  "description" : "testUpdateCommentDescription",
   "writer" : "test",
-  "writerProfileImageUrl" : "test"
+  "writerProfileImageUrl" : "testImageUrl"
 }</code></pre>
 </div>
 </div>
