@@ -6,6 +6,7 @@ import com.kusitms.samsion.application.comment.dto.response.CommentInfoResponse;
 import com.kusitms.samsion.application.comment.service.CommentCreateService;
 import com.kusitms.samsion.application.comment.service.CommentUpdateService;
 import com.kusitms.samsion.common.consts.ApplicationConst;
+import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.presentation.config.CommonRestDocs;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,6 @@ public class CommentControllerTest extends CommonRestDocs{
     @Test
     void 댓글_저장() throws Exception {
         //given
-        Long albumId = 1L;
         CommentCreateRequest commentCreateRequest = new CommentCreateRequest("test");
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
                 .description("test")
@@ -48,7 +48,7 @@ public class CommentControllerTest extends CommonRestDocs{
 
         //when
         ResultActions result = mockMvc.perform(
-                post("/album/{albumId}/comment", albumId)
+                post("/album/{albumId}/comment", TestConst.TEST_ID)
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(commentCreateRequest))
@@ -79,8 +79,6 @@ public class CommentControllerTest extends CommonRestDocs{
     @Test
     void 대댓글_저장() throws Exception {
         //given
-        Long albumId = 1L;
-        Long commentId = 1L;
         CommentCreateRequest commentCreateRequest = new CommentCreateRequest("test");
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
                 .description("test")
@@ -91,7 +89,7 @@ public class CommentControllerTest extends CommonRestDocs{
 
         //when
         ResultActions result = mockMvc.perform(
-                post("/album/{albumId}/comment/{commentId}", albumId, commentId)
+                post("/album/{albumId}/comment/{commentId}", TestConst.TEST_ID, TestConst.TEST_ID)
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(commentCreateRequest))
@@ -124,7 +122,6 @@ public class CommentControllerTest extends CommonRestDocs{
     @Test
     void 댓글_수정() throws Exception {
         //given
-        Long commentId = 1L;
         CommentCreateRequest commentCreateRequest = new CommentCreateRequest("test");
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
                 .description("test")
@@ -135,7 +132,7 @@ public class CommentControllerTest extends CommonRestDocs{
 
         //when
         ResultActions result = mockMvc.perform(
-                put("/album/comment/{commentId}", commentId)
+                put("/album/comment/{commentId}", TestConst.TEST_ID)
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(commentCreateRequest))
