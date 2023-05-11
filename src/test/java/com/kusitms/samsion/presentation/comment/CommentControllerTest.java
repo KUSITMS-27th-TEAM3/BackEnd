@@ -1,14 +1,13 @@
 package com.kusitms.samsion.presentation.comment;
 
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.BDDMockito.*;
-import static org.springframework.restdocs.headers.HeaderDocumentation.*;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import com.kusitms.samsion.application.comment.dto.request.CommentCreateRequest;
 import com.kusitms.samsion.application.comment.dto.request.CommentUpdateRequest;
+import com.kusitms.samsion.application.comment.dto.response.CommentInfoResponse;
+import com.kusitms.samsion.application.comment.service.CommentCreateService;
+import com.kusitms.samsion.application.comment.service.CommentUpdateService;
+import com.kusitms.samsion.common.consts.ApplicationConst;
+import com.kusitms.samsion.common.consts.TestConst;
+import com.kusitms.samsion.presentation.config.CommonRestDocs;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,13 +15,16 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.kusitms.samsion.application.comment.dto.request.CommentCreateRequest;
-import com.kusitms.samsion.application.comment.dto.response.CommentInfoResponse;
-import com.kusitms.samsion.application.comment.service.CommentCreateService;
-import com.kusitms.samsion.application.comment.service.CommentUpdateService;
-import com.kusitms.samsion.common.consts.ApplicationConst;
-import com.kusitms.samsion.common.consts.TestConst;
-import com.kusitms.samsion.presentation.config.CommonRestDocs;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.put;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CommentController.class)
 @DisplayName("CommentController 테스트")
@@ -36,11 +38,11 @@ public class CommentControllerTest extends CommonRestDocs{
     @Test
     void 댓글_저장() throws Exception {
         //given
-        CommentCreateRequest commentCreateRequest = new CommentCreateRequest("test");
+        CommentCreateRequest commentCreateRequest = new CommentCreateRequest(TestConst.TEST_COMMENT_DESCRIPTION);
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
-                .description("test")
-                .writer("test")
-                .writerProfileImageUrl("test")
+                .description(TestConst.TEST_COMMENT_DESCRIPTION)
+                .writer(TestConst.TEST_NICKNAME)
+                .writerProfileImageUrl(TestConst.TEST_PET_IMAGE_URL)
                 .build();
         given(commentCreateService.createComment(any(), any())).willReturn(commentInfoResponse);
 
@@ -77,11 +79,11 @@ public class CommentControllerTest extends CommonRestDocs{
     @Test
     void 대댓글_저장() throws Exception {
         //given
-        CommentCreateRequest commentCreateRequest = new CommentCreateRequest("test");
+        CommentCreateRequest commentCreateRequest = new CommentCreateRequest(TestConst.TEST_CHILD_COMMENT_DESCRIPTION);
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
-                .description("test")
-                .writer("test")
-                .writerProfileImageUrl("test")
+                .description(TestConst.TEST_CHILD_COMMENT_DESCRIPTION)
+                .writer(TestConst.TEST_NICKNAME)
+                .writerProfileImageUrl(TestConst.TEST_PET_IMAGE_URL)
                 .build();
         given(commentCreateService.createReComment(any(), any(), any())).willReturn(commentInfoResponse);
 
@@ -120,11 +122,11 @@ public class CommentControllerTest extends CommonRestDocs{
     @Test
     void 댓글_수정() throws Exception {
         //given
-        CommentUpdateRequest commentUpdateRequest = new CommentUpdateRequest("test");
+        CommentUpdateRequest commentUpdateRequest = new CommentUpdateRequest(TestConst.TEST_UPDATE_COMMENT_DESCRIPTION);
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
-                .description("test")
-                .writer("test")
-                .writerProfileImageUrl("test")
+                .description(TestConst.TEST_UPDATE_COMMENT_DESCRIPTION)
+                .writer(TestConst.TEST_NICKNAME)
+                .writerProfileImageUrl(TestConst.TEST_PET_IMAGE_URL)
                 .build();
         given(commentUpdateService.updateComment(any(), any())).willReturn(commentInfoResponse);
 
