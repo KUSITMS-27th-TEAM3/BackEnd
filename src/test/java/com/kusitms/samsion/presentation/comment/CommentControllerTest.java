@@ -8,6 +8,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.kusitms.samsion.application.comment.dto.request.CommentUpdateRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -119,7 +120,7 @@ public class CommentControllerTest extends CommonRestDocs{
     @Test
     void 댓글_수정() throws Exception {
         //given
-        CommentCreateRequest commentCreateRequest = new CommentCreateRequest("test");
+        CommentUpdateRequest commentUpdateRequest = new CommentUpdateRequest("test");
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
                 .description("test")
                 .writer("test")
@@ -132,7 +133,7 @@ public class CommentControllerTest extends CommonRestDocs{
                 put("/album/comment/{commentId}", TestConst.TEST_COMMENT_ID)
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(commentCreateRequest))
+                        .content(objectMapper.writeValueAsString(commentUpdateRequest))
         );
 
         //then

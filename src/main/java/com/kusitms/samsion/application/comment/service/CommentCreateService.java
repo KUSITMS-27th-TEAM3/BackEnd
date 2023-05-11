@@ -1,5 +1,6 @@
 package com.kusitms.samsion.application.comment.service;
 
+import com.kusitms.samsion.application.comment.dto.request.CommentCreateRequest;
 import com.kusitms.samsion.application.comment.dto.response.CommentInfoResponse;
 import com.kusitms.samsion.application.comment.mapper.CommentMapper;
 import com.kusitms.samsion.common.annotation.ApplicationService;
@@ -22,21 +23,21 @@ public class CommentCreateService {
     private final CommentQueryService commentQueryService;
 
     @Transactional
-    public CommentInfoResponse createComment(Long albumId, String description){
+    public CommentInfoResponse createComment(Long albumId, CommentCreateRequest commentCreateRequest){
         final User user = userUtils.getUser();
         final Album album = albumQueryService.getAlbumById(albumId);
-        final Comment comment = CommentMapper.mapToCommentWithUserAndAlbum(description, album, user);
+        final Comment comment = CommentMapper.mapToCommentWithUserAndAlbum(commentCreateRequest.getDescription(), album, user);
 
         commentSaveService.saveComment(comment);
         return CommentMapper.mapToCommentInfoResponse(comment);
     }
 
     @Transactional
-    public CommentInfoResponse createReComment(Long albumId, Long commentId, String description){
+    public CommentInfoResponse createReComment(Long albumId, Long commentId, CommentCreateRequest commentCreateRequest){
         final User user = userUtils.getUser();
         final Album album = albumQueryService.getAlbumById(albumId);
         final Comment parent = commentQueryService.getCommentById(commentId);
-        final Comment comment = CommentMapper.mapToCommentWithUserAndAlbumAndParent(description, album, user, parent);
+        final Comment comment = CommentMapper.mapToCommentWithUserAndAlbumAndParent(commentCreateRequest.getDescription(), album, user, parent);
 
         commentSaveService.saveComment(comment);
         return CommentMapper.mapToCommentInfoResponse(comment);

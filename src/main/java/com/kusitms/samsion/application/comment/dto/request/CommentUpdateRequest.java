@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class CommentCreateRequest {
+public class CommentUpdateRequest {
     private String description;
 
     @Builder
-    public CommentCreateRequest(String description) {
+    public CommentUpdateRequest(String description) {
         this.description = description;
     }
 }
