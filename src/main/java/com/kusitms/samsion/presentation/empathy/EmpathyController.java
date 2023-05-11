@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kusitms.samsion.application.empathy.EmpathyToggleService;
+import com.kusitms.samsion.application.empathy.service.EmpathyToggleService;
 
 import lombok.RequiredArgsConstructor;
 

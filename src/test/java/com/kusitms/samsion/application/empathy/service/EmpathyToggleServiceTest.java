@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.kusitms.samsion.application.empathy.EmpathyToggleService;
 import com.kusitms.samsion.common.util.UserTestUtils;
 import com.kusitms.samsion.common.util.UserUtils;
 import com.kusitms.samsion.domain.album.entity.Album;
