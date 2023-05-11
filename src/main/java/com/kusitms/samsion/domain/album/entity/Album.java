@@ -1,27 +1,15 @@
 package com.kusitms.samsion.domain.album.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import com.kusitms.samsion.common.domain.BaseEntity;
+import com.kusitms.samsion.domain.comment.entity.Comment;
 import com.kusitms.samsion.domain.user.entity.User;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -44,6 +32,9 @@ public class Album extends BaseEntity {
 	@OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
 	private List<AlbumImage> albumImages = new ArrayList<>();
 
+	@OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
+	private List<Comment> comments = new ArrayList<>();
+
 	@Builder
 	public Album(String description, Visibility visibility, User writer) {
 		this.description = description;
@@ -54,6 +45,8 @@ public class Album extends BaseEntity {
 	public void addImage(AlbumImage albumImage){
 		albumImages.add(albumImage);
 	}
+
+	public void addComment(Comment comment) {comments.add(comment);}
 
 	public void addImageList(List<AlbumImage> albumImageList){
 		albumImages.addAll(albumImageList);

@@ -5,3 +5,5 @@
 :toc: left
 :toclevels: 2
 :sectlinks:
+
+include::Comment-API.adoc[]

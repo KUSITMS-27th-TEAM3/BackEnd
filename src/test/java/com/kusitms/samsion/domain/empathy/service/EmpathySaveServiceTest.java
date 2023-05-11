@@ -2,6 +2,7 @@ package com.kusitms.samsion.domain.empathy.service;
 
 import static org.mockito.BDDMockito.*;
 
+import com.kusitms.samsion.common.util.AlbumTestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,22 +36,11 @@ class EmpathySaveServiceTest {
 	void 공감_저장_요청을_받는다(){
 		//given
 		final User mockUser = UserTestUtils.getMockUser();
-		final Album mockAlbum = getMockAlbum(mockUser);
+		final Album mockAlbum = AlbumTestUtils.getMockAlbum(mockUser);
 		//when
 		empathySaveService.saveEmpathy(mockUser, mockAlbum);
 		//then
 		then(empathyRepository).should(times(1)).save(any(Empathy.class));
-	}
-
-
-	private Album getMockAlbum(User mockUser) {
-		Album mockAlbum = Album.builder()
-			.writer(mockUser)
-			.visibility(Visibility.PUBLIC)
-			.description("album description")
-			.build();
-		ReflectionTestUtils.setField(mockAlbum, "id", 1L);
-		return mockAlbum;
 	}
 
 }

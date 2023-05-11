@@ -18,6 +18,9 @@ public enum Error {
 	// 공감
 	EMPATHY_NOT_FOUND("공감을 찾을 수 없습니다.", 3000),
 
+	//댓글
+	COMMENT_NOT_FOUND("댓글을 찾을 수 없습니다.", 5000),
+
 	// 질문
 	QUESTION_NOT_FOUND("질문을 찾을 수 없습니다.", 4000),
 	ANSWER_NOT_FOUND("답변을 찾을 수 없습니다.", 4001),
