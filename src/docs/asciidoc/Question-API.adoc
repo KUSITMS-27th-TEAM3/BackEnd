@@ -1,0 +1,14 @@
+[[Question-API]]
+== Question API
+
+[[Question-모든-조회-조회]]
+== Question 모든 질문 조회
+operation::question-controller-test/모든_질문을_조회한다[snippets='http-request,request-headers,path-parameters,request-fields,http-response,response-fields']
+
+[[Question-질문-답변-작성]]
+== Question 질문 답변 작성
+operation::question-controller-test/질문에_대한_답변을_작성한다[snippets='http-request,request-headers,path-parameters,request-fields,http-response,response-fields']
+
+[[Question-질문-답변-수정]]
+== Question 질문 답변 수정
+operation::question-controller-test/질문을_수정한다[snippets='http-request,request-headers,path-parameters,request-fields,http-response,response-fields']

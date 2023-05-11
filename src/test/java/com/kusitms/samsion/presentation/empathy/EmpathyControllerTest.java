@@ -12,8 +12,9 @@ import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import com.kusitms.samsion.application.empathy.EmpathyToggleService;
+import com.kusitms.samsion.application.empathy.service.EmpathyToggleService;
 import com.kusitms.samsion.common.consts.ApplicationConst;
+import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.presentation.config.CommonRestDocs;
 
 @WebMvcTest(EmpathyController.class)
@@ -26,7 +27,8 @@ class EmpathyControllerTest extends CommonRestDocs {
 	@Test
 	void 접속중인_앨범에서_공감_GET_요청이_정상적으로_들어온다() throws Exception {
 		//given
-		MockHttpServletRequestBuilder request = RestDocumentationRequestBuilders.get("/album/{albumId}/empathy", 1L).header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token");
+		MockHttpServletRequestBuilder request = RestDocumentationRequestBuilders.get("/album/{albumId}/empathy",
+			TestConst.TEST_EMPATHY_ID).header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token");
 		//when
 		ResultActions result = mockMvc.perform(request);
 		//then

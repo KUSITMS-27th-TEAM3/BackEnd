@@ -21,6 +21,11 @@ public enum Error {
 	//댓글
 	COMMENT_NOT_FOUND("댓글을 찾을 수 없습니다.", 5000),
 
+	// 질문
+	QUESTION_NOT_FOUND("질문을 찾을 수 없습니다.", 4000),
+	ANSWER_NOT_FOUND("답변을 찾을 수 없습니다.", 4001),
+	ANSWER_ALREADY_EXIST("이미 답변이 존재합니다.", 4002),
+
 	// JWT
 	INVALID_TOKEN("잘못된 토큰 요청", 4001),
 	EXPIRED_TOKEN("토큰 만료", 4002);

@@ -1,4 +1,4 @@
-package com.kusitms.samsion.application.empathy;
+package com.kusitms.samsion.application.empathy.service;
 
 import org.springframework.transaction.annotation.Transactional;
 
