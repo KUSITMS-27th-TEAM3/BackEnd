@@ -1,5 +1,19 @@
 package com.kusitms.samsion.presentation.comment;
 
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.BDDMockito.*;
+import static org.springframework.restdocs.headers.HeaderDocumentation.*;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.ResultActions;
 
 import com.kusitms.samsion.application.comment.dto.request.CommentCreateRequest;
 import com.kusitms.samsion.application.comment.dto.response.CommentInfoResponse;
@@ -8,23 +22,6 @@ import com.kusitms.samsion.application.comment.service.CommentUpdateService;
 import com.kusitms.samsion.common.consts.ApplicationConst;
 import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.presentation.config.CommonRestDocs;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.ResultActions;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
-import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.put;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CommentController.class)
 @DisplayName("CommentController 테스트")
@@ -48,7 +45,7 @@ public class CommentControllerTest extends CommonRestDocs{
 
         //when
         ResultActions result = mockMvc.perform(
-                post("/album/{albumId}/comment", TestConst.TEST_ID)
+                post("/album/{albumId}/comment", TestConst.TEST_ALBUM_ID)
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(commentCreateRequest))
@@ -89,7 +86,7 @@ public class CommentControllerTest extends CommonRestDocs{
 
         //when
         ResultActions result = mockMvc.perform(
-                post("/album/{albumId}/comment/{commentId}", TestConst.TEST_ID, TestConst.TEST_ID)
+                post("/album/{albumId}/comment/{commentId}", TestConst.TEST_ALBUM_ID, TestConst.TEST_COMMENT_ID)
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(commentCreateRequest))
@@ -132,7 +129,7 @@ public class CommentControllerTest extends CommonRestDocs{
 
         //when
         ResultActions result = mockMvc.perform(
-                put("/album/comment/{commentId}", TestConst.TEST_ID)
+                put("/album/comment/{commentId}", TestConst.TEST_COMMENT_ID)
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(commentCreateRequest))

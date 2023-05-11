@@ -1,10 +1,11 @@
 package com.kusitms.samsion.common.util;
 
+import org.springframework.test.util.ReflectionTestUtils;
+
 import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.domain.album.entity.Album;
 import com.kusitms.samsion.domain.album.entity.Visibility;
 import com.kusitms.samsion.domain.user.entity.User;
-import org.springframework.test.util.ReflectionTestUtils;
 
 public class AlbumTestUtils {
 
@@ -14,7 +15,7 @@ public class AlbumTestUtils {
                 .visibility(Visibility.PUBLIC)
                 .description("album description")
                 .build();
-        ReflectionTestUtils.setField(mockAlbum, "id", TestConst.TEST_ID);
+        ReflectionTestUtils.setField(mockAlbum, "id", TestConst.TEST_ALBUM_ID);
         return mockAlbum;
     }
 }

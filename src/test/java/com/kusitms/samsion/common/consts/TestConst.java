@@ -25,6 +25,12 @@ public class TestConst {
 	// 공감
 	public static final Long TEST_EMPATHY_ID = 1L;
 
+	// 앨범
+	public static final Long TEST_ALBUM_ID = 1L;
+
+	// 댓글
+	public static final Long TEST_COMMENT_ID = 1L;
+
 
 	// 질문
 	public static final String QUESTION_PREFIX_URL = "/question";
