@@ -1,6 +1,8 @@
 package com.kusitms.samsion.domain.comment.service;
 
 import com.kusitms.samsion.common.consts.TestConst;
+import com.kusitms.samsion.common.util.AlbumTestUtils;
+import com.kusitms.samsion.common.util.CommentTestUtils;
 import com.kusitms.samsion.common.util.UserTestUtils;
 import com.kusitms.samsion.domain.album.entity.Album;
 import com.kusitms.samsion.domain.album.entity.Visibility;
@@ -41,8 +43,8 @@ public class CommentQueryServiceTest {
     void 댓글_조회_요청을_받는다(){
         //given
         final User mockUser = UserTestUtils.getMockUser();
-        final Album mockAlbum = getMockAlbum(mockUser);
-        final Comment mockComment = getMockComment(mockUser, mockAlbum);
+        final Album mockAlbum = AlbumTestUtils.getMockAlbum(mockUser);
+        final Comment mockComment = CommentTestUtils.getMockComment(mockUser, mockAlbum);
         given(commentRepository.findById(mockAlbum.getId())).willReturn(Optional.of(mockComment));
         //when
         Comment comment = commentQueryService.getCommentById(mockComment.getId());
@@ -60,26 +62,6 @@ public class CommentQueryServiceTest {
         //then
         Assertions.assertThatThrownBy(() -> commentQueryService.getCommentById(TestConst.TEST_ID))
                 .isInstanceOf(CommentNotFoundException.class);
-    }
-
-    private Comment getMockComment(User mockUser, Album mockAlbum) {
-        Comment mockComment = Comment.builder()
-                .description("comment description")
-                .album(mockAlbum)
-                .writer(mockUser)
-                .build();
-        ReflectionTestUtils.setField(mockComment, "id", 1L);
-        return mockComment;
-    }
-
-    private Album getMockAlbum(User mockUser) {
-        Album mockAlbum = Album.builder()
-                .writer(mockUser)
-                .visibility(Visibility.PUBLIC)
-                .description("album description")
-                .build();
-        ReflectionTestUtils.setField(mockAlbum, "id", 1L);
-        return mockAlbum;
     }
 
 }
