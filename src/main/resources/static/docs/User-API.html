@@ -443,14 +443,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="User-API">User-API</h2>
 <div class="sectionbody">
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="User-mypet-정보-조회">User mypet 정보 조회</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="User-mypet-정보-조회_http_request">HTTP request</h3>
+<h3 id="User-mypet-정보-조회">User mypet 정보 조회</h3>
+<div class="sect3">
+<h4 id="User-mypet-정보-조회_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /user/mypet HTTP/1.1
@@ -459,8 +455,8 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="User-mypet-정보-조회_request_headers">Request headers</h3>
+<div class="sect3">
+<h4 id="User-mypet-정보-조회_request_headers">Request headers</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -480,20 +476,8 @@ Host: localhost:8080</code></pre>
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="User-mypet-정보-조회_path_parameters">Path parameters</h3>
-<div class="paragraph">
-<p>Snippet path-parameters not found for operation::user-controller-test/접속한_사용자의_mypet_조회</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="User-mypet-정보-조회_request_fields">Request fields</h3>
-<div class="paragraph">
-<p>Snippet request-fields not found for operation::user-controller-test/접속한_사용자의_mypet_조회</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="User-mypet-정보-조회_http_response">HTTP response</h3>
+<div class="sect3">
+<h4 id="User-mypet-정보-조회_http_response">HTTP response</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
@@ -508,8 +492,8 @@ Content-Length: 102
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="User-mypet-정보-조회_response_fields">Response fields</h3>
+<div class="sect3">
+<h4 id="User-mypet-정보-조회_response_fields">Response fields</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -542,13 +526,12 @@ Content-Length: 102
 </tbody>
 </table>
 </div>
+<hr>
 </div>
-</div>
-<div class="sect1">
-<h2 id="User-mypet-정보-수정">User mypet 정보 수정</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="User-mypet-정보-수정_http_request">HTTP request</h3>
+<h3 id="User-mypet-정보-수정">User mypet 정보 수정</h3>
+<div class="sect3">
+<h4 id="User-mypet-정보-수정_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /user/mypet HTTP/1.1
@@ -573,8 +556,8 @@ test
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="User-mypet-정보-수정_request_headers">Request headers</h3>
+<div class="sect3">
+<h4 id="User-mypet-정보-수정_request_headers">Request headers</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -594,20 +577,33 @@ test
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="User-mypet-정보-수정_path_parameters">Path parameters</h3>
-<div class="paragraph">
-<p>Snippet path-parameters not found for operation::user-controller-test/접속한_사용자의_mypet_수정</p>
+<div class="sect3">
+<h4 id="User-mypet-정보-수정_request_parameters">Request parameters</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 설명</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-<div class="sect2">
-<h3 id="User-mypet-정보-수정_request_fields">Request fields</h3>
-<div class="paragraph">
-<p>Snippet request-fields not found for operation::user-controller-test/접속한_사용자의_mypet_수정</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="User-mypet-정보-수정_http_response">HTTP response</h3>
+<div class="sect3">
+<h4 id="User-mypet-정보-수정_http_response">HTTP response</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
@@ -622,8 +618,8 @@ Content-Length: 102
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="User-mypet-정보-수정_response_fields">Response fields</h3>
+<div class="sect3">
+<h4 id="User-mypet-정보-수정_response_fields">Response fields</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -659,10 +655,11 @@ Content-Length: 102
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-12 01:36:09 +0900
+Last updated 2023-05-12 15:10:30 +0900
 </div>
 </div>
 </body>
