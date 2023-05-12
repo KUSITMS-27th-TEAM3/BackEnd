@@ -16,5 +16,3 @@ operation::comment-controller-test/대댓글_저장[snippets='http-request,reque
 [[Comment-댓글-수정]]
 === Comment 댓글 수정
 operation::comment-controller-test/댓글_수정[snippets='http-request,request-headers,path-parameters,request-fields,http-response,response-fields']
-
----

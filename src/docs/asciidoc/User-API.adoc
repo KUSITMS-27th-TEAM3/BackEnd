@@ -2,9 +2,11 @@
 == User-API
 
 [[User-mypet-정보-조회]]
-== User mypet 정보 조회
-operation::user-controller-test/접속한_사용자의_mypet_조회[snippets='http-request,request-headers,path-parameters,request-fields,http-response,response-fields']
+=== User mypet 정보 조회
+operation::user-controller-test/접속한_사용자의_mypet_조회[snippets='http-request,request-headers,http-response,response-fields']
+
+---
 
 [[User-mypet-정보-수정]]
-== User mypet 정보 수정
-operation::user-controller-test/접속한_사용자의_mypet_수정[snippets='http-request,request-headers,path-parameters,request-fields,http-response,response-fields']
+=== User mypet 정보 수정
+operation::user-controller-test/접속한_사용자의_mypet_수정[snippets='http-request,request-headers,request-parameters,http-response,response-fields']
