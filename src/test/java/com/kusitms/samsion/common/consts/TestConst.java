@@ -30,6 +30,10 @@ public class TestConst {
 
 	// 댓글
 	public static final Long TEST_COMMENT_ID = 1L;
+	public static final Long TEST_CHILD_ID = 2L;
+	public static final String TEST_COMMENT_DESCRIPTION = "testCommentDescription";
+	public static final String TEST_CHILD_COMMENT_DESCRIPTION = "testChildCommentDescription";
+	public static final String TEST_UPDATE_COMMENT_DESCRIPTION = "testUpdateCommentDescription";
 
 
 	// 질문

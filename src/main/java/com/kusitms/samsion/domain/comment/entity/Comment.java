@@ -39,12 +39,6 @@ public class Comment extends BaseEntity {
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Comment> childList = new ArrayList<>();
 
-    //연관관계 편의 메서드
-    public void setParent(Comment parent){
-        this.parent = parent;
-        parent.addChild(this);
-    }
-
     public void addChild(Comment child){
         childList.add(child);
     }
@@ -61,6 +55,8 @@ public class Comment extends BaseEntity {
         this.writer = writer;
         this.parent = parent;
         album.addComment(this);
+        if(parent != null)
+            parent.addChild(this);
     }
 
 
