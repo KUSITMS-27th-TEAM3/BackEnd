@@ -13,7 +13,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import com.kusitms.samsion.application.user.dto.request.UserSignUpRequest;
+import com.kusitms.samsion.domain.user.application.dto.request.UserSignUpRequest;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

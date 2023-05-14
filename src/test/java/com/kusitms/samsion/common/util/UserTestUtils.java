@@ -3,8 +3,8 @@ package com.kusitms.samsion.common.util;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.kusitms.samsion.common.consts.TestConst;
-import com.kusitms.samsion.domain.user.entity.MyPet;
-import com.kusitms.samsion.domain.user.entity.User;
+import com.kusitms.samsion.domain.user.domain.entity.MyPet;
+import com.kusitms.samsion.domain.user.domain.entity.User;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
