@@ -2,7 +2,7 @@ package com.kusitms.samsion.common.security.oauth;
 
 import java.util.Map;
 
-import com.kusitms.samsion.domain.user.entity.User;
+import com.kusitms.samsion.domain.user.domain.entity.User;
 
 import lombok.Builder;
 import lombok.Getter;

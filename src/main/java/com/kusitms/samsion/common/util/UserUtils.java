@@ -2,8 +2,8 @@ package com.kusitms.samsion.common.util;
 
 import org.springframework.stereotype.Component;
 
-import com.kusitms.samsion.domain.user.entity.User;
-import com.kusitms.samsion.domain.user.service.UserQueryService;
+import com.kusitms.samsion.domain.user.domain.entity.User;
+import com.kusitms.samsion.domain.user.domain.service.UserQueryService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -3,9 +3,9 @@ package com.kusitms.samsion.common.util;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.kusitms.samsion.common.consts.TestConst;
-import com.kusitms.samsion.domain.album.entity.Album;
-import com.kusitms.samsion.domain.album.entity.Visibility;
-import com.kusitms.samsion.domain.user.entity.User;
+import com.kusitms.samsion.domain.album.domain.entity.Album;
+import com.kusitms.samsion.domain.album.domain.entity.Visibility;
+import com.kusitms.samsion.domain.user.domain.entity.User;
 
 public class AlbumTestUtils {
 
