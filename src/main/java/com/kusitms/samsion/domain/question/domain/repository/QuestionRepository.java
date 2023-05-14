@@ -10,6 +10,8 @@ import com.kusitms.samsion.domain.question.domain.entity.Question;
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
+	Page<Question> findAll(Pageable pageable);
+
 	@Query(value = "select q from Question q join fetch q.answers a where a.writer.id = :userId",
 		countQuery = "select count(q) from Question q")
 	Page<Question> findAll(Pageable pageable, @Param("userId") Long userId);

@@ -18,7 +18,8 @@ public class QuestionQueryService {
 	private final QuestionRepository questionRepository;
 
 	public Page<Question> findAll(Pageable pageable, Long userId){
-		return questionRepository.findAll(pageable,userId);
+		return questionRepository.findAll(pageable);
+		// return questionRepository.findAll(pageable,userId);
 	}
 
 	public Question getQuestionById(Long questionId){
