@@ -23,7 +23,6 @@ import com.kusitms.samsion.common.util.UserTestUtils;
 import com.kusitms.samsion.domain.question.domain.entity.Question;
 import com.kusitms.samsion.domain.question.domain.exception.QuestionNotFoundException;
 import com.kusitms.samsion.domain.question.domain.repository.QuestionRepository;
-import com.kusitms.samsion.domain.question.domain.service.QuestionQueryService;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 
 @ExtendWith(MockitoExtension.class)
@@ -47,7 +46,7 @@ class QuestionQueryServiceTest {
 		User mockUser = UserTestUtils.getMockUser();
 		Question mockQuestion = QuestionTestUtils.getMockQuestion();
 		Page<Question> questions = new PageImpl<>(List.of(mockQuestion));
-		given(questionRepository.findAll(pageRequest,mockUser.getId())).willReturn(questions);
+		given(questionRepository.findAll(pageRequest)).willReturn(questions);
 		//when
 		Page<Question> result = questionQueryService.findAll(pageRequest, mockUser.getId());
 		//then
