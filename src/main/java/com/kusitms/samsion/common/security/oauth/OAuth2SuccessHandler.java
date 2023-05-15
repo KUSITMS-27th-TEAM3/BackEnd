@@ -2,6 +2,9 @@ package com.kusitms.samsion.common.security.oauth;
 
 import static com.kusitms.samsion.common.consts.ApplicationConst.*;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.kusitms.samsion.common.security.jwt.JwtProvider;
 import com.kusitms.samsion.common.util.HeaderUtils;
@@ -28,26 +32,30 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-		Authentication authentication){
+		Authentication authentication) throws IOException {
 		OAuth2User oAuth2User = (OAuth2User)authentication.getPrincipal();
 		TokenInfo tokenInfo = generateToken(oAuth2User.getAttribute("email"));
-		setTokenToHeader(tokenInfo);
+		response.sendRedirect(UriComponentsBuilder.fromUriString("/success")
+			.queryParam(ACCESS_TOKEN_HEADER, tokenInfo.getAccessToken())
+			.queryParam(REFRESH_TOKEN_HEADER, tokenInfo.getRefreshToken()).build()
+			.encode(StandardCharsets.UTF_8)
+			.toUriString());
 	}
 
-	private TokenInfo generateToken(String email){
+	private TokenInfo generateToken(String email) {
 		String accessToken = jwtProvider.generateAccessToken(email);
 		String refreshToken = jwtProvider.generateRefreshToken(email);
 
 		return new TokenInfo(accessToken, refreshToken);
 	}
 
-	private void setTokenToHeader(TokenInfo tokenInfo){
-		HeaderUtils.setHeader(ACCESS_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE+tokenInfo.getAccessToken());
-		HeaderUtils.setHeader(REFRESH_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE+tokenInfo.getRefreshToken());
+	private void setTokenToHeader(TokenInfo tokenInfo) {
+		HeaderUtils.setHeader(ACCESS_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE + tokenInfo.getAccessToken());
+		HeaderUtils.setHeader(REFRESH_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE + tokenInfo.getRefreshToken());
 	}
 
 	@Getter
-	private static class TokenInfo{
+	private static class TokenInfo {
 		private final String accessToken;
 		private final String refreshToken;
 

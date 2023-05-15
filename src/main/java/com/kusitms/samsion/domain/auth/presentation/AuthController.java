@@ -22,4 +22,9 @@ public class AuthController {
 		return authReIssueUseCase.reissue(refreshTokenHeader);
 	}
 
+	@GetMapping("/success")
+	public String success() {
+		return "success";
+	}
+
 }
