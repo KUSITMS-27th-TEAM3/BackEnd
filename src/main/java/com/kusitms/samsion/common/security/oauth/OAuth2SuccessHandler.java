@@ -35,7 +35,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 		Authentication authentication) throws IOException {
 		OAuth2User oAuth2User = (OAuth2User)authentication.getPrincipal();
 		TokenInfo tokenInfo = generateToken(oAuth2User.getAttribute("email"));
-		response.sendRedirect(UriComponentsBuilder.fromUriString("/success")
+		response.sendRedirect(UriComponentsBuilder.fromUriString("http://localhost:3000/success")
 			.queryParam(ACCESS_TOKEN_HEADER, tokenInfo.getAccessToken())
 			.queryParam(REFRESH_TOKEN_HEADER, tokenInfo.getRefreshToken()).build()
 			.encode(StandardCharsets.UTF_8)
