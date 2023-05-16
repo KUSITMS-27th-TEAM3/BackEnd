@@ -3,6 +3,7 @@ package com.kusitms.samsion.domain.comment.presentation;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class CommentController {
     private final CommentUpdateUseCase commentUpdateUseCase;
 
     @PostMapping("/{albumId}/comment")
-    public CommentInfoResponse createComment(@PathVariable Long albumId, CommentCreateRequest commentCreateRequest) {
+    public CommentInfoResponse createComment(@PathVariable Long albumId, @RequestBody CommentCreateRequest commentCreateRequest) {
         return commentCreateUseCase.createComment(albumId, commentCreateRequest);
     }
 
