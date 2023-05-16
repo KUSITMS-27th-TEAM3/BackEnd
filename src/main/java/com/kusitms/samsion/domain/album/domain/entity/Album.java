@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 
 import com.kusitms.samsion.common.domain.BaseEntity;
 import com.kusitms.samsion.domain.comment.domain.entity.Comment;
+import com.kusitms.samsion.domain.empathy.domain.entity.Empathy;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 
 import lombok.Builder;
@@ -48,6 +49,12 @@ public class Album extends BaseEntity {
 	@OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
 
+	@OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
+	private List<Empathy> empathies = new ArrayList<>();
+
+	@OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
+	private List<Tag> tags = new ArrayList<>();
+
 	@Builder
 	public Album(String description, Visibility visibility, User writer) {
 		this.description = description;
@@ -64,5 +71,7 @@ public class Album extends BaseEntity {
 	public void addImageList(List<AlbumImage> albumImageList){
 		albumImages.addAll(albumImageList);
 	}
+
+	public void addTag(Tag tag) {tags.add(tag);}
 
 }
