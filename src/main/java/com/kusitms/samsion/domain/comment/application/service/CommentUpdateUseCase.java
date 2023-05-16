@@ -3,12 +3,12 @@ package com.kusitms.samsion.domain.comment.application.service;
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentUpdateRequest;
 import com.kusitms.samsion.domain.comment.application.dto.response.CommentInfoResponse;
 import com.kusitms.samsion.domain.comment.application.mapper.CommentMapper;
-import com.kusitms.samsion.common.annotation.UserCase;
+import com.kusitms.samsion.common.annotation.UseCase;
 import com.kusitms.samsion.domain.comment.domain.entity.Comment;
 import com.kusitms.samsion.domain.comment.domain.service.CommentQueryService;
 import lombok.RequiredArgsConstructor;
 
-@UserCase
+@UseCase
 @RequiredArgsConstructor
 public class CommentUpdateUseCase {
     private final CommentQueryService commentQueryService;

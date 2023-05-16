@@ -13,4 +13,6 @@ public interface EmpathyRepository extends JpaRepository<Empathy,Long> {
 	boolean existsByUserIdAndAlbumId(Long userId, Long albumId);
 
 	void deleteByUserIdAndAlbumId(Long userId, Long albumId);
+
+	long countByAlbumId(Long albumId);
 }

@@ -14,9 +14,12 @@ public class EmpathyQueryService {
 
 	private final EmpathyRepository empathyRepository;
 
-
 	public boolean isEmpathyByUserIdAndAlbumId(Long userId, Long albumId){
 		return empathyRepository.existsByUserIdAndAlbumId(albumId, userId);
+	}
+
+	public long getEmpathyCountByAlbumId(Long albumId){
+		return empathyRepository.countByAlbumId(albumId);
 	}
 
 }

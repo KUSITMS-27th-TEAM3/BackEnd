@@ -2,7 +2,7 @@ package com.kusitms.samsion.domain.comment.application.service;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kusitms.samsion.common.annotation.UserCase;
+import com.kusitms.samsion.common.annotation.UseCase;
 import com.kusitms.samsion.common.util.UserUtils;
 import com.kusitms.samsion.domain.album.domain.entity.Album;
 import com.kusitms.samsion.domain.album.domain.service.AlbumQueryService;
@@ -16,7 +16,7 @@ import com.kusitms.samsion.domain.user.domain.entity.User;
 
 import lombok.RequiredArgsConstructor;
 
-@UserCase
+@UseCase
 @RequiredArgsConstructor
 public class CommentCreateUseCase {
     private final UserUtils userUtils;

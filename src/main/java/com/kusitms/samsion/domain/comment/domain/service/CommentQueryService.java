@@ -16,4 +16,9 @@ public class CommentQueryService {
     public Comment getCommentById(Long commentId){
         return commentRepository.findById(commentId).orElseThrow(() -> new CommentNotFoundException(Error.COMMENT_NOT_FOUND));
     }
+
+    public long getCommentCountByAlbumId(Long albumId){
+        return commentRepository.countByAlbumId(albumId);
+    }
+
 }

@@ -1,13 +1,13 @@
 package com.kusitms.samsion.domain.auth.application.service;
 
 import com.kusitms.samsion.domain.auth.application.dto.ReIssueResponse;
-import com.kusitms.samsion.common.annotation.UserCase;
+import com.kusitms.samsion.common.annotation.UseCase;
 import com.kusitms.samsion.common.security.jwt.JwtProvider;
 import com.kusitms.samsion.common.util.SecurityUtils;
 
 import lombok.RequiredArgsConstructor;
 
-@UserCase
+@UseCase
 @RequiredArgsConstructor
 public class AuthReIssueUseCase {
 
