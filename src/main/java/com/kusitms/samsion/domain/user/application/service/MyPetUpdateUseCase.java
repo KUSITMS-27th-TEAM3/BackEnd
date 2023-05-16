@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kusitms.samsion.domain.user.application.dto.request.MyPetUpdateRequest;
 import com.kusitms.samsion.domain.user.application.dto.response.MyPetResponse;
 import com.kusitms.samsion.domain.user.application.mapper.MyPetMapper;
-import com.kusitms.samsion.common.annotation.UserCase;
+import com.kusitms.samsion.common.annotation.UseCase;
 import com.kusitms.samsion.common.util.UserUtils;
 import com.kusitms.samsion.domain.user.domain.entity.MyPet;
 import com.kusitms.samsion.domain.user.domain.entity.User;
@@ -13,7 +13,7 @@ import com.kusitms.samsion.common.infrastructure.s3.S3UploadService;
 
 import lombok.RequiredArgsConstructor;
 
-@UserCase
+@UseCase
 @RequiredArgsConstructor
 public class MyPetUpdateUseCase {
 
