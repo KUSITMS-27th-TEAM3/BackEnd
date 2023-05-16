@@ -1,9 +1,18 @@
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.10'
     // RestDocs
     id "org.asciidoctor.jvm.convert" version "3.3.2"
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+
+    //QueryDsl
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.kusitms'
@@ -58,6 +67,11 @@ dependencies {
 
     // h2
     runtimeOnly 'com.h2database:h2'
+
+    //QueryDsl
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
 }
 
 tasks.named('test') {
@@ -98,4 +112,31 @@ task copyDocument(type: Copy) {
 
 bootJar {
     dependsOn copyDocument
+}
+
+// querydsl에서 사용할 경로 설정(현재 지정한 부분은 .gitignore에 포함됨)
+def querydslDir = "$buildDir/generated/querydsl"
+
+// JPA 사용 여부 및 사용할 경로 설정
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+// build 시 사용할 sourceSet 추가 설정
+sourceSets {
+    main.java.srcDir querydslDir
+}
+
+// querydsl 컴파일 시 사용할 옵션 설정
+compileQuerydsl{
+    options.annotationProcessorPath = configurations.querydsl
+}
+
+// querydsl이 compileClassPath를 상속하도록 설정
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
 }
