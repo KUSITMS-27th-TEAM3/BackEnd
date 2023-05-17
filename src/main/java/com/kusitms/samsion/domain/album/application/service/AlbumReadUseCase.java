@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional(readOnly = true)
 @UseCase
 @RequiredArgsConstructor
-public class AlbumReadUserCase {
+public class AlbumReadUseCase {
 
 	private final UserUtils userUtils;
 	private final AlbumQueryService albumQueryService;
@@ -39,12 +39,14 @@ public class AlbumReadUserCase {
 
 		Slice<Album> albumList = albumQueryService.getAlbumList(pageable,request.getEmotionTagList(), request.getSortType());
 
-		Slice<AlbumSimpleResponse> albumSimpleResponses = albumList.map(album -> {
-			final long commentCountByAlbumId = commentQueryService.getCommentCountByAlbumId(album.getId());
-			final long empathyCountByAlbumId = empathyQueryService.getEmpathyCountByAlbumId(album.getId());
-			return AlbumMapper.mapToAlbumSimpleResponse(album, commentCountByAlbumId, empathyCountByAlbumId);
-		});
-		return SliceResponse.of(albumSimpleResponses);
+		return getSliceResponseAboutAlbumSimpleResponse(albumList);
+	}
+
+	public SliceResponse<AlbumSimpleResponse> getMyAlbumList(Pageable pageable, AlbumSearchRequest request){
+		Slice<Album> myAlbumList =
+			albumQueryService.getMyAlbumList(pageable, request.getEmotionTagList(), request.getSortType(), userUtils.getUser().getId());
+
+		return getSliceResponseAboutAlbumSimpleResponse(myAlbumList);
 	}
 
 	public AlbumInfoResponse getAlbum(Long albumId){
@@ -52,5 +54,17 @@ public class AlbumReadUserCase {
 		Album album = albumQueryService.getAlbumById(albumId);
 		albumValidAccessService.validateAccess(album, user.getId());
 		return AlbumMapper.mapToAlbumInfoResponse(album);
+	}
+
+	/**
+	 * DTO로 변환하는 과정에서 추가적인 쿼리가 필요하기 때문에 mapper가 아닌 usecase에서 처리
+	 */
+	private SliceResponse<AlbumSimpleResponse> getSliceResponseAboutAlbumSimpleResponse(Slice<Album> albumList) {
+		Slice<AlbumSimpleResponse> albumSimpleResponses = albumList.map(album -> {
+			final long commentCountByAlbumId = commentQueryService.getCommentCountByAlbumId(album.getId());
+			final long empathyCountByAlbumId = empathyQueryService.getEmpathyCountByAlbumId(album.getId());
+			return AlbumMapper.mapToAlbumSimpleResponse(album, commentCountByAlbumId, empathyCountByAlbumId);
+		});
+		return SliceResponse.of(albumSimpleResponses);
 	}
 }
