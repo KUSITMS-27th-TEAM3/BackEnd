@@ -15,11 +15,13 @@ import com.kusitms.samsion.domain.album.domain.entity.Album;
 import com.kusitms.samsion.domain.album.domain.service.AlbumImageSaveService;
 import com.kusitms.samsion.domain.album.domain.service.AlbumSaveService;
 import com.kusitms.samsion.domain.album.domain.service.TagSaveService;
+import com.kusitms.samsion.domain.grid.application.dto.request.GridCountUpdateRequest;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 
 import lombok.RequiredArgsConstructor;
 
 @UseCase
+@Transactional
 @RequiredArgsConstructor
 public class AlbumCreateUseCase {
 
@@ -34,7 +36,6 @@ public class AlbumCreateUseCase {
 	/**
 	 * TODO : 의존성이 너무 과한것같음, Album, AlbumImage, Tag을 같은 aggregate로 묶었지만 Album저장로직에 너무 많은 의존성이 생겨버림 이벤트 기반으로 변경할지고민중
 	 */
-	@Transactional
 	public AlbumInfoResponse createAlbum(AlbumCreateRequest albumCreateRequest){
 		List<String> imageUrls = s3UploadService.uploadImgList(albumCreateRequest.getAlbumImages());
 
@@ -44,7 +45,7 @@ public class AlbumCreateUseCase {
 		tagSaveService.saveTagList(albumCreateRequest.getEmotionTags(), album);
 		albumImageSaveService.saveAlbumImageList(imageUrls, album);
 
-
+		applicationEventPublisher.publishEvent(new GridCountUpdateRequest(user.getId()));
 
 		return AlbumMapper.mapToAlbumInfoResponse(album);
 	}

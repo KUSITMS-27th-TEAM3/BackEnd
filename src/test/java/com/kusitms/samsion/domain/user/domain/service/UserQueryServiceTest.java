@@ -17,7 +17,6 @@ import com.kusitms.samsion.common.util.UserTestUtils;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 import com.kusitms.samsion.domain.user.domain.exception.UserNotFoundException;
 import com.kusitms.samsion.domain.user.domain.repository.UserRepository;
-import com.kusitms.samsion.domain.user.domain.service.UserQueryService;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("UserGetService 테스트")
@@ -39,7 +38,7 @@ class UserQueryServiceTest {
 		User mockUser = UserTestUtils.getMockUser();
 		given(userRepository.findByEmail(TestConst.TEST_EMAIL)).willReturn(Optional.of(mockUser));
 		//when
-		User user = userQueryService.getUserByEmail(mockUser.getEmail());
+		User user = userQueryService.findByEmail(mockUser.getEmail());
 		//then
 		Assertions.assertThat(user).isNotNull();
 		Assertions.assertThat(user).usingRecursiveComparison().isEqualTo(mockUser);
@@ -51,7 +50,7 @@ class UserQueryServiceTest {
 		given(userRepository.findByEmail(TestConst.TEST_EMAIL)).willReturn(Optional.empty());
 		//when
 		//then
-		Assertions.assertThatThrownBy(() -> userQueryService.getUserByEmail(TestConst.TEST_EMAIL))
+		Assertions.assertThatThrownBy(() -> userQueryService.findByEmail(TestConst.TEST_EMAIL))
 			.isInstanceOf(UserNotFoundException.class);
 	}
 

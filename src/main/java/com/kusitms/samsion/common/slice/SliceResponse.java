@@ -14,7 +14,7 @@ public class SliceResponse<T> {
 	private final int size;
 	private final boolean hasNext;
 
-	public SliceResponse(List<T> content, int page, int size, boolean hasNext) {
+	private SliceResponse(List<T> content, int page, int size, boolean hasNext) {
 		this.content = content;
 		this.page = page;
 		this.size = size;

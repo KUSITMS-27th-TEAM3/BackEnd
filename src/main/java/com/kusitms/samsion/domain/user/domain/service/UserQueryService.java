@@ -11,14 +11,22 @@ import com.kusitms.samsion.domain.user.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @DomainService
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class UserQueryService {
 
 	private final UserRepository userRepository;
 
-	@Transactional(readOnly = true)
-	public User getUserByEmail(String email) {
+
+	public User findByEmail(String email) {
 		return userRepository.findByEmail(email)
 			.orElseThrow(() -> new UserNotFoundException(Error.USER_NOT_FOUND));
 	}
+
+	public User findById(Long userId){
+		return userRepository.findById(userId)
+			.orElseThrow(() -> new UserNotFoundException(Error.USER_NOT_FOUND));
+	}
+
+
 }

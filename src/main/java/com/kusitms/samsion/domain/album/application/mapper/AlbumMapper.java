@@ -15,7 +15,7 @@ public class AlbumMapper {
 
 	public static AlbumSimpleResponse mapToAlbumSimpleResponse(Album album, long commentCnt, long empathyCnt) {
 		return AlbumSimpleResponse.builder()
-			.id(album.getId())
+			.albumId(album.getId())
 			.imageUrl(album.getAlbumImages().get(0).getImageUrl())
 			.commentCount(commentCnt)
 			.empathyCount(empathyCnt)
