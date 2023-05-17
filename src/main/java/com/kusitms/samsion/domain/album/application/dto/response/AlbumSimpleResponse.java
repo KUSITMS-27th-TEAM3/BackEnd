@@ -6,14 +6,14 @@ import lombok.Getter;
 @Getter
 public class AlbumSimpleResponse {
 
-	private final Long id;
+	private final Long albumId;
 	private final String imageUrl;
 	private final long empathyCount;
 	private final long commentCount;
 
 	@Builder
-	public AlbumSimpleResponse(Long id, String imageUrl, long empathyCount, long commentCount) {
-		this.id = id;
+	public AlbumSimpleResponse(Long albumId, String imageUrl, long empathyCount, long commentCount) {
+		this.albumId = albumId;
 		this.imageUrl = imageUrl;
 		this.empathyCount = empathyCount;
 		this.commentCount = commentCount;
