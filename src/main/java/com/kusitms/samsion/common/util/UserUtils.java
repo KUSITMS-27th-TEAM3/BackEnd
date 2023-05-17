@@ -15,6 +15,6 @@ public class UserUtils {
 
 	public User getUser(){
 		final String userEmail = SecurityUtils.getUserEmail();
-		return userQueryService.getUserByEmail(userEmail);
+		return userQueryService.findByEmail(userEmail);
 	}
 }
