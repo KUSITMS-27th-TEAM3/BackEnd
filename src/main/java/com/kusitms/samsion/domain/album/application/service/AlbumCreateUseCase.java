@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @UseCase
 @RequiredArgsConstructor
-public class AlbumCreateUserCase {
+public class AlbumCreateUseCase {
 
 	private final UserUtils userUtils;
 	private final AlbumSaveService albumSaveService;

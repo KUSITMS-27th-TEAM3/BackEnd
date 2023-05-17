@@ -13,8 +13,8 @@ import com.kusitms.samsion.domain.album.application.dto.request.AlbumCreateReque
 import com.kusitms.samsion.domain.album.application.dto.request.AlbumSearchRequest;
 import com.kusitms.samsion.domain.album.application.dto.response.AlbumInfoResponse;
 import com.kusitms.samsion.domain.album.application.dto.response.AlbumSimpleResponse;
-import com.kusitms.samsion.domain.album.application.service.AlbumCreateUserCase;
-import com.kusitms.samsion.domain.album.application.service.AlbumReadUserCase;
+import com.kusitms.samsion.domain.album.application.service.AlbumCreateUseCase;
+import com.kusitms.samsion.domain.album.application.service.AlbumReadUseCase;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,20 +26,23 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/album")
 public class AlbumController {
 
-	private final AlbumReadUserCase albumReadUserCase;
-	private final AlbumCreateUserCase albumCreateUserCase;
+	private final AlbumReadUseCase albumReadUseCase;
+	private final AlbumCreateUseCase albumCreateUseCase;
 
 	/**
-	 * @param pageable : page, size
-	 *                 sort : DEFUALT
 	 * 기존 jpa : 앨범 10개 조회 기준, 3회 warmup, 4회 테스트 평균 853ms
 	 * QueryDsl : 앨범 10개 조회 기준, 3회 warmup, 4회 테스트 평균 347ms
 	 */
 	@GetMapping
-	public SliceResponse<AlbumSimpleResponse> getAlbumList(Pageable pageable, @ModelAttribute
-		AlbumSearchRequest request){
-		return albumReadUserCase.getAlbumList(pageable, request);
+	public SliceResponse<AlbumSimpleResponse> getAlbumList(Pageable pageable, @ModelAttribute AlbumSearchRequest request){
+		return albumReadUseCase.getAlbumList(pageable, request);
 	}
+
+	@GetMapping("/private")
+	public SliceResponse<AlbumSimpleResponse> getMyAlbumList(Pageable pageable, @ModelAttribute AlbumSearchRequest request){
+		return albumReadUseCase.getMyAlbumList(pageable, request);
+	}
+
 
 	/**
 	 * 이미지 2개, 태그 5개 기준으로 생성시간 3회 warmup, 4회 테스트 진행시 평균 1000ms
@@ -47,12 +50,12 @@ public class AlbumController {
 	 */
 	@PostMapping()
 	public AlbumInfoResponse createAlbum(@ModelAttribute AlbumCreateRequest request){
-		return albumCreateUserCase.createAlbum(request);
+		return albumCreateUseCase.createAlbum(request);
 	}
 
 	@GetMapping("/{albumId}")
 	public AlbumInfoResponse getAlbum(@PathVariable Long albumId){
-		return albumReadUserCase.getAlbum(albumId);
+		return albumReadUseCase.getAlbum(albumId);
 	}
 
 }

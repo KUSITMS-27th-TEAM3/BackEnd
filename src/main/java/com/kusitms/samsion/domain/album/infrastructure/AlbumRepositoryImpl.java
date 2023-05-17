@@ -43,16 +43,35 @@ public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
 			.limit(pageable.getPageSize() + 1)
 			.fetch();
 
-		boolean hasNext = false;
-		if (albumList.size() > pageable.getPageSize()) {
-			hasNext = true;
-			albumList.remove(albumList.size() - 1);
-		}
-
-		return new SliceImpl<>(albumList, pageable, hasNext);
+		return getSliceImpl(albumList, pageable);
 	}
 
-	private static BooleanExpression getTagsInQuery(List<EmotionTag> emotionTagList) {
+	@Override
+	public Slice<Album> findMyAlbumList(Pageable pageable, List<EmotionTag> emotionTagList, SortType sortType, Long userId) {
+		List<Album> albumList = jpaQueryFactory
+			.select(QAlbum.album).distinct()
+			.from(QAlbum.album)
+			.where(QAlbum.album.writer.id.eq(userId),
+				getTagsInQuery(emotionTagList))
+			.orderBy(getSortedColumn(sortType),
+				QAlbum.album.createdDate.desc())
+			.offset(pageable.getOffset())
+			.limit(pageable.getPageSize() + 1)
+			.fetch();
+		return getSliceImpl(albumList, pageable);
+	}
+
+	private <T> Slice<T> getSliceImpl(List<T> list, Pageable pageable){
+		boolean hasNext = false;
+		if (list.size() > pageable.getPageSize()) {
+			hasNext = true;
+			list.remove(list.size() - 1);
+		}
+
+		return new SliceImpl<>(list, pageable, hasNext);
+	}
+
+	private BooleanExpression getTagsInQuery(List<EmotionTag> emotionTagList) {
 		if(emotionTagList == null || emotionTagList.isEmpty()) {
 			return null;
 		}
@@ -60,7 +79,7 @@ public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
 			getTagsInSubQuery(emotionTagList));
 	}
 
-	private static JPQLQuery<Tag> getTagsInSubQuery(List<EmotionTag> emotionTagList) {
+	private JPQLQuery<Tag> getTagsInSubQuery(List<EmotionTag> emotionTagList) {
 		return JPAExpressions.select(QTag.tag)
 			.from(QTag.tag)
 			.where(QTag.tag.emotionTag.in(emotionTagList));
