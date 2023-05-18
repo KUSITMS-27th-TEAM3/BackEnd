@@ -6,14 +6,19 @@ import lombok.Getter;
 @Getter
 public class MyPetResponse {
 
-	String petName;
-	String petImageUrl;
-	String description;
+	private String petName;
+	private String petImageUrl;
+	private String description;
+
+	private String petType;
+	private int petAge;
 
 	@Builder
-	public MyPetResponse(String petName, String petImageUrl, String description) {
+	public MyPetResponse(String petName, String petImageUrl, String description, String petType, int petAge) {
 		this.petName = petName;
 		this.petImageUrl = petImageUrl;
 		this.description = description;
+		this.petType = petType;
+		this.petAge = petAge;
 	}
 }

@@ -8,14 +8,24 @@ import lombok.Getter;
 @Getter
 public class MyPetUpdateRequest {
 
-	private MultipartFile file;
-	private String petName;
+	private String nickname;
 	private String description;
+	private String petType;
+	private int petAge;
+	private String petName;
+
+	private MultipartFile profileImage;
+	private MultipartFile petImage;
 
 	@Builder
-	public MyPetUpdateRequest(MultipartFile file, String petName, String description) {
-		this.file = file;
-		this.petName = petName;
+	public MyPetUpdateRequest(String nickname, String description, String petType, int petAge, String petName,
+		MultipartFile profileImage, MultipartFile petImage) {
+		this.nickname = nickname;
 		this.description = description;
+		this.petType = petType;
+		this.petAge = petAge;
+		this.petName = petName;
+		this.profileImage = profileImage;
+		this.petImage = petImage;
 	}
 }

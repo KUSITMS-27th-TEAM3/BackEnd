@@ -15,12 +15,16 @@ public class MyPetMapper {
 			.petName(mypet.getPetName())
 			.petImageUrl(mypet.getPetImageUrl())
 			.description(mypet.getDescription())
+			.petType(mypet.getPetType())
+			.petAge(mypet.getPetAge())
 			.build();
 	}
 
 	public static MyPet mapToMyPetUpdateRequest(MyPetUpdateRequest request, String imageUrl){
 		return MyPet.builder()
 			.petName(request.getPetName())
+			.petType(request.getPetType())
+			.petAge(request.getPetAge())
 			.petImageUrl(imageUrl)
 			.description(request.getDescription())
 			.build();
