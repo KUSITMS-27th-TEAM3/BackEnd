@@ -24,9 +24,10 @@ public enum Error {
 	ANSWER_NOT_FOUND("답변을 찾을 수 없습니다.", 4001),
 	ANSWER_ALREADY_EXIST("이미 답변이 존재합니다.", 4002),
 
-	//댓글,
+	// 댓글
 	COMMENT_NOT_FOUND("댓글을 찾을 수 없습니다.", 5000),
 
+	NOT_SAME_USER("댓글은 수정 및 삭제는 작성자만 가능합니다.", 5001),
 	// 그리드
 	GRID_NOT_REGISTERED("그리드를 찾을 수 없습니다.", 6000),
 	GRID_ALREADY_REGISTERED("이미 그리드가 존재합니다.", 6001),

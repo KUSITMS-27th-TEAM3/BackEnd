@@ -1,26 +1,15 @@
 package com.kusitms.samsion.domain.comment.domain.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import com.kusitms.samsion.common.domain.BaseEntity;
 import com.kusitms.samsion.domain.album.domain.entity.Album;
 import com.kusitms.samsion.domain.user.domain.entity.User;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -32,6 +21,8 @@ public class Comment extends BaseEntity {
     private Long id;
 
     private String description;
+
+    private boolean isRemoved= false;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="album_id")
@@ -59,16 +50,18 @@ public class Comment extends BaseEntity {
         this.description = description;
     }
 
+    //== 삭제 메서드 ==//
+    public void remove() { this.isRemoved = true;}
+
     @Builder
     public Comment(String description, Album album, User writer, Comment parent) {
         this.description = description;
+        this.isRemoved = false;
         this.album = album;
         this.writer = writer;
         this.parent = parent;
         album.addComment(this);
-        if(parent != null)
+        if (parent != null)
             parent.addChild(this);
     }
-
-
 }
