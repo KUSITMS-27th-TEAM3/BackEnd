@@ -12,12 +12,22 @@ public class TestConst {
 	public static final Long TEST_USER_ID = 1L;
 	public static final String TEST_EMAIL = "test@test.com";
 	public static final String TEST_NICKNAME = "test";
+	public static final String TEST_PROFILE_IMAGE_URL = "testImageUrl";
 	public static final String TEST_PET_NAME = "testPet";
 	public static final String TEST_PET_IMAGE_URL = "testImageUrl";
 	public static final String TEST_DESCRIPTION = "testDescription";
+	public static final int TEST_PET_AGE = 1;
+	public static final String TEST_PET_TYPE = "testPetType";
+
+	// 사용자 정보 수정
+	public static final String TEST_UPDATE_NICKNAME = "testUpdateNickname";
+	public static final String TEST_UPDATE_PROFILE_IMAGE_URL = "testUpdateImageUrl";
 	public static final String TEST_UPDATE_PET_NAME = "testUpdatePet";
 	public static final String TEST_UPDATE_PET_IMAGE_URL = "testUpdateImageUrl";
 	public static final String TEST_UPDATE_DESCRIPTION = "testUpdateDescription";
+	public static final int TEST_UPDATE_PET_AGE = 2;
+	public static final String TEST_UPDATE_PET_TYPE = "testUpdatePetType";
+
 
 	public static final MultipartFile TEST_MULTIPART_FILE = new MockMultipartFile("test","","test.png", "test".getBytes());
 
