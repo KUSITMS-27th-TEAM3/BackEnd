@@ -49,10 +49,11 @@ public class Grid extends BaseEntity {
 	public void incGridCnt(){
 		if(gridCnt<60&& Objects.equals(gridStatus, GridStatus.GRID)) {
 			this.gridCnt++;
+			updateGridStatus();
 		}
 	}
 
-	public void updateGridStatus(){
+	private void updateGridStatus(){
 		if(gridCnt == 60) {
 			this.gridStatus = GridStatus.STAMP;
 		}

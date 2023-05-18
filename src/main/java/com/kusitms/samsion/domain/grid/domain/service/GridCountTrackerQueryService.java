@@ -23,7 +23,6 @@ public class GridCountTrackerQueryService {
 
 	public Optional<GridCountTracker> findGridCountByGridId(Long gridId) {
 		List<GridCountTracker> gridCountTrackerList = gridRedisRepository.findByGridId(gridId);
-		log.info("gridCountTrackerList : {}", gridCountTrackerList);
 		if(gridCountTrackerList.size() == 0) {
 			return Optional.empty();
 		}
