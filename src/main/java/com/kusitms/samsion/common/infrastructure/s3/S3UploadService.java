@@ -1,5 +1,16 @@
 package com.kusitms.samsion.common.infrastructure.s3;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -7,18 +18,9 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.kusitms.samsion.common.exception.Error;
 import com.kusitms.samsion.domain.album.domain.exception.FileExtentionException;
 import com.kusitms.samsion.domain.album.domain.exception.FileUploadException;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -57,7 +59,6 @@ public class S3UploadService {
             throw new FileUploadException(Error.FILE_UPLOAD_ERROR);
         }
         return amazonS3.getUrl(bucket, fileName).toString();
-
     }
 
     //파일명 난수화
