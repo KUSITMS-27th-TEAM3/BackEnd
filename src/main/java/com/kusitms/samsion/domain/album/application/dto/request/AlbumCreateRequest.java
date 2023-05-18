@@ -13,14 +13,17 @@ import lombok.Getter;
 @Getter
 public class AlbumCreateRequest {
 
+
+	private final String title;
 	private final String description;
 	private final Visibility visibility;
 	private final List<MultipartFile> albumImages;
 	private final List<EmotionTag> emotionTags;
 
 	@Builder
-	public AlbumCreateRequest(String description, Visibility visibility, List<MultipartFile> albumImages,
+	public AlbumCreateRequest(String title, String description, Visibility visibility, List<MultipartFile> albumImages,
 		List<EmotionTag> emotionTags) {
+		this.title = title;
 		this.description = description;
 		this.visibility = visibility;
 		this.albumImages = albumImages;

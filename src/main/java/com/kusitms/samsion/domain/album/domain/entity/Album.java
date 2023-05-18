@@ -34,6 +34,7 @@ public class Album extends BaseEntity {
 	@Column(name = "album_id")
 	private Long id;
 
+	private String title;
 	private String description;
 
 	@Enumerated(EnumType.STRING)
@@ -56,7 +57,8 @@ public class Album extends BaseEntity {
 	private List<Tag> tags = new ArrayList<>();
 
 	@Builder
-	public Album(String description, Visibility visibility, User writer) {
+	public Album(String title, String description, Visibility visibility, User writer) {
+		this.title = title;
 		this.description = description;
 		this.visibility = visibility;
 		this.writer = writer;
