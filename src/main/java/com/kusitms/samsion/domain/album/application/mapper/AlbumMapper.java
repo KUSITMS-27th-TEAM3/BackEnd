@@ -16,6 +16,7 @@ public class AlbumMapper {
 	public static AlbumSimpleResponse mapToAlbumSimpleResponse(Album album, long commentCnt, long empathyCnt) {
 		return AlbumSimpleResponse.builder()
 			.albumId(album.getId())
+			.title(album.getTitle())
 			.imageUrl(album.getAlbumImages().get(0).getImageUrl())
 			.commentCount(commentCnt)
 			.empathyCount(empathyCnt)
@@ -35,6 +36,7 @@ public class AlbumMapper {
 
 	public static Album mapToAlbumWithUser(AlbumCreateRequest request, User user) {
 		return Album.builder()
+			.title(request.getTitle())
 			.description(request.getDescription())
 			.visibility(request.getVisibility())
 			.writer(user)
