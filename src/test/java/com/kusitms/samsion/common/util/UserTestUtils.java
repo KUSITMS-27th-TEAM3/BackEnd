@@ -18,6 +18,7 @@ public class UserTestUtils {
 		User mockUser = User.builder()
 			.email(TestConst.TEST_EMAIL)
 			.nickname(TestConst.TEST_NICKNAME)
+			.profileImageUrl(TestConst.TEST_PROFILE_IMAGE_URL)
 			.build();
 		mockUser.updateMyPet(getMockMyPet());
 		ReflectionTestUtils.setField(mockUser, "id", TestConst.TEST_USER_ID);

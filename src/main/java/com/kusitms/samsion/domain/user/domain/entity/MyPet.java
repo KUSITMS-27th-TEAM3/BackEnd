@@ -1,5 +1,7 @@
 package com.kusitms.samsion.domain.user.domain.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Embeddable;
 
 import lombok.AccessLevel;
@@ -12,21 +14,52 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MyPet {
 
-	String petName;
-	String petImageUrl;
-	String description;
+	private String petName;
+	private String petImageUrl;
+	private int petAge;
+	private String petType;
+	private String description;
 
 	@Builder
-	public MyPet(String petName, String petImageUrl, String description) {
+	public MyPet(String petName, String petImageUrl, int petAge, String petType, String description) {
 		this.petName = petName;
 		this.petImageUrl = petImageUrl;
+		this.petAge = petAge;
+		this.petType = petType;
 		this.description = description;
 	}
 
 	public void updateInfo(MyPet myPet){
-		this.petName = myPet.getPetName();
-		this.petImageUrl = myPet.getPetImageUrl();
-		this.description = myPet.getDescription();
+		updatePetName(myPet.getPetName());
+		updatePetImageUrl(myPet.getPetImageUrl());
+		updateDescription(myPet.getDescription());
+		updatePetAge(myPet.getPetAge());
+		updatePetType(myPet.getPetType());
+	}
+
+	private void updatePetName(String petName) {
+		if(!Objects.equals(petName, this.petName))
+			this.petName = petName;
+	}
+
+	private void updatePetImageUrl(String petImageUrl) {
+		if(!Objects.equals(petImageUrl, this.petImageUrl)&&Objects.nonNull(petImageUrl))
+			this.petImageUrl = petImageUrl;
+	}
+
+	private void updateDescription(String description) {
+		if(!Objects.equals(description, this.description))
+			this.description = description;
+	}
+
+	private void updatePetAge(int petAge) {
+		if(!Objects.equals(petAge, this.petAge))
+			this.petAge = petAge;
+	}
+
+	private void updatePetType(String petType) {
+		if(!Objects.equals(petType, this.petType))
+			this.petType = petType;
 	}
 
 	public static MyPet defaultValue(){

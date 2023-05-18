@@ -22,11 +22,14 @@ public class MyPetUpdateUseCase {
 
 	@Transactional
 	public MyPetResponse updateMyPetInfo(final MyPetUpdateRequest request){
-		final String imageUrl = s3UploadService.uploadImg(request.getFile());
-
+		final String profileImageUrl = s3UploadService.uploadImg(request.getProfileImage());
+		final String petImageUrl = s3UploadService.uploadImg(request.getPetImage());
 		User user = userUtils.getUser();
-		final MyPet myPet = MyPetMapper.mapToMyPetUpdateRequest(request, imageUrl);
+		user.updateUserInfo(request.getNickname(),profileImageUrl);
+
+		final MyPet myPet = MyPetMapper.mapToMyPetUpdateRequest(request, petImageUrl);
 		user.updateMyPet(myPet);
+
 		return MyPetMapper.mapToMyPetResponse(user);
 	}
 

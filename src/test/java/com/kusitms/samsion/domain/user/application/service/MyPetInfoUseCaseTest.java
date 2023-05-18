@@ -10,10 +10,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.kusitms.samsion.domain.user.application.dto.response.MyPetResponse;
 import com.kusitms.samsion.common.util.UserTestUtils;
 import com.kusitms.samsion.common.util.UserUtils;
-import com.kusitms.samsion.domain.user.application.service.MyPetInfoUseCase;
+import com.kusitms.samsion.domain.user.application.dto.response.MyPetResponse;
 import com.kusitms.samsion.domain.user.domain.entity.MyPet;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 
@@ -44,5 +43,7 @@ class MyPetInfoUseCaseTest {
 		Assertions.assertThat(myPetInfo.getPetName()).isEqualTo(mockMyPet.getPetName());
 		Assertions.assertThat(myPetInfo.getDescription()).isEqualTo(mockMyPet.getDescription());
 		Assertions.assertThat(myPetInfo.getPetImageUrl()).isEqualTo(mockMyPet.getPetImageUrl());
+		Assertions.assertThat(myPetInfo.getPetType()).isEqualTo(mockMyPet.getPetType());
+		Assertions.assertThat(myPetInfo.getPetAge()).isEqualTo(mockMyPet.getPetAge());
 	}
 }

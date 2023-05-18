@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.kusitms.samsion.common.security.jwt.JwtProvider;
-import com.kusitms.samsion.common.util.HeaderUtils;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -49,10 +48,10 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 		return new TokenInfo(accessToken, refreshToken);
 	}
 
-	private void setTokenToHeader(TokenInfo tokenInfo) {
-		HeaderUtils.setHeader(ACCESS_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE + tokenInfo.getAccessToken());
-		HeaderUtils.setHeader(REFRESH_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE + tokenInfo.getRefreshToken());
-	}
+	// private void setTokenToHeader(TokenInfo tokenInfo) {
+	// 	HeaderUtils.setHeader(ACCESS_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE + tokenInfo.getAccessToken());
+	// 	HeaderUtils.setHeader(REFRESH_TOKEN_HEADER, JWT_AUTHORIZATION_TYPE + tokenInfo.getRefreshToken());
+	// }
 
 	@Getter
 	private static class TokenInfo {

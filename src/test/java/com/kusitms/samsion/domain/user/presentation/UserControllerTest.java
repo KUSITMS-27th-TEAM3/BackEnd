@@ -39,8 +39,10 @@ public class UserControllerTest extends CommonRestDocs {
 			.description(TestConst.TEST_DESCRIPTION)
 			.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
 			.petName(TestConst.TEST_PET_NAME)
+			.petAge(TestConst.TEST_PET_AGE)
+			.petType(TestConst.TEST_PET_TYPE)
 			.build();
-		MockHttpServletRequestBuilder request = get("/user/mypet").header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token");
+		MockHttpServletRequestBuilder request = get("/user/mypet").header(ApplicationConst.ACCESS_TOKEN_HEADER, TestConst.TEST_ACCESS_TOKEN);
 		given(myPetInfoUseCase.getMyPetInfo()).willReturn(myPetResponse);
 		//when
 		ResultActions result = mockMvc.perform(request);
@@ -54,7 +56,9 @@ public class UserControllerTest extends CommonRestDocs {
 					responseFields(
 						fieldWithPath("petName").description("반려동물 이름"),
 						fieldWithPath("petImageUrl").description("반려동물 이미지 URL"),
-						fieldWithPath("description").description("반려동물 설명")
+						fieldWithPath("description").description("반려동물 설명"),
+						fieldWithPath("petAge").description("반려동물 나이"),
+						fieldWithPath("petType").description("반려동물 종류")
 					)
 				)
 			);
@@ -63,19 +67,26 @@ public class UserControllerTest extends CommonRestDocs {
 	@Test
 	void 접속한_사용자의_mypet_수정() throws Exception {
 		//given
-		MockMultipartFile multipartFile = new MockMultipartFile("file","test.png","image/png", "test".getBytes());
+		MockMultipartFile petImage = new MockMultipartFile("petImage","test.png","image/png", "test".getBytes());
+		MockMultipartFile profileImage = new MockMultipartFile("profileImage","test.png","image/png", "test".getBytes());
 
 		MyPetResponse myPetResponse = MyPetResponse.builder()
-			.description(TestConst.TEST_DESCRIPTION)
-			.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
-			.petName(TestConst.TEST_PET_NAME)
+			.description(TestConst.TEST_UPDATE_DESCRIPTION)
+			.petImageUrl(TestConst.TEST_UPDATE_PET_IMAGE_URL)
+			.petName(TestConst.TEST_UPDATE_PET_NAME)
+			.petAge(TestConst.TEST_UPDATE_PET_AGE)
+			.petType(TestConst.TEST_UPDATE_PET_TYPE)
 			.build();
 		given(myPetUpdateUseCase.updateMyPetInfo(any())).willReturn(myPetResponse);
 
 		MockHttpServletRequestBuilder request = multipart("/user/mypet")
-			.file(multipartFile)
+			.file(petImage)
+			.file(profileImage)
 			.param("petName", TestConst.TEST_UPDATE_PET_NAME)
 			.param("description", TestConst.TEST_UPDATE_DESCRIPTION)
+			.param("petAge", String.valueOf(TestConst.TEST_UPDATE_PET_AGE))
+			.param("petType", TestConst.TEST_UPDATE_PET_TYPE)
+			.param("nickname", TestConst.TEST_UPDATE_NICKNAME)
 			.contentType(MediaType.MULTIPART_FORM_DATA)
 			.header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token");
 		//when
@@ -87,15 +98,21 @@ public class UserControllerTest extends CommonRestDocs {
 					requestHeaders(
 						headerWithName("Authorization").description("access token")
 					),
-					requestPartBody("file"),
+					requestPartBody("petImage"),
+					requestPartBody("profileImage"),
 					requestParameters(
 						parameterWithName("petName").description("반려동물 이름"),
-						parameterWithName("description").description("반려동물 설명")
+						parameterWithName("description").description("반려동물 설명"),
+						parameterWithName("petAge").description("반려동물 나이"),
+						parameterWithName("petType").description("반려동물 종류"),
+						parameterWithName("nickname").description("사용자 아이디")
 					),
 					responseFields(
 						fieldWithPath("petName").description("반려동물 이름"),
 						fieldWithPath("petImageUrl").description("반려동물 이미지 URL"),
-						fieldWithPath("description").description("반려동물 설명")
+						fieldWithPath("description").description("반려동물 설명"),
+						fieldWithPath("petAge").description("반려동물 나이"),
+						fieldWithPath("petType").description("반려동물 종류")
 					)
 				)
 			);
