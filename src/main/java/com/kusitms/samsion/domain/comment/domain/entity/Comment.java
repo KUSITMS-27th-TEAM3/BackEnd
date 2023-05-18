@@ -6,6 +6,7 @@ import com.kusitms.samsion.domain.user.domain.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@SQLDelete(sql = "UPDATE comment SET deleted = true WHERE id = ?")
 public class Comment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,7 @@ public class Comment extends BaseEntity {
 
     private String description;
 
-    private boolean isRemoved= false;
+    private boolean deleted = Boolean.FALSE;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="album_id")
@@ -50,13 +52,9 @@ public class Comment extends BaseEntity {
         this.description = description;
     }
 
-    //== 삭제 메서드 ==//
-    public void remove() { this.isRemoved = true;}
-
     @Builder
     public Comment(String description, Album album, User writer, Comment parent) {
         this.description = description;
-        this.isRemoved = false;
         this.album = album;
         this.writer = writer;
         this.parent = parent;

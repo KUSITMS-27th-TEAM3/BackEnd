@@ -7,6 +7,7 @@ import com.kusitms.samsion.common.util.UserUtils;
 import com.kusitms.samsion.domain.album.domain.entity.Album;
 import com.kusitms.samsion.domain.comment.domain.entity.Comment;
 import com.kusitms.samsion.domain.comment.domain.exception.NotSameUserException;
+import com.kusitms.samsion.domain.comment.domain.service.CommentDeleteService;
 import com.kusitms.samsion.domain.comment.domain.service.CommentQueryService;
 import com.kusitms.samsion.domain.comment.domain.service.CommentValidAccessService;
 import com.kusitms.samsion.domain.user.domain.entity.User;
@@ -19,8 +20,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("CommentDeleteUseCase 테스트")
@@ -32,10 +33,12 @@ public class CommentDeleteUseCaseTest {
     private CommentQueryService commentQueryService;
     @Mock
     private CommentValidAccessService commentValidAccessService;
+    @Mock
+    private CommentDeleteService commentDeleteService;
     private CommentDeleteUseCase commentDeleteUseCase;
 
     @BeforeEach
-    public void setUp() { commentDeleteUseCase = new CommentDeleteUseCase(userUtils, commentQueryService, commentValidAccessService); }
+    public void setUp() { commentDeleteUseCase = new CommentDeleteUseCase(userUtils, commentQueryService, commentValidAccessService, commentDeleteService); }
 
     @Test
     public void 댓글을_삭제한다() {
@@ -49,7 +52,8 @@ public class CommentDeleteUseCaseTest {
         //when
         commentDeleteUseCase.deleteComment(mockComment.getId());
         //then
-        Assertions.assertThat(mockComment.isRemoved());
+        then(commentDeleteService).should(times(1)).deleteComment(mockComment);
+        Assertions.assertThat(mockComment.isDeleted());
     }
 
     @Test
