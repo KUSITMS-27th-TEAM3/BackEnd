@@ -12,17 +12,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
-import com.kusitms.samsion.domain.question.application.dto.response.QuestionInfoResponse;
 import com.kusitms.samsion.common.exception.Error;
-import com.kusitms.samsion.common.slice.PageResponse;
+import com.kusitms.samsion.common.slice.SliceResponse;
 import com.kusitms.samsion.common.util.QuestionTestUtils;
 import com.kusitms.samsion.common.util.SliceTestUtils;
 import com.kusitms.samsion.common.util.UserTestUtils;
 import com.kusitms.samsion.common.util.UserUtils;
-import com.kusitms.samsion.domain.question.application.service.QuestionReadUseCase;
+import com.kusitms.samsion.domain.question.application.dto.response.QuestionInfoResponse;
 import com.kusitms.samsion.domain.question.domain.entity.Answer;
 import com.kusitms.samsion.domain.question.domain.entity.Question;
 import com.kusitms.samsion.domain.question.domain.exception.AnswerNotFoundException;
@@ -57,13 +56,13 @@ class QuestionReadUseCaseTest {
 			Question mockQuestion = QuestionTestUtils.getMockQuestion();
 			List<Question> mockQuestionList = List.of(mockQuestion);
 			Pageable mockPageable = SliceTestUtils.getMockPageable();
-			Page<Question> mockPage = SliceTestUtils.getMockPage(mockQuestionList);
+			Slice<Question> mockPage = SliceTestUtils.getMockSlice(mockQuestionList);
 			Answer mockAnswer = QuestionTestUtils.getMockAnswer();
 			given(userUtils.getUser()).willReturn(mockUser);
 			given(questionQueryService.findAll(mockPageable, mockUser.getId())).willReturn(mockPage);
 			given(answerQueryService.getAnswerByUserIdAndQuestionId(mockUser.getId(), mockQuestion.getId())).willReturn(mockAnswer);
 			//when
-			PageResponse<QuestionInfoResponse> questionList = questionReadUseCase.getQuestionList(mockPageable);
+			SliceResponse<QuestionInfoResponse> questionList = questionReadUseCase.getQuestionList(mockPageable);
 			//then
 			QuestionInfoResponse questionInfoResponse = questionList.getContent().get(0);
 			Assertions.assertThat(questionInfoResponse.getQuestionId()).isEqualTo(mockQuestion.getId());
@@ -78,13 +77,13 @@ class QuestionReadUseCaseTest {
 			Question mockQuestion = QuestionTestUtils.getMockQuestion();
 			List<Question> mockQuestionList = List.of(mockQuestion);
 			Pageable mockPageable = SliceTestUtils.getMockPageable();
-			Page<Question> mockPage = SliceTestUtils.getMockPage(mockQuestionList);
+			Slice<Question> mockPage = SliceTestUtils.getMockSlice(mockQuestionList);
 			given(userUtils.getUser()).willReturn(mockUser);
 			given(questionQueryService.findAll(mockPageable, mockUser.getId())).willReturn(mockPage);
 			given(answerQueryService.getAnswerByUserIdAndQuestionId(mockUser.getId(), mockQuestion.getId())).willThrow(new AnswerNotFoundException(
 				Error.ANSWER_NOT_FOUND));
 			//when
-			PageResponse<QuestionInfoResponse> questionList = questionReadUseCase.getQuestionList(mockPageable);
+			SliceResponse<QuestionInfoResponse> questionList = questionReadUseCase.getQuestionList(mockPageable);
 			//then
 			QuestionInfoResponse questionInfoResponse = questionList.getContent().get(0);
 			Assertions.assertThat(questionInfoResponse.getQuestionId()).isEqualTo(mockQuestion.getId());

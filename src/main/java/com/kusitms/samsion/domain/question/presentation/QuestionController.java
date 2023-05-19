@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kusitms.samsion.common.slice.SliceResponse;
 import com.kusitms.samsion.domain.question.application.dto.request.AnswerCreateRequest;
 import com.kusitms.samsion.domain.question.application.dto.request.AnswerUpdateRequest;
 import com.kusitms.samsion.domain.question.application.dto.response.QuestionInfoResponse;
 import com.kusitms.samsion.domain.question.application.service.AnswerCreateUseCase;
 import com.kusitms.samsion.domain.question.application.service.AnswerUpdateUseCase;
 import com.kusitms.samsion.domain.question.application.service.QuestionReadUseCase;
-import com.kusitms.samsion.common.slice.PageResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +29,7 @@ public class QuestionController {
 	private final AnswerUpdateUseCase answerUpdateUseCase;
 
 	@GetMapping
-	public PageResponse<QuestionInfoResponse> getQuestionList(Pageable pageable) {
+	public SliceResponse<QuestionInfoResponse> getQuestionList(Pageable pageable) {
 		return questionReadUseCase.getQuestionList(pageable);
 	}
 

@@ -19,9 +19,10 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kusitms.samsion.common.config.CommonRestDocs;
 import com.kusitms.samsion.common.consts.ApplicationConst;
 import com.kusitms.samsion.common.consts.TestConst;
-import com.kusitms.samsion.common.slice.PageResponse;
+import com.kusitms.samsion.common.slice.SliceResponse;
 import com.kusitms.samsion.common.util.SliceTestUtils;
 import com.kusitms.samsion.domain.question.application.dto.request.AnswerCreateRequest;
 import com.kusitms.samsion.domain.question.application.dto.request.AnswerUpdateRequest;
@@ -29,7 +30,6 @@ import com.kusitms.samsion.domain.question.application.dto.response.QuestionInfo
 import com.kusitms.samsion.domain.question.application.service.AnswerCreateUseCase;
 import com.kusitms.samsion.domain.question.application.service.AnswerUpdateUseCase;
 import com.kusitms.samsion.domain.question.application.service.QuestionReadUseCase;
-import com.kusitms.samsion.common.config.CommonRestDocs;
 
 @WebMvcTest(QuestionController.class)
 @DisplayName("QuestionController 테스트")
@@ -56,7 +56,7 @@ class QuestionControllerTest extends CommonRestDocs {
 			.questionTitle(TestConst.TEST_QUESTION_TITLE)
 			.answerDescription(TestConst.TEST_ANSWER_DESCRIPTION)
 			.build();
-		PageResponse<QuestionInfoResponse> mockPageResponse = SliceTestUtils.getMockPageResponse(questionInfoResponse);
+		SliceResponse<QuestionInfoResponse> mockPageResponse = SliceTestUtils.getMockSliceResponse(questionInfoResponse);
 		given(questionReadUseCase.getQuestionList(pageRequest)).willReturn(mockPageResponse);
 
 		MockHttpServletRequestBuilder request = get(TestConst.QUESTION_PREFIX_URL).header(
@@ -80,11 +80,9 @@ class QuestionControllerTest extends CommonRestDocs {
 						fieldWithPath("content[].questionId").description("질문 ID"),
 						fieldWithPath("content[].questionTitle").description("질문 제목"),
 						fieldWithPath("content[].answerDescription").description("답변 내용"),
-						fieldWithPath("pageNumber").description("페이지 번호"),
-						fieldWithPath("pageSize").description("페이지 사이즈"),
-						fieldWithPath("totalElements").description("전체 요소 수"),
-						fieldWithPath("totalPages").description("전체 페이지 수"),
-						fieldWithPath("last").description("마지막 페이지 여부")
+						fieldWithPath("page").description("현재 페이지"),
+						fieldWithPath("size").description("페이지 사이즈"),
+						fieldWithPath("hasNext").description("다음 페이지 여부")
 					)
 				)
 			);
