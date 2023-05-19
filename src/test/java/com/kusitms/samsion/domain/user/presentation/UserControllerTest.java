@@ -39,6 +39,7 @@ public class UserControllerTest extends CommonRestDocs {
 			.description(TestConst.TEST_DESCRIPTION)
 			.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
 			.petName(TestConst.TEST_PET_NAME)
+			.petNickname(TestConst.TEST_PET_NICKNAME)
 			.petAge(TestConst.TEST_PET_AGE)
 			.petType(TestConst.TEST_PET_TYPE)
 			.build();
@@ -55,6 +56,7 @@ public class UserControllerTest extends CommonRestDocs {
 					),
 					responseFields(
 						fieldWithPath("petName").description("반려동물 이름"),
+						fieldWithPath("petNickname").description("반려동물 별명"),
 						fieldWithPath("petImageUrl").description("반려동물 이미지 URL"),
 						fieldWithPath("description").description("반려동물 설명"),
 						fieldWithPath("petAge").description("반려동물 나이"),
@@ -86,7 +88,7 @@ public class UserControllerTest extends CommonRestDocs {
 			.param("description", TestConst.TEST_UPDATE_DESCRIPTION)
 			.param("petAge", String.valueOf(TestConst.TEST_UPDATE_PET_AGE))
 			.param("petType", TestConst.TEST_UPDATE_PET_TYPE)
-			.param("nickname", TestConst.TEST_UPDATE_NICKNAME)
+			.param("petNickname", TestConst.TEST_UPDATE_PET_NICKNAME)
 			.contentType(MediaType.MULTIPART_FORM_DATA)
 			.header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token");
 		//when
@@ -105,10 +107,11 @@ public class UserControllerTest extends CommonRestDocs {
 						parameterWithName("description").description("반려동물 설명"),
 						parameterWithName("petAge").description("반려동물 나이"),
 						parameterWithName("petType").description("반려동물 종류"),
-						parameterWithName("nickname").description("사용자 아이디")
+						parameterWithName("petNickname").description("반려동물 별명")
 					),
 					responseFields(
 						fieldWithPath("petName").description("반려동물 이름"),
+						fieldWithPath("petNickname").description("반려동물 별명"),
 						fieldWithPath("petImageUrl").description("반려동물 이미지 URL"),
 						fieldWithPath("description").description("반려동물 설명"),
 						fieldWithPath("petAge").description("반려동물 나이"),

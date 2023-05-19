@@ -13,9 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import com.kusitms.samsion.common.util.QuestionTestUtils;
 import com.kusitms.samsion.common.util.SliceTestUtils;
@@ -45,10 +44,10 @@ class QuestionQueryServiceTest {
 		Pageable pageRequest = SliceTestUtils.getMockPageable();
 		User mockUser = UserTestUtils.getMockUser();
 		Question mockQuestion = QuestionTestUtils.getMockQuestion();
-		Page<Question> questions = new PageImpl<>(List.of(mockQuestion));
-		given(questionRepository.findAll(pageRequest)).willReturn(questions);
+		Slice<Question> questions = SliceTestUtils.getMockSlice(List.of(mockQuestion));
+		given(questionRepository.findAllBy(pageRequest)).willReturn(questions);
 		//when
-		Page<Question> result = questionQueryService.findAll(pageRequest, mockUser.getId());
+		Slice<Question> result = questionQueryService.findAll(pageRequest, mockUser.getId());
 		//then
 		Assertions.assertThat(result).usingRecursiveComparison().isEqualTo(questions);
 	}

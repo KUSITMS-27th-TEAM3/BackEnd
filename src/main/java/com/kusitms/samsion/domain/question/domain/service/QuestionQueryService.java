@@ -1,7 +1,7 @@
 package com.kusitms.samsion.domain.question.domain.service;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import com.kusitms.samsion.common.annotation.DomainService;
 import com.kusitms.samsion.common.exception.Error;
@@ -17,8 +17,8 @@ public class QuestionQueryService {
 
 	private final QuestionRepository questionRepository;
 
-	public Page<Question> findAll(Pageable pageable, Long userId){
-		return questionRepository.findAll(pageable);
+	public Slice<Question> findAll(Pageable pageable, Long userId){
+		return questionRepository.findAllBy(pageable);
 		// return questionRepository.findAll(pageable,userId);
 	}
 

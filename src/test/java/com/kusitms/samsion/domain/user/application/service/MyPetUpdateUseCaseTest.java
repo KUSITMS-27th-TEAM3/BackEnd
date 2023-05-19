@@ -49,11 +49,12 @@ class MyPetUpdateUseCaseTest {
 		Assertions.assertThat(mockUser.getMypet().getDescription()).isEqualTo(mockRequest.getDescription());
 		Assertions.assertThat(mockUser.getMypet().getPetAge()).isEqualTo(mockRequest.getPetAge());
 		Assertions.assertThat(mockUser.getMypet().getPetType()).isEqualTo(mockRequest.getPetType());
-		Assertions.assertThat(mockUser.getNickname()).isEqualTo(mockRequest.getNickname());
+		Assertions.assertThat(mockUser.getMypet().getPetNickname()).isEqualTo(mockRequest.getPetNickname());
 		Assertions.assertThat(mockUser.getMypet().getPetImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PET_IMAGE_URL);
 		Assertions.assertThat(mockUser.getProfileImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PET_IMAGE_URL);
 		Assertions.assertThat(myPetResponse).isNotNull();
 		Assertions.assertThat(myPetResponse.getPetName()).isEqualTo(mockRequest.getPetName());
+		Assertions.assertThat(myPetResponse.getPetNickname()).isEqualTo(mockRequest.getPetNickname());
 		Assertions.assertThat(myPetResponse.getDescription()).isEqualTo(mockRequest.getDescription());
 		Assertions.assertThat(myPetResponse.getPetImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PET_IMAGE_URL);
 		Assertions.assertThat(myPetResponse.getPetAge()).isEqualTo(mockRequest.getPetAge());
@@ -65,7 +66,7 @@ class MyPetUpdateUseCaseTest {
 			.petName(TestConst.TEST_UPDATE_PET_NAME)
 			.description(TestConst.TEST_UPDATE_DESCRIPTION)
 			.petImage(TestConst.TEST_MULTIPART_FILE)
-			.nickname(TestConst.TEST_UPDATE_NICKNAME)
+			.petNickname(TestConst.TEST_UPDATE_PET_NICKNAME)
 			.profileImage(TestConst.TEST_MULTIPART_FILE)
 			.petAge(TestConst.TEST_UPDATE_PET_AGE)
 			.petType(TestConst.TEST_UPDATE_PET_TYPE)

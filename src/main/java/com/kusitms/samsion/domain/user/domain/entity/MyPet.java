@@ -15,22 +15,37 @@ import lombok.NoArgsConstructor;
 public class MyPet {
 
 	private String petName;
+	private String petNickname;
 	private String petImageUrl;
 	private int petAge;
 	private String petType;
 	private String description;
 
 	@Builder
-	public MyPet(String petName, String petImageUrl, int petAge, String petType, String description) {
+	public MyPet(String petName, String petNickname, String petImageUrl, int petAge, String petType,
+		String description) {
 		this.petName = petName;
+		this.petNickname = petNickname;
 		this.petImageUrl = petImageUrl;
 		this.petAge = petAge;
 		this.petType = petType;
 		this.description = description;
 	}
 
-	public void updateInfo(MyPet myPet){
+	public static MyPet defaultValue() {
+		return MyPet.builder()
+			.petName("익명이")
+			.petNickname("익명이")
+			.petAge(0)
+			.petType("익명이")
+			.petImageUrl("")
+			.description("익명이 설명이에요!")
+			.build();
+	}
+
+	public void updateInfo(MyPet myPet) {
 		updatePetName(myPet.getPetName());
+		updatePetNickname(myPet.getPetNickname());
 		updatePetImageUrl(myPet.getPetImageUrl());
 		updateDescription(myPet.getDescription());
 		updatePetAge(myPet.getPetAge());
@@ -38,37 +53,33 @@ public class MyPet {
 	}
 
 	private void updatePetName(String petName) {
-		if(!Objects.equals(petName, this.petName))
+		if (!Objects.equals(petName, this.petName))
 			this.petName = petName;
 	}
 
+	private void updatePetNickname(String petNickname) {
+		if (!Objects.equals(petNickname, this.petNickname))
+			this.petNickname = petNickname;
+	}
+
 	private void updatePetImageUrl(String petImageUrl) {
-		if(!Objects.equals(petImageUrl, this.petImageUrl)&&Objects.nonNull(petImageUrl))
+		if (!Objects.equals(petImageUrl, this.petImageUrl) && Objects.nonNull(petImageUrl))
 			this.petImageUrl = petImageUrl;
 	}
 
 	private void updateDescription(String description) {
-		if(!Objects.equals(description, this.description))
+		if (!Objects.equals(description, this.description))
 			this.description = description;
 	}
 
 	private void updatePetAge(int petAge) {
-		if(!Objects.equals(petAge, this.petAge))
+		if (!Objects.equals(petAge, this.petAge))
 			this.petAge = petAge;
 	}
 
 	private void updatePetType(String petType) {
-		if(!Objects.equals(petType, this.petType))
+		if (!Objects.equals(petType, this.petType))
 			this.petType = petType;
 	}
-
-	public static MyPet defaultValue(){
-		return MyPet.builder()
-				.petName("익명이")
-				.petImageUrl("")
-				.description("익명이 설명이에요!")
-				.build();
-	}
-
 
 }
