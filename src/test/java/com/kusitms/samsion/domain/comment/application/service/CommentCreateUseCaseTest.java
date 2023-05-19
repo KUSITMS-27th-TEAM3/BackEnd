@@ -1,16 +1,5 @@
 package com.kusitms.samsion.domain.comment.application.service;
 
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.BDDMockito.*;
-
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.common.util.AlbumTestUtils;
 import com.kusitms.samsion.common.util.CommentTestUtils;
@@ -24,9 +13,19 @@ import com.kusitms.samsion.domain.comment.domain.entity.Comment;
 import com.kusitms.samsion.domain.comment.domain.service.CommentQueryService;
 import com.kusitms.samsion.domain.comment.domain.service.CommentSaveService;
 import com.kusitms.samsion.domain.user.domain.entity.User;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("CommentCreateService 테스트")
+@DisplayName("CommentCreateUseCase 테스트")
 public class CommentCreateUseCaseTest {
 
     @Mock

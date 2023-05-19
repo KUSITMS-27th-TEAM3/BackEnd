@@ -1,30 +1,21 @@
 package com.kusitms.samsion.domain.comment.domain.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import com.kusitms.samsion.common.domain.BaseEntity;
 import com.kusitms.samsion.domain.album.domain.entity.Album;
 import com.kusitms.samsion.domain.user.domain.entity.User;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@SQLDelete(sql = "UPDATE comment SET deleted = true WHERE id = ?")
 public class Comment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +23,8 @@ public class Comment extends BaseEntity {
     private Long id;
 
     private String description;
+
+    private boolean deleted = Boolean.FALSE;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="album_id")
@@ -66,9 +59,7 @@ public class Comment extends BaseEntity {
         this.writer = writer;
         this.parent = parent;
         album.addComment(this);
-        if(parent != null)
+        if (parent != null)
             parent.addChild(this);
     }
-
-
 }

@@ -1,19 +1,13 @@
 package com.kusitms.samsion.domain.comment.presentation;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentCreateRequest;
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentUpdateRequest;
 import com.kusitms.samsion.domain.comment.application.dto.response.CommentInfoResponse;
 import com.kusitms.samsion.domain.comment.application.service.CommentCreateUseCase;
+import com.kusitms.samsion.domain.comment.application.service.CommentDeleteUseCase;
 import com.kusitms.samsion.domain.comment.application.service.CommentUpdateUseCase;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/album")
@@ -22,6 +16,7 @@ public class CommentController {
 
     private final CommentCreateUseCase commentCreateUseCase;
     private final CommentUpdateUseCase commentUpdateUseCase;
+    private final CommentDeleteUseCase commentDeleteUseCase;
 
     @PostMapping("/{albumId}/comment")
     public CommentInfoResponse createComment(@PathVariable Long albumId, @RequestBody CommentCreateRequest commentCreateRequest) {
@@ -30,12 +25,17 @@ public class CommentController {
 
     @PostMapping("/{albumId}/comment/{commentId}")
     public CommentInfoResponse createReComment(@PathVariable Long albumId, @PathVariable Long commentId,
-                                               CommentCreateRequest commentCreateRequest) {
+                                               @RequestBody CommentCreateRequest commentCreateRequest) {
         return commentCreateUseCase.createReComment(albumId, commentId, commentCreateRequest);
     }
 
     @PutMapping("/comment/{commentId}")
-    public CommentInfoResponse update(@PathVariable Long commentId, CommentUpdateRequest commentUpdateRequest){
+    public CommentInfoResponse update(@PathVariable Long commentId, @RequestBody CommentUpdateRequest commentUpdateRequest){
         return commentUpdateUseCase.updateComment(commentId, commentUpdateRequest);
+    }
+
+    @DeleteMapping("/comment/{commentId}")
+    public void delete(@PathVariable Long commentId){
+        commentDeleteUseCase.deleteComment(commentId);
     }
 }

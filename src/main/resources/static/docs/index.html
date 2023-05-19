@@ -464,11 +464,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#Empathy-공감-생성">Empathy 공감 생성</a></li>
 </ul>
 </li>
-<li><a href="#Comment-API">Comment API</a>
+<li><a href="#Comment-API">Comment-API</a>
 <ul class="sectlevel2">
 <li><a href="#Comment-댓글-저장">Comment 댓글 저장</a></li>
 <li><a href="#Comment-대댓글-저장">Comment 대댓글 저장</a></li>
 <li><a href="#Comment-댓글-수정">Comment 댓글 수정</a></li>
+<li><a href="#Comment-댓글-삭제">Comment 댓글 삭제</a></li>
 </ul>
 </li>
 </ul>
@@ -517,7 +518,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 143
+Content-Length: 149
 
 {
   "petName" : "testPet",
@@ -684,7 +685,7 @@ test
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 167
+Content-Length: 173
 
 {
   "petName" : "testUpdatePet",
@@ -810,7 +811,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 242
+Content-Length: 253
 
 {
   "content" : [ {
@@ -897,7 +898,7 @@ Content-Length: 242
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /question/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer testAccessToken
-Content-Length: 51
+Content-Length: 53
 Host: localhost:8080
 
 {
@@ -992,7 +993,7 @@ Host: localhost:8080
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /question/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer testAccessToken
-Content-Length: 51
+Content-Length: 53
 Host: localhost:8080
 
 {
@@ -1141,7 +1142,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Comment-API"><a class="link" href="#Comment-API">Comment API</a></h2>
+<h2 id="Comment-API"><a class="link" href="#Comment-API">Comment-API</a></h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="Comment-댓글-저장"><a class="link" href="#Comment-댓글-저장">Comment 댓글 저장</a></h3>
@@ -1152,7 +1153,7 @@ Host: localhost:8080</code></pre>
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /album/1/comment HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 46
+Content-Length: 48
 Host: localhost:8080
 
 {
@@ -1234,7 +1235,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 111
+Content-Length: 115
 
 {
   "description" : "testCommentDescription",
@@ -1289,7 +1290,7 @@ Content-Length: 111
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /album/1/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 51
+Content-Length: 53
 Host: localhost:8080
 
 {
@@ -1375,7 +1376,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 116
+Content-Length: 120
 
 {
   "description" : "testChildCommentDescription",
@@ -1430,7 +1431,7 @@ Content-Length: 116
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /album/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 52
+Content-Length: 54
 Host: localhost:8080
 
 {
@@ -1512,7 +1513,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 117
+Content-Length: 121
 
 {
   "description" : "testUpdateCommentDescription",
@@ -1557,13 +1558,78 @@ Content-Length: 117
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="Comment-댓글-삭제"><a class="link" href="#Comment-댓글-삭제">Comment 댓글 삭제</a></h3>
+<div class="sect3">
+<h4 id="Comment-댓글-삭제_http_request"><a class="link" href="#Comment-댓글-삭제_http_request">HTTP request</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /album/comment/1 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Authorization: access token
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Comment-댓글-삭제_request_headers"><a class="link" href="#Comment-댓글-삭제_request_headers">Request headers</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">access token</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="Comment-댓글-삭제_path_parameters"><a class="link" href="#Comment-댓글-삭제_path_parameters">Path parameters</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. /album/comment/{commentId}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>commentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 ID</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="Comment-댓글-삭제_http_response"><a class="link" href="#Comment-댓글-삭제_http_response">HTTP response</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-14 13:08:40 +0900
+Last updated 2023-05-18 21:39:32 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

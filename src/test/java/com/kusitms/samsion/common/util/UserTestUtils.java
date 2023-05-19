@@ -37,4 +37,14 @@ public class UserTestUtils {
 			.description(TestConst.TEST_DESCRIPTION)
 			.build();
 	}
+
+	public static User getAnotherMockUser(){
+		User mockUser = User.builder()
+				.email(TestConst.TEST_EMAIL)
+				.nickname(TestConst.TEST_NICKNAME)
+				.build();
+		mockUser.updateMyPet(getMockMyPet());
+		ReflectionTestUtils.setField(mockUser, "id", TestConst.TEST_ANOTHER_USER_ID);
+		return mockUser;
+	}
 }

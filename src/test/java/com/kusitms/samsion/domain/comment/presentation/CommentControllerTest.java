@@ -1,20 +1,5 @@
 package com.kusitms.samsion.domain.comment.presentation;
 
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.BDDMockito.*;
-import static org.springframework.restdocs.headers.HeaderDocumentation.*;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.ResultActions;
-
 import com.kusitms.samsion.common.config.CommonRestDocs;
 import com.kusitms.samsion.common.consts.ApplicationConst;
 import com.kusitms.samsion.common.consts.TestConst;
@@ -22,7 +7,24 @@ import com.kusitms.samsion.domain.comment.application.dto.request.CommentCreateR
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentUpdateRequest;
 import com.kusitms.samsion.domain.comment.application.dto.response.CommentInfoResponse;
 import com.kusitms.samsion.domain.comment.application.service.CommentCreateUseCase;
+import com.kusitms.samsion.domain.comment.application.service.CommentDeleteUseCase;
 import com.kusitms.samsion.domain.comment.application.service.CommentUpdateUseCase;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.ResultActions;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CommentController.class)
 @DisplayName("CommentController 테스트")
@@ -32,6 +34,8 @@ public class CommentControllerTest extends CommonRestDocs{
     private CommentCreateUseCase commentCreateUseCase;
     @MockBean
     private CommentUpdateUseCase commentUpdateUseCase;
+    @MockBean
+    private CommentDeleteUseCase commentDeleteUseCase;
 
     @Test
     void 댓글_저장() throws Exception {
@@ -158,4 +162,26 @@ public class CommentControllerTest extends CommonRestDocs{
                 );
     }
 
+    @Test
+    void 댓글_삭제() throws Exception {
+        //given
+        //when
+        ResultActions result = mockMvc.perform(
+                delete("/album/comment/{commentId}", TestConst.TEST_COMMENT_ID)
+                        .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+        //then
+        result.andExpect(status().isOk())
+                .andDo(
+                        restDocs.document(
+                                requestHeaders(
+                                        headerWithName("Authorization").description("access token")
+                                ),
+                                pathParameters(
+                                        parameterWithName("commentId").description("댓글 ID")
+                                )
+                        )
+                );
+    }
 }

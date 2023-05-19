@@ -10,6 +10,7 @@ public class TestConst {
 
 	// 사용자 정보
 	public static final Long TEST_USER_ID = 1L;
+	public static final Long TEST_ANOTHER_USER_ID = 2L;
 	public static final String TEST_EMAIL = "test@test.com";
 	public static final String TEST_NICKNAME = "test";
 	public static final String TEST_PROFILE_IMAGE_URL = "testImageUrl";
