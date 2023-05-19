@@ -8,19 +8,19 @@ import lombok.Getter;
 @Getter
 public class MyPetUpdateRequest {
 
-	private String nickname;
 	private String description;
 	private String petType;
 	private int petAge;
 	private String petName;
+	private String petNickname;
 
 	private MultipartFile profileImage;
 	private MultipartFile petImage;
 
 	@Builder
-	public MyPetUpdateRequest(String nickname, String description, String petType, int petAge, String petName,
+	public MyPetUpdateRequest(String petNickname, String description, String petType, int petAge, String petName,
 		MultipartFile profileImage, MultipartFile petImage) {
-		this.nickname = nickname;
+		this.petNickname = petNickname;
 		this.description = description;
 		this.petType = petType;
 		this.petAge = petAge;

@@ -13,6 +13,7 @@ public class MyPetMapper {
 		MyPet mypet = user.getMypet();
 		return MyPetResponse.builder()
 			.petName(mypet.getPetName())
+			.petNickname(mypet.getPetNickname())
 			.petImageUrl(mypet.getPetImageUrl())
 			.description(mypet.getDescription())
 			.petType(mypet.getPetType())
@@ -23,6 +24,7 @@ public class MyPetMapper {
 	public static MyPet mapToMyPetUpdateRequest(MyPetUpdateRequest request, String imageUrl){
 		return MyPet.builder()
 			.petName(request.getPetName())
+			.petNickname(request.getPetNickname())
 			.petType(request.getPetType())
 			.petAge(request.getPetAge())
 			.petImageUrl(imageUrl)

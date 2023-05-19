@@ -45,20 +45,13 @@ public class User extends BaseEntity {
 		this.mypet.updateInfo(mypet);
 	}
 
-	public void updateUserInfo(String nickname, String profileImageUrl){
-		updateNickname(nickname);
+	public void updateUserInfo(String profileImageUrl){
 		updateProfileImageUrl(profileImageUrl);
-	}
-
-	private void updateNickname(String nickname) {
-		if(!Objects.equals(nickname, this.nickname))
-			this.nickname = nickname;
 	}
 
 	private void updateProfileImageUrl(String profileImageUrl) {
 		if(!Objects.equals(profileImageUrl, this.profileImageUrl)&&Objects.nonNull(profileImageUrl))
 			this.profileImageUrl = profileImageUrl;
 	}
-
 
 }
