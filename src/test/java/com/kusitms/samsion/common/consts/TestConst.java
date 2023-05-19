@@ -15,6 +15,7 @@ public class TestConst {
 	public static final String TEST_NICKNAME = "test";
 	public static final String TEST_PROFILE_IMAGE_URL = "testImageUrl";
 	public static final String TEST_PET_NAME = "testPet";
+	public static final String TEST_PET_NICKNAME = "testPetNickname";
 	public static final String TEST_PET_IMAGE_URL = "testImageUrl";
 	public static final String TEST_DESCRIPTION = "testDescription";
 	public static final int TEST_PET_AGE = 1;
@@ -24,6 +25,7 @@ public class TestConst {
 	public static final String TEST_UPDATE_NICKNAME = "testUpdateNickname";
 	public static final String TEST_UPDATE_PROFILE_IMAGE_URL = "testUpdateImageUrl";
 	public static final String TEST_UPDATE_PET_NAME = "testUpdatePet";
+	public static final String TEST_UPDATE_PET_NICKNAME = "testUpdatePetNickname";
 	public static final String TEST_UPDATE_PET_IMAGE_URL = "testUpdateImageUrl";
 	public static final String TEST_UPDATE_DESCRIPTION = "testUpdateDescription";
 	public static final int TEST_UPDATE_PET_AGE = 2;

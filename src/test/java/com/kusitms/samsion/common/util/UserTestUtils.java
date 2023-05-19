@@ -33,6 +33,9 @@ public class UserTestUtils {
 	private static MyPet getMockMyPet(){
 		return MyPet.builder()
 			.petName(TestConst.TEST_PET_NAME)
+			.petNickname(TestConst.TEST_PET_NICKNAME)
+			.petAge(TestConst.TEST_PET_AGE)
+			.petType(TestConst.TEST_PET_TYPE)
 			.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
 			.description(TestConst.TEST_DESCRIPTION)
 			.build();
