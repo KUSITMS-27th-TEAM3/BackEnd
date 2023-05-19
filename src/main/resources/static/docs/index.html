@@ -446,6 +446,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#Overview-http-status-codes">HTTP status codes</a>
+<ul class="sectlevel2">
+<li><a href="#Overview-common-status-codes">Common Status Codes</a></li>
+<li><a href="#Overview-auth-status-codes">Auth Status Codes</a></li>
+<li><a href="#Overview-album-status-codes">Album Status Codes</a></li>
+<li><a href="#Overview-Empathy-status-codes">Empathy Status Codes</a></li>
+<li><a href="#Overview-Question-status-codes">Question Status Codes</a></li>
+<li><a href="#Overview-Comment-status-codes">Comment Status Codes</a></li>
+<li><a href="#Overview-Grid-status-codes">Grid Status Codes</a></li>
+</ul>
+</li>
 <li><a href="#User-API">User-API</a>
 <ul class="sectlevel2">
 <li><a href="#User-mypet-정보-조회">User mypet 정보 조회</a></li>
@@ -477,6 +488,229 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="Overview-http-status-codes"><a class="link" href="#Overview-http-status-codes">HTTP status codes</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="Overview-common-status-codes"><a class="link" href="#Overview-common-status-codes">Common Status Codes</a></h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Scope</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>200 SUCCESS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전체</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">성공</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="Overview-auth-status-codes"><a class="link" href="#Overview-auth-status-codes">Auth Status Codes</a></h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Scope</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1000 USER_NOT_FOUND</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전체</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자를 찾을 수 없음</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7000 INVALID_TOKEN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전체</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">잘못된 토큰 요청</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7001 EXPIRED_TOKEN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">전체</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">토큰 만료</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="Overview-album-status-codes"><a class="link" href="#Overview-album-status-codes">Album Status Codes</a></h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Scope</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2000 ALBUM_NOT_FOUND</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 조회/수정/삭제</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청에 해당하는 앨범 존재하지 않음</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2001 ALBUM_ACCESS_DENIED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 조회</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 접근 불가</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2002 FILE_EXTENTION_ERROR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 저장</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">잘못된 형식의 파일을 업로드 할 때(이미지)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2003 FILE_UPLOAD_ERROR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 저장</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 업로드 실패</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2004 FILE_DELETE_ERROR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 삭제</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미지 삭제 실패</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="Overview-Empathy-status-codes"><a class="link" href="#Overview-Empathy-status-codes">Empathy Status Codes</a></h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Scope</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3000 EMPATHY_NOT_FOUND</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">공감 조회</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청에 해당하는 공감 존재하지 않음</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="Overview-Question-status-codes"><a class="link" href="#Overview-Question-status-codes">Question Status Codes</a></h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Scope</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4000 QUESTION_NOT_FOUND</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">답변 작성</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">답변을 작성할 질문 존재하지 않음</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4001 ANSWER_NOT_FOUND</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">답변 조회</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청에 해당하는 답변 존재하지 않음</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4002 ANSWER_ALREADY_EXIST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">답변 저장</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미 해당 질문에 대한 답변 작성되어 있음</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="Overview-Comment-status-codes"><a class="link" href="#Overview-Comment-status-codes">Comment Status Codes</a></h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Scope</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5000 COMMENT_NOT_FOUND</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대댓글 생성, 댓글 수정, 댓글 삭제</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청에 해당하는 댓글 존재하지 않음</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5001 NOT_SAME_USER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정, 삭제</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글을 작성한 사용자와 수정,삭제하려는 사용자가 서로 다름</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="Overview-Grid-status-codes"><a class="link" href="#Overview-Grid-status-codes">Grid Status Codes</a></h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Status</th>
+<th class="tableblock halign-left valign-top">Scope</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>6000 GRID_NOT_REGISTERED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">그리드 조회</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청에 해당하는 그리드 존재하지 않음</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>6001 GRID_ALREADY_REGISTERED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">그리드 등록</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이미 그리드 존재</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="User-API"><a class="link" href="#User-API">User-API</a></h2>
 <div class="sectionbody">
@@ -1807,7 +2041,7 @@ Content-Length: 403
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-20 05:14:01 +0900
+Last updated 2023-05-20 03:21:50 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
