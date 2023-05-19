@@ -39,6 +39,7 @@ public class UserControllerTest extends CommonRestDocs {
 			.description(TestConst.TEST_DESCRIPTION)
 			.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
 			.petName(TestConst.TEST_PET_NAME)
+			.petNickname(TestConst.TEST_PET_NICKNAME)
 			.petAge(TestConst.TEST_PET_AGE)
 			.petType(TestConst.TEST_PET_TYPE)
 			.build();
