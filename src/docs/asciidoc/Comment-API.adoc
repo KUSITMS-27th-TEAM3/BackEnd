@@ -20,3 +20,7 @@ operation::comment-controller-test/댓글_수정[snippets='http-request,request-
 [[Comment-댓글-삭제]]
 === Comment 댓글 삭제
 operation::comment-controller-test/댓글_삭제[snippets='http-request,request-headers,path-parameters,http-response']
+
+[[Comment-댓글-조회]]
+=== Comment 댓글 조회
+operation::comment-controller-test/댓글_조회[snippets='http-request,request-headers,path-parameters,http-response,response-fields']

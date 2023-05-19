@@ -3,18 +3,26 @@ package com.kusitms.samsion.domain.comment.presentation;
 import com.kusitms.samsion.common.config.CommonRestDocs;
 import com.kusitms.samsion.common.consts.ApplicationConst;
 import com.kusitms.samsion.common.consts.TestConst;
+import com.kusitms.samsion.common.slice.SliceResponse;
+import com.kusitms.samsion.common.util.SliceTestUtils;
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentCreateRequest;
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentUpdateRequest;
 import com.kusitms.samsion.domain.comment.application.dto.response.CommentInfoResponse;
 import com.kusitms.samsion.domain.comment.application.service.CommentCreateUseCase;
 import com.kusitms.samsion.domain.comment.application.service.CommentDeleteUseCase;
+import com.kusitms.samsion.domain.comment.application.service.CommentReadUseCase;
 import com.kusitms.samsion.domain.comment.application.service.CommentUpdateUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -22,8 +30,7 @@ import static org.springframework.restdocs.headers.HeaderDocumentation.headerWit
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CommentController.class)
@@ -36,12 +43,15 @@ public class CommentControllerTest extends CommonRestDocs{
     private CommentUpdateUseCase commentUpdateUseCase;
     @MockBean
     private CommentDeleteUseCase commentDeleteUseCase;
+    @MockBean
+    private CommentReadUseCase commentReadUseCase;
 
     @Test
     void 댓글_저장() throws Exception {
         //given
         CommentCreateRequest commentCreateRequest = new CommentCreateRequest(TestConst.TEST_COMMENT_DESCRIPTION);
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
+                .commentId(TestConst.TEST_COMMENT_ID)
                 .description(TestConst.TEST_COMMENT_DESCRIPTION)
                 .writer(TestConst.TEST_NICKNAME)
                 .writerProfileImageUrl(TestConst.TEST_PET_IMAGE_URL)
@@ -70,6 +80,7 @@ public class CommentControllerTest extends CommonRestDocs{
                                         fieldWithPath("description").description("댓글내용")
                                 ),
                                 responseFields(
+                                        fieldWithPath("commentId").description("댓글 ID"),
                                         fieldWithPath("description").description("댓글 내용"),
                                         fieldWithPath("writer").description("댓글 작성자"),
                                         fieldWithPath("writerProfileImageUrl").description("작성자 프로필 사진")
@@ -83,6 +94,7 @@ public class CommentControllerTest extends CommonRestDocs{
         //given
         CommentCreateRequest commentCreateRequest = new CommentCreateRequest(TestConst.TEST_CHILD_COMMENT_DESCRIPTION);
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
+                .commentId(TestConst.TEST_CHILD_ID)
                 .description(TestConst.TEST_CHILD_COMMENT_DESCRIPTION)
                 .writer(TestConst.TEST_NICKNAME)
                 .writerProfileImageUrl(TestConst.TEST_PET_IMAGE_URL)
@@ -112,6 +124,7 @@ public class CommentControllerTest extends CommonRestDocs{
                                         fieldWithPath("description").description("댓글내용")
                                 ),
                                 responseFields(
+                                        fieldWithPath("commentId").description("댓글 ID"),
                                         fieldWithPath("description").description("댓글 내용"),
                                         fieldWithPath("writer").description("댓글 작성자"),
                                         fieldWithPath("writerProfileImageUrl").description("작성자 프로필 사진")
@@ -126,6 +139,7 @@ public class CommentControllerTest extends CommonRestDocs{
         //given
         CommentUpdateRequest commentUpdateRequest = new CommentUpdateRequest(TestConst.TEST_UPDATE_COMMENT_DESCRIPTION);
         CommentInfoResponse commentInfoResponse = CommentInfoResponse.builder()
+                .commentId(TestConst.TEST_COMMENT_ID)
                 .description(TestConst.TEST_UPDATE_COMMENT_DESCRIPTION)
                 .writer(TestConst.TEST_NICKNAME)
                 .writerProfileImageUrl(TestConst.TEST_PET_IMAGE_URL)
@@ -154,6 +168,7 @@ public class CommentControllerTest extends CommonRestDocs{
                                         fieldWithPath("description").description("댓글내용")
                                 ),
                                 responseFields(
+                                        fieldWithPath("commentId").description("댓글 ID"),
                                         fieldWithPath("description").description("댓글 내용"),
                                         fieldWithPath("writer").description("댓글 작성자"),
                                         fieldWithPath("writerProfileImageUrl").description("작성자 프로필 사진")
@@ -180,6 +195,54 @@ public class CommentControllerTest extends CommonRestDocs{
                                 ),
                                 pathParameters(
                                         parameterWithName("commentId").description("댓글 ID")
+                                )
+                        )
+                );
+    }
+
+    @Test
+    void 댓글_조회() throws Exception {
+        //given
+        Pageable pageRequest = SliceTestUtils.getMockPageable();
+        List<CommentInfoResponse> children = new ArrayList<>(Arrays.asList(new CommentInfoResponse(TestConst.TEST_CHILD_ID,
+                TestConst.TEST_CHILD_COMMENT_DESCRIPTION, TestConst.TEST_NICKNAME, TestConst.TEST_PET_IMAGE_URL)));
+        CommentInfoResponse commentInfoResponse = new CommentInfoResponse(TestConst.TEST_COMMENT_ID,TestConst.TEST_COMMENT_DESCRIPTION,
+                TestConst.TEST_NICKNAME, TestConst.TEST_PET_IMAGE_URL, children);
+        SliceResponse<CommentInfoResponse> mockPageResponse = SliceTestUtils.getMockSliceResponse(commentInfoResponse);
+        given(commentReadUseCase.getCommentList(pageRequest, TestConst.TEST_ALBUM_ID)).willReturn(mockPageResponse);
+        //when
+        ResultActions result = mockMvc.perform(
+                get("/album/{albumId}/comment", TestConst.TEST_ALBUM_ID)
+                        .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param("page", String.valueOf(pageRequest.getPageNumber()))
+                        .param("size", String.valueOf(pageRequest.getPageSize())));
+        //then
+        result.andExpect(status().isOk())
+                .andDo(
+                        restDocs.document(
+                                requestHeaders(
+                                        headerWithName("Authorization").description("access token")
+                                ),
+                                pathParameters(
+                                        parameterWithName("albumId").description("앨범 ID")
+                                ),
+                                requestParameters(
+                                        parameterWithName("page").description("페이지 번호"),
+                                        parameterWithName("size").description("페이지 사이즈")
+                                ),
+                                responseFields(
+                                        fieldWithPath("content[].commentId").description("댓글 ID"),
+                                        fieldWithPath("content[].description").description("댓글 내용"),
+                                        fieldWithPath("content[].writer").description("댓글 작성자"),
+                                        fieldWithPath("content[].writerProfileImageUrl").description("작성자 프로필 사진"),
+                                        fieldWithPath("content[].child[].commentId").description("댓글 ID"),
+                                        fieldWithPath("content[].child[].description").description("댓글 내용"),
+                                        fieldWithPath("content[].child[].writer").description("댓글 작성자"),
+                                        fieldWithPath("content[].child[].writerProfileImageUrl").description("작성자 프로필 사진"),
+                                        fieldWithPath("page").description("현재 페이지"),
+                                        fieldWithPath("size").description("페이지 사이즈"),
+                                        fieldWithPath("hasNext").description("다음 페이지 여부")
                                 )
                         )
                 );
