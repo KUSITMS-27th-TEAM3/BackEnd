@@ -6,6 +6,8 @@ import com.kusitms.samsion.domain.comment.domain.entity.Comment;
 import com.kusitms.samsion.domain.comment.domain.exception.CommentNotFoundException;
 import com.kusitms.samsion.domain.comment.domain.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 @DomainService
 @RequiredArgsConstructor
@@ -16,6 +18,11 @@ public class CommentQueryService {
     public Comment getCommentById(Long commentId){
         return commentRepository.findById(commentId).orElseThrow(() -> new CommentNotFoundException(Error.COMMENT_NOT_FOUND));
     }
+
+    public Slice<Comment> getCommentByAlbumId(Pageable pageable, Long albumId) {
+        return commentRepository.findByAlbumId(pageable, albumId);
+    }
+
 
     public long getCommentCountByAlbumId(Long albumId){
         return commentRepository.countByAlbumId(albumId);

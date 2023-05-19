@@ -31,6 +31,7 @@ public class CommentMapper {
     public static CommentInfoResponse mapToCommentInfoResponse(Comment comment) {
         final User writer = comment.getWriter();
         return CommentInfoResponse.builder()
+                .commentId(comment.getId())
                 .description(comment.getDescription())
                 .writer(writer.getNickname())
                 .writerProfileImageUrl(writer.getMypet().getPetImageUrl())
