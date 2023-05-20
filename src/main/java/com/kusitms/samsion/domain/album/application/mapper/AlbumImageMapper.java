@@ -14,4 +14,11 @@ public class AlbumImageMapper {
 	public static List<AlbumImage> mapToAlbumImageListWithAlbum(List<String> imageUrls, Album album) {
 		return imageUrls.stream().map(imageUrl->new AlbumImage(imageUrl,album)).collect(Collectors.toList());
 	}
+
+	public static List<AlbumImage> mapToAlbumImageListWithNewAlbumImage(List<String> oldImageList, List<String> newImageList, Album album){
+		List<AlbumImage> albumImageList = oldImageList.stream().map(imageUrl->new AlbumImage(imageUrl,album)).collect(Collectors.toList());
+		albumImageList.addAll(newImageList.stream().map(imageUrl->new AlbumImage(imageUrl,album)).collect(Collectors.toList()));
+		return albumImageList;
+	}
+
 }

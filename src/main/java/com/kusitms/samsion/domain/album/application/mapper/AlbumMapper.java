@@ -29,6 +29,7 @@ public class AlbumMapper {
 		final User writer = album.getWriter();
 		return AlbumInfoResponse.builder()
 			.imageUrlList(album.getAlbumImages().stream().map(AlbumImage::getImageUrl).collect(Collectors.toList()))
+			.title(album.getTitle())
 			.description(album.getDescription())
 			.writer(writer.getNickname())
 			.petName(writer.getMypet().getPetName())
