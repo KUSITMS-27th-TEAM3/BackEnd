@@ -15,13 +15,21 @@ public class AlbumInfoResponse {
 	private final String description;
 
 	private final String writer;
+	private final String petName;
 	private final String writerProfileImageUrl;
 
+	private final long commentCount;
+	private final long empathyCount;
+
 	@Builder
-	public AlbumInfoResponse(List<String> imageUrlList, String description, String writer, String writerProfileImageUrl) {
+	public AlbumInfoResponse(List<String> imageUrlList, String description, String writer, String petName, String writerProfileImageUrl,
+		long commentCount, long empathyCount) {
 		this.imageUrlList = imageUrlList;
 		this.description = description;
 		this.writer = writer;
+		this.petName = petName;
 		this.writerProfileImageUrl = writerProfileImageUrl;
+		this.commentCount = commentCount;
+		this.empathyCount = empathyCount;
 	}
 }

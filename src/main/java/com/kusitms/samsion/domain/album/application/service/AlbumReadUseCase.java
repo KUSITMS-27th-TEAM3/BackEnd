@@ -53,7 +53,9 @@ public class AlbumReadUseCase {
 		User user = userUtils.getUser();
 		Album album = albumQueryService.getAlbumById(albumId);
 		albumValidAccessService.validateAccess(album, user.getId());
-		return AlbumMapper.mapToAlbumInfoResponse(album);
+		final long commentCountByAlbumId = commentQueryService.getCommentCountByAlbumId(album.getId());
+		final long empathyCountByAlbumId = empathyQueryService.getEmpathyCountByAlbumId(album.getId());
+		return AlbumMapper.mapToAlbumInfoResponse(album, commentCountByAlbumId, empathyCountByAlbumId);
 	}
 
 	/**

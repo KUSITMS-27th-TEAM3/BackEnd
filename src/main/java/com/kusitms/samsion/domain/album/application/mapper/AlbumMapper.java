@@ -23,13 +23,16 @@ public class AlbumMapper {
 			.build();
 	}
 
-	public static AlbumInfoResponse mapToAlbumInfoResponse(Album album) {
+	public static AlbumInfoResponse mapToAlbumInfoResponse(Album album, long commentCnt, long empathyCnt) {
 		final User writer = album.getWriter();
 		return AlbumInfoResponse.builder()
 			.imageUrlList(album.getAlbumImages().stream().map(AlbumImage::getImageUrl).collect(Collectors.toList()))
 			.description(album.getDescription())
 			.writer(writer.getNickname())
+			.petName(writer.getMypet().getPetName())
 			.writerProfileImageUrl(writer.getMypet().getPetImageUrl())
+			.commentCount(commentCnt)
+			.empathyCount(empathyCnt)
 			.build();
 	}
 
