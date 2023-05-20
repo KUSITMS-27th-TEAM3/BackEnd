@@ -33,7 +33,7 @@ public class EmpathyToggleUseCase {
 		if(empathyQueryService.isEmpathyByUserIdAndAlbumId(user.getId(), albumId)) {
 			empathyDeleteService.deleteEmpathy(user.getId(), albumId);
 		}else{
-			final Album album = albumQueryService.getAlbumById(albumId);
+			final Album album = albumQueryService.findAlbumById(albumId);
 			empathySaveService.saveEmpathy(user, album);
 		}
 	}

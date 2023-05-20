@@ -55,7 +55,7 @@ public class CommentCreateUseCaseTest {
         CommentCreateRequest commentCreateRequest = new CommentCreateRequest(TestConst.TEST_COMMENT_DESCRIPTION);
 
         given(userUtils.getUser()).willReturn(mockUser);
-        given(albumQueryService.getAlbumById(mockAlbum.getId())).willReturn(mockAlbum);
+        given(albumQueryService.findAlbumById(mockAlbum.getId())).willReturn(mockAlbum);
 
         // when
         CommentInfoResponse commentInfoResponse = commentCreateUseCase.createComment(mockAlbum.getId(), commentCreateRequest);
@@ -76,7 +76,7 @@ public class CommentCreateUseCaseTest {
         Comment mockParentComment = CommentTestUtils.getMockComment(mockUser, mockAlbum);
         CommentCreateRequest commentCreateRequest = new CommentCreateRequest(TestConst.TEST_CHILD_COMMENT_DESCRIPTION);
         given(userUtils.getUser()).willReturn(mockUser);
-        given(albumQueryService.getAlbumById(mockAlbum.getId())).willReturn(mockAlbum);
+        given(albumQueryService.findAlbumById(mockAlbum.getId())).willReturn(mockAlbum);
         given(commentQueryService.getCommentById(mockParentComment.getId())).willReturn(mockParentComment);
         //when
         CommentInfoResponse commentInfoResponse = commentCreateUseCase.createReComment(mockAlbum.getId(), mockParentComment.getId(), commentCreateRequest);

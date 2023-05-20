@@ -15,7 +15,6 @@ import com.kusitms.samsion.common.util.UserUtils;
 import com.kusitms.samsion.domain.album.domain.entity.Album;
 import com.kusitms.samsion.domain.album.domain.entity.Visibility;
 import com.kusitms.samsion.domain.album.domain.service.AlbumQueryService;
-import com.kusitms.samsion.domain.empathy.application.service.EmpathyToggleUseCase;
 import com.kusitms.samsion.domain.empathy.domain.service.EmpathyDeleteService;
 import com.kusitms.samsion.domain.empathy.domain.service.EmpathyQueryService;
 import com.kusitms.samsion.domain.empathy.domain.service.EmpathySaveService;
@@ -51,7 +50,7 @@ class EmpathyToggleUseCaseTest {
 		final Album mockAlbum = getMockAlbum(mockUser);
 		given(userUtils.getUser()).willReturn(mockUser);
 		given(empathyQueryService.isEmpathyByUserIdAndAlbumId(anyLong(), anyLong())).willReturn(false);
-		given(albumQueryService.getAlbumById(anyLong())).willReturn(mockAlbum);
+		given(albumQueryService.findAlbumById(anyLong())).willReturn(mockAlbum);
 		//when
 		empathyToggleUseCase.toggleEmpathy(mockAlbum.getId());
 		//then
