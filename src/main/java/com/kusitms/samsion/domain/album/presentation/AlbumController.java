@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kusitms.samsion.common.slice.SliceResponse;
 import com.kusitms.samsion.domain.album.application.dto.request.AlbumCreateRequest;
 import com.kusitms.samsion.domain.album.application.dto.request.AlbumSearchRequest;
+import com.kusitms.samsion.domain.album.application.dto.request.AlbumUpdateRequest;
 import com.kusitms.samsion.domain.album.application.dto.response.AlbumInfoResponse;
 import com.kusitms.samsion.domain.album.application.dto.response.AlbumSimpleResponse;
 import com.kusitms.samsion.domain.album.application.service.AlbumCreateUseCase;
 import com.kusitms.samsion.domain.album.application.service.AlbumReadUseCase;
+import com.kusitms.samsion.domain.album.application.service.AlbumUpdateUseCase;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +30,7 @@ public class AlbumController {
 
 	private final AlbumReadUseCase albumReadUseCase;
 	private final AlbumCreateUseCase albumCreateUseCase;
+	private final AlbumUpdateUseCase albumUpdateUseCase;
 
 	/**
 	 * 기존 jpa : 앨범 10개 조회 기준, 3회 warmup, 4회 테스트 평균 853ms
@@ -61,5 +64,9 @@ public class AlbumController {
 	/**
 	 * 앨범 수정, 삭제 기능 추가해야함
 	 */
+	@PostMapping("/{albumId}")
+	public void updateAlbum(@PathVariable Long albumId, @ModelAttribute AlbumUpdateRequest request){
+		albumUpdateUseCase.updateAlbum(albumId, request);
+	}
 
 }

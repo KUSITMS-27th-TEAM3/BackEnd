@@ -2,6 +2,7 @@ package com.kusitms.samsion.domain.album.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -64,16 +65,54 @@ public class Album extends BaseEntity {
 		this.writer = writer;
 	}
 
+	public void updateAlbum(String title, String description, Visibility visibility) {
+		updateTitle(title);
+		updateDescription(description);
+		updateVisibility(visibility);
+	}
+
+	private void updateTitle(String title) {
+		if(!Objects.equals(this.title, title)&& title != null) {
+			this.title = title;
+		}
+	}
+
+	private void updateDescription(String description) {
+		if(!Objects.equals(this.description, description)&& description != null) {
+			this.description = description;
+		}
+	}
+
+	private void updateVisibility(Visibility visibility) {
+		if(!Objects.equals(this.visibility, visibility)&& visibility != null) {
+			this.visibility = visibility;
+		}
+	}
+
 	public void addImage(AlbumImage albumImage){
 		albumImages.add(albumImage);
 	}
 
 	public void addComment(Comment comment) {comments.add(comment);}
 
-	public void addImageList(List<AlbumImage> albumImageList){
-		albumImages.addAll(albumImageList);
-	}
 
 	public void addTag(Tag tag) {tags.add(tag);}
 
+	public void changeAllImage(List<AlbumImage> albumImageList){
+		this.albumImages = albumImageList;
+	}
+
+	public void changeAllTag(List<Tag> tagList){
+		this.tags = tagList;
+	}
+
+	public void clearAllImage(){
+		this.albumImages.clear();
+		// this.albumImages= new ArrayList<>();
+	}
+
+	public void clearAllTag() {
+		this.tags.clear();
+		// this.tags = new ArrayList<>();
+	}
 }

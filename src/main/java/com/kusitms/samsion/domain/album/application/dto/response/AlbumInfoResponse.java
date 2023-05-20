@@ -14,6 +14,7 @@ import lombok.Getter;
 public class AlbumInfoResponse {
 
 	private final List<String> imageUrlList;
+	private final String title;
 	private final String description;
 
 	private final String writer;
@@ -26,9 +27,10 @@ public class AlbumInfoResponse {
 	private final List<EmotionTag> emotionTagList;
 
 	@Builder
-	public AlbumInfoResponse(List<String> imageUrlList, String description, String writer, String petName, String writerProfileImageUrl,
+	public AlbumInfoResponse(List<String> imageUrlList, String title, String description, String writer, String petName, String writerProfileImageUrl,
 		long commentCount, long empathyCount, List<EmotionTag> emotionTagList) {
 		this.imageUrlList = imageUrlList;
+		this.title = title;
 		this.description = description;
 		this.writer = writer;
 		this.petName = petName;

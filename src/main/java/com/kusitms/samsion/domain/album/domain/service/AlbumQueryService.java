@@ -21,7 +21,7 @@ public class AlbumQueryService {
 
 	private final AlbumRepository albumRepository;
 
-	public Album getAlbumById(Long albumId){
+	public Album findAlbumById(Long albumId){
 		return albumRepository.findById(albumId).orElseThrow(() -> new AlbumNotFoundException(Error.ALBUM_NOT_FOUND));
 	}
 

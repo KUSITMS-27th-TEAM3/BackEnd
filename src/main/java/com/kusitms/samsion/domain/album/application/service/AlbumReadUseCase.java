@@ -56,7 +56,7 @@ public class AlbumReadUseCase {
 
 	public AlbumInfoResponse getAlbum(Long albumId){
 		User user = userUtils.getUser();
-		Album album = albumQueryService.getAlbumById(albumId);
+		Album album = albumQueryService.findAlbumById(albumId);
 		final List<EmotionTag> emotionTagList  = album.getTags().stream().map(Tag::getEmotionTag).collect(Collectors.toList());
 		albumValidAccessService.validateAccess(album, user.getId());
 		final long commentCountByAlbumId = commentQueryService.getCommentCountByAlbumId(album.getId());
