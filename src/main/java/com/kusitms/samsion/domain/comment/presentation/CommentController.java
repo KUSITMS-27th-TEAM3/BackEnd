@@ -45,13 +45,13 @@ public class CommentController {
     }
 
     @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#comment.albumId")
-    @PutMapping("/comment/{commentId}")
+    @PutMapping("/{albumId}/comment/{commentId}")
     public CommentInfoResponse update(@PathVariable Long commentId, @RequestBody CommentUpdateRequest commentUpdateRequest){
         return commentUpdateUseCase.updateComment(commentId, commentUpdateRequest);
     }
 
     @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#comment.albumId")
-    @DeleteMapping("/comment/{commentId}")
+    @DeleteMapping("/{albumId}/comment/{commentId}")
     public void delete(@PathVariable Long commentId){
         commentDeleteUseCase.deleteComment(commentId);
     }

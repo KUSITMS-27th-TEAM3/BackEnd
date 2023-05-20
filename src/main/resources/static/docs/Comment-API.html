@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /album/1/comment HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 46
+Content-Length: 48
 Host: localhost:8080
 
 {
@@ -534,7 +534,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 130
+Content-Length: 135
 
 {
   "commentId" : 1,
@@ -595,7 +595,7 @@ Content-Length: 130
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /album/1/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 51
+Content-Length: 53
 Host: localhost:8080
 
 {
@@ -681,7 +681,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 135
+Content-Length: 140
 
 {
   "commentId" : 2,
@@ -739,10 +739,10 @@ Content-Length: 135
 <h4 id="Comment-댓글-수정_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">PUT /album/comment/1 HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">PUT /album/1/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 52
+Content-Length: 54
 Host: localhost:8080
 
 {
@@ -775,7 +775,7 @@ Host: localhost:8080
 <div class="sect3">
 <h4 id="Comment-댓글-수정_path_parameters">Path parameters</h4>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. /album/comment/{commentId}</caption>
+<caption class="title">Table 1. /album/{albumId}/comment/{commentId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -787,6 +787,10 @@ Host: localhost:8080
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>albumId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 ID</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>commentId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">댓글 ID</p></td>
@@ -824,7 +828,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 136
+Content-Length: 141
 
 {
   "commentId" : 1,
@@ -881,7 +885,7 @@ Content-Length: 136
 <h4 id="Comment-댓글-삭제_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /album/comment/1 HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /album/1/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
 Host: localhost:8080</code></pre>
@@ -912,7 +916,7 @@ Host: localhost:8080</code></pre>
 <div class="sect3">
 <h4 id="Comment-댓글-삭제_path_parameters">Path parameters</h4>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. /album/comment/{commentId}</caption>
+<caption class="title">Table 1. /album/{albumId}/comment/{commentId}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -924,6 +928,10 @@ Host: localhost:8080</code></pre>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>albumId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 ID</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>commentId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">댓글 ID</p></td>
@@ -1027,7 +1035,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 387
+Content-Length: 403
 
 {
   "content" : [ {
@@ -1130,7 +1138,7 @@ Content-Length: 387
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-20 11:21:48 +0900
+Last updated 2023-05-20 21:44:24 +0900
 </div>
 </div>
 </body>

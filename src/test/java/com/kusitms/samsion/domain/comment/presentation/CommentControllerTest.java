@@ -148,7 +148,7 @@ public class CommentControllerTest extends CommonRestDocs{
 
         //when
         ResultActions result = mockMvc.perform(
-                put("/album/comment/{commentId}", TestConst.TEST_COMMENT_ID)
+                put("/album/{albumId}/comment/{commentId}",TestConst.TEST_ALBUM_ID, TestConst.TEST_COMMENT_ID)
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(commentUpdateRequest))
@@ -162,6 +162,7 @@ public class CommentControllerTest extends CommonRestDocs{
                                         headerWithName("Authorization").description("access token")
                                 ),
                                 pathParameters(
+                                        parameterWithName("albumId").description("앨범 ID"),
                                         parameterWithName("commentId").description("댓글 ID")
                                 ),
                                 requestFields(
@@ -182,7 +183,7 @@ public class CommentControllerTest extends CommonRestDocs{
         //given
         //when
         ResultActions result = mockMvc.perform(
-                delete("/album/comment/{commentId}", TestConst.TEST_COMMENT_ID)
+                delete("/album/{albumId}/comment/{commentId}", TestConst.TEST_ALBUM_ID, TestConst.TEST_COMMENT_ID)
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
         );
@@ -194,6 +195,7 @@ public class CommentControllerTest extends CommonRestDocs{
                                         headerWithName("Authorization").description("access token")
                                 ),
                                 pathParameters(
+                                        parameterWithName("albumId").description("앨범 ID"),
                                         parameterWithName("commentId").description("댓글 ID")
                                 )
                         )
