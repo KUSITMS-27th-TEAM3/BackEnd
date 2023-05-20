@@ -2,6 +2,8 @@ package com.kusitms.samsion.domain.album.application.dto.response;
 
 import java.util.List;
 
+import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
+
 import lombok.Builder;
 import lombok.Getter;
 
@@ -21,9 +23,11 @@ public class AlbumInfoResponse {
 	private final long commentCount;
 	private final long empathyCount;
 
+	private final List<EmotionTag> emotionTagList;
+
 	@Builder
 	public AlbumInfoResponse(List<String> imageUrlList, String description, String writer, String petName, String writerProfileImageUrl,
-		long commentCount, long empathyCount) {
+		long commentCount, long empathyCount, List<EmotionTag> emotionTagList) {
 		this.imageUrlList = imageUrlList;
 		this.description = description;
 		this.writer = writer;
@@ -31,5 +35,6 @@ public class AlbumInfoResponse {
 		this.writerProfileImageUrl = writerProfileImageUrl;
 		this.commentCount = commentCount;
 		this.empathyCount = empathyCount;
+		this.emotionTagList = emotionTagList;
 	}
 }

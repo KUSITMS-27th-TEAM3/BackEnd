@@ -1,5 +1,8 @@
 package com.kusitms.samsion.domain.album.application.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +15,8 @@ import com.kusitms.samsion.domain.album.application.dto.response.AlbumInfoRespon
 import com.kusitms.samsion.domain.album.application.dto.response.AlbumSimpleResponse;
 import com.kusitms.samsion.domain.album.application.mapper.AlbumMapper;
 import com.kusitms.samsion.domain.album.domain.entity.Album;
+import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
+import com.kusitms.samsion.domain.album.domain.entity.Tag;
 import com.kusitms.samsion.domain.album.domain.service.AlbumQueryService;
 import com.kusitms.samsion.domain.album.domain.service.AlbumValidAccessService;
 import com.kusitms.samsion.domain.comment.domain.service.CommentQueryService;
@@ -52,10 +57,11 @@ public class AlbumReadUseCase {
 	public AlbumInfoResponse getAlbum(Long albumId){
 		User user = userUtils.getUser();
 		Album album = albumQueryService.getAlbumById(albumId);
+		final List<EmotionTag> emotionTagList  = album.getTags().stream().map(Tag::getEmotionTag).collect(Collectors.toList());
 		albumValidAccessService.validateAccess(album, user.getId());
 		final long commentCountByAlbumId = commentQueryService.getCommentCountByAlbumId(album.getId());
 		final long empathyCountByAlbumId = empathyQueryService.getEmpathyCountByAlbumId(album.getId());
-		return AlbumMapper.mapToAlbumInfoResponse(album, commentCountByAlbumId, empathyCountByAlbumId);
+		return AlbumMapper.mapToAlbumInfoResponse(album, commentCountByAlbumId, empathyCountByAlbumId, emotionTagList);
 	}
 
 	/**

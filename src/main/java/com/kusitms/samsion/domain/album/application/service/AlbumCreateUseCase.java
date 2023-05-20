@@ -47,6 +47,6 @@ public class AlbumCreateUseCase {
 
 		applicationEventPublisher.publishEvent(new GridCountUpdateRequest(user.getId()));
 
-		return AlbumMapper.mapToAlbumInfoResponse(album, 0, 0);
+		return AlbumMapper.mapToAlbumInfoResponse(album, 0, 0, albumCreateRequest.getEmotionTags());
 	}
 }
