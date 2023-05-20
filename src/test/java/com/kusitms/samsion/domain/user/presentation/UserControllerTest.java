@@ -36,10 +36,10 @@ public class UserControllerTest extends CommonRestDocs {
 	void 접속한_사용자의_mypet_조회() throws Exception {
 		//given
 		MyPetResponse myPetResponse = MyPetResponse.builder()
+			.userNickname(TestConst.TEST_NICKNAME)
 			.description(TestConst.TEST_DESCRIPTION)
 			.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
 			.petName(TestConst.TEST_PET_NAME)
-			.petNickname(TestConst.TEST_PET_NICKNAME)
 			.petAge(TestConst.TEST_PET_AGE)
 			.petType(TestConst.TEST_PET_TYPE)
 			.build();
@@ -55,8 +55,8 @@ public class UserControllerTest extends CommonRestDocs {
 						headerWithName("Authorization").description("access token")
 					),
 					responseFields(
+						fieldWithPath("userNickname").description("사용자 닉네임"),
 						fieldWithPath("petName").description("반려동물 이름"),
-						fieldWithPath("petNickname").description("반려동물 별명"),
 						fieldWithPath("petImageUrl").description("반려동물 이미지 URL"),
 						fieldWithPath("description").description("반려동물 설명"),
 						fieldWithPath("petAge").description("반려동물 나이"),
@@ -73,6 +73,7 @@ public class UserControllerTest extends CommonRestDocs {
 		MockMultipartFile profileImage = new MockMultipartFile("profileImage","test.png","image/png", "test".getBytes());
 
 		MyPetResponse myPetResponse = MyPetResponse.builder()
+			.userNickname(TestConst.TEST_UPDATE_NICKNAME)
 			.description(TestConst.TEST_UPDATE_DESCRIPTION)
 			.petImageUrl(TestConst.TEST_UPDATE_PET_IMAGE_URL)
 			.petName(TestConst.TEST_UPDATE_PET_NAME)
@@ -88,7 +89,7 @@ public class UserControllerTest extends CommonRestDocs {
 			.param("description", TestConst.TEST_UPDATE_DESCRIPTION)
 			.param("petAge", String.valueOf(TestConst.TEST_UPDATE_PET_AGE))
 			.param("petType", TestConst.TEST_UPDATE_PET_TYPE)
-			.param("petNickname", TestConst.TEST_UPDATE_PET_NICKNAME)
+			.param("userNickname", TestConst.TEST_UPDATE_NICKNAME)
 			.contentType(MediaType.MULTIPART_FORM_DATA)
 			.header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token");
 		//when
@@ -103,15 +104,15 @@ public class UserControllerTest extends CommonRestDocs {
 					requestPartBody("petImage"),
 					requestPartBody("profileImage"),
 					requestParameters(
+						parameterWithName("userNickname").description("사용자 닉네임"),
 						parameterWithName("petName").description("반려동물 이름"),
 						parameterWithName("description").description("반려동물 설명"),
 						parameterWithName("petAge").description("반려동물 나이"),
-						parameterWithName("petType").description("반려동물 종류"),
-						parameterWithName("petNickname").description("반려동물 별명")
+						parameterWithName("petType").description("반려동물 종류")
 					),
 					responseFields(
+						fieldWithPath("userNickname").description("사용자 닉네임"),
 						fieldWithPath("petName").description("반려동물 이름"),
-						fieldWithPath("petNickname").description("반려동물 별명"),
 						fieldWithPath("petImageUrl").description("반려동물 이미지 URL"),
 						fieldWithPath("description").description("반려동물 설명"),
 						fieldWithPath("petAge").description("반려동물 나이"),

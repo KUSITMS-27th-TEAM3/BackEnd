@@ -1,5 +1,6 @@
 package com.kusitms.samsion.domain.album.application.mapper;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.kusitms.samsion.common.annotation.Mapper;
@@ -8,6 +9,7 @@ import com.kusitms.samsion.domain.album.application.dto.response.AlbumInfoRespon
 import com.kusitms.samsion.domain.album.application.dto.response.AlbumSimpleResponse;
 import com.kusitms.samsion.domain.album.domain.entity.Album;
 import com.kusitms.samsion.domain.album.domain.entity.AlbumImage;
+import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 
 @Mapper
@@ -23,13 +25,17 @@ public class AlbumMapper {
 			.build();
 	}
 
-	public static AlbumInfoResponse mapToAlbumInfoResponse(Album album) {
+	public static AlbumInfoResponse mapToAlbumInfoResponse(Album album, long commentCnt, long empathyCnt, List<EmotionTag> emotionTagList) {
 		final User writer = album.getWriter();
 		return AlbumInfoResponse.builder()
 			.imageUrlList(album.getAlbumImages().stream().map(AlbumImage::getImageUrl).collect(Collectors.toList()))
 			.description(album.getDescription())
 			.writer(writer.getNickname())
+			.petName(writer.getMypet().getPetName())
 			.writerProfileImageUrl(writer.getMypet().getPetImageUrl())
+			.commentCount(commentCnt)
+			.empathyCount(empathyCnt)
+			.emotionTagList(emotionTagList)
 			.build();
 	}
 

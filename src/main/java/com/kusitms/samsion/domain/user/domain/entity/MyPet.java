@@ -15,17 +15,15 @@ import lombok.NoArgsConstructor;
 public class MyPet {
 
 	private String petName;
-	private String petNickname;
 	private String petImageUrl;
 	private int petAge;
 	private String petType;
 	private String description;
 
 	@Builder
-	public MyPet(String petName, String petNickname, String petImageUrl, int petAge, String petType,
+	public MyPet(String petName, String petImageUrl, int petAge, String petType,
 		String description) {
 		this.petName = petName;
-		this.petNickname = petNickname;
 		this.petImageUrl = petImageUrl;
 		this.petAge = petAge;
 		this.petType = petType;
@@ -35,7 +33,6 @@ public class MyPet {
 	public static MyPet defaultValue() {
 		return MyPet.builder()
 			.petName("익명이")
-			.petNickname("익명이")
 			.petAge(0)
 			.petType("익명이")
 			.petImageUrl("")
@@ -45,7 +42,6 @@ public class MyPet {
 
 	public void updateInfo(MyPet myPet) {
 		updatePetName(myPet.getPetName());
-		updatePetNickname(myPet.getPetNickname());
 		updatePetImageUrl(myPet.getPetImageUrl());
 		updateDescription(myPet.getDescription());
 		updatePetAge(myPet.getPetAge());
@@ -55,11 +51,6 @@ public class MyPet {
 	private void updatePetName(String petName) {
 		if (!Objects.equals(petName, this.petName))
 			this.petName = petName;
-	}
-
-	private void updatePetNickname(String petNickname) {
-		if (!Objects.equals(petNickname, this.petNickname))
-			this.petNickname = petNickname;
 	}
 
 	private void updatePetImageUrl(String petImageUrl) {

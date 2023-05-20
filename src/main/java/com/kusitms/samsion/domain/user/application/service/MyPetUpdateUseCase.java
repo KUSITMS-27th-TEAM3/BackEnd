@@ -27,7 +27,7 @@ public class MyPetUpdateUseCase {
 		final String profileImageUrl = s3UploadService.uploadImg(request.getProfileImage());
 		final String petImageUrl = s3UploadService.uploadImg(request.getPetImage());
 		User user = userUtils.getUser();
-		user.updateUserInfo(profileImageUrl);
+		user.updateUserInfo(request.getUserNickname(),profileImageUrl);
 		final MyPet myPet = MyPetMapper.mapToMyPetUpdateRequest(request, petImageUrl);
 		user.updateMyPet(myPet);
 

@@ -58,4 +58,8 @@ public class AlbumController {
 		return albumReadUseCase.getAlbum(albumId);
 	}
 
+	/**
+	 * 앨범 수정, 삭제 기능 추가해야함
+	 */
+
 }
