@@ -4,27 +4,28 @@ import java.util.List;
 
 import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
- * TODO : 공감, 댓글, 이미지 정보도 같이 가져와야 함
+ * dto 캐싱할려면 기본생성자 만들어야함
  */
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AlbumInfoResponse {
 
-	private final List<String> imageUrlList;
-	private final String title;
-	private final String description;
+	private List<String> imageUrlList;
+	private String title;
+	private String description;
 
-	private final String writer;
-	private final String petName;
-	private final String writerProfileImageUrl;
-
-	private final long commentCount;
-	private final long empathyCount;
-
-	private final List<EmotionTag> emotionTagList;
+	private String writer;
+	private String petName;
+	private String writerProfileImageUrl;
+	private long commentCount;
+	private long empathyCount;
+	private List<EmotionTag> emotionTagList;
 
 	@Builder
 	public AlbumInfoResponse(List<String> imageUrlList, String title, String description, String writer, String petName, String writerProfileImageUrl,

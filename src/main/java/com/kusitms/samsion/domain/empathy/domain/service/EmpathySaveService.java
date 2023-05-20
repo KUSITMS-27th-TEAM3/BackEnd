@@ -17,6 +17,7 @@ public class EmpathySaveService {
 
 	private final EmpathyRepository empathyRepository;
 
+
 	public void saveEmpathy(User user, Album album){
 		final Empathy empathy = new Empathy(user, album);
 		empathyRepository.save(empathy);
