@@ -38,6 +38,9 @@ public class AlbumController {
 	/**
 	 * 기존 jpa : 앨범 10개 조회 기준, 3회 warmup, 4회 테스트 평균 853ms
 	 * QueryDsl : 앨범 10개 조회 기준, 3회 warmup, 4회 테스트 평균 347ms
+	 *
+	 * 캐시 미적용 : 3회 warmup 4회 테스트 평균 200ms
+	 * 캐시 적용(댓글, 공감 수 캐싱) : 3회 warmup 4회 테스트 평균 150ms
 	 */
 	@GetMapping
 	public SliceResponse<AlbumSimpleResponse> getAlbumList(Pageable pageable, @ModelAttribute AlbumSearchRequest request){
