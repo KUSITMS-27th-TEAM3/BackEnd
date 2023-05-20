@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Question API</title>
+<title>Question-API</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -441,7 +441,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="Question-API">Question API</h2>
+<h2 id="Question-API">Question-API</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="Question-모든-조회-조회">Question 모든 질문 조회</h3>
@@ -507,7 +507,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 253
+Content-Length: 201
 
 {
   "content" : [ {
@@ -515,11 +515,9 @@ Content-Length: 253
     "questionTitle" : "testQuestionTitle",
     "answerDescription" : "testAnswerDescription"
   } ],
-  "pageNumber" : 0,
-  "pageSize" : 20,
-  "totalElements" : 1,
-  "totalPages" : 1,
-  "last" : false
+  "page" : 0,
+  "size" : 20,
+  "hasNext" : false
 }</code></pre>
 </div>
 </div>
@@ -556,29 +554,19 @@ Content-Length: 253
 <td class="tableblock halign-left valign-top"><p class="tableblock">답변 내용</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageNumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">현재 페이지</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageSize</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">페이지 사이즈</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>totalElements</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">전체 요소 수</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>totalPages</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">전체 페이지 수</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>last</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hasNext</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">마지막 페이지 여부</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">다음 페이지 여부</p></td>
 </tr>
 </tbody>
 </table>
@@ -780,7 +768,7 @@ Host: localhost:8080
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-18 21:39:32 +0900
+Last updated 2023-05-20 05:30:09 +0900
 </div>
 </div>
 </body>
