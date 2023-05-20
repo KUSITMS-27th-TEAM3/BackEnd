@@ -1,5 +1,7 @@
 package com.kusitms.samsion.domain.album.presentation;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kusitms.samsion.common.consts.CachingStoreConst;
 import com.kusitms.samsion.common.slice.SliceResponse;
 import com.kusitms.samsion.domain.album.application.dto.request.AlbumCreateRequest;
 import com.kusitms.samsion.domain.album.application.dto.request.AlbumSearchRequest;
@@ -56,6 +59,11 @@ public class AlbumController {
 		return albumCreateUseCase.createAlbum(request);
 	}
 
+	/**
+	 * 캐시 미적용 : 3회 warmup 4회 테스트 평균 40ms
+	 * 캐시 적용 : 3회 warmup 4회 테스트 평균 20ms
+	 */
+	@Cacheable(value = CachingStoreConst.ALBUM_CACHE_NAME, key = "#albumId")
 	@GetMapping("/{albumId}")
 	public AlbumInfoResponse getAlbum(@PathVariable Long albumId){
 		return albumReadUseCase.getAlbum(albumId);
@@ -64,6 +72,7 @@ public class AlbumController {
 	/**
 	 * 앨범 수정, 삭제 기능 추가해야함
 	 */
+	@CacheEvict(value = CachingStoreConst.ALBUM_CACHE_NAME, key = "#albumId")
 	@PostMapping("/{albumId}")
 	public void updateAlbum(@PathVariable Long albumId, @ModelAttribute AlbumUpdateRequest request){
 		albumUpdateUseCase.updateAlbum(albumId, request);
