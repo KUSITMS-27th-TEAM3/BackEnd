@@ -18,12 +18,12 @@ public class MyPetUpdateRequest {
 	private MultipartFile petImage;
 
 	@Builder
-	public MyPetUpdateRequest(String userNickname, String description, String petType, int petAge, String petName,
+	public MyPetUpdateRequest(String userNickname, String description, String petType, String petAge, String petName,
 		MultipartFile profileImage, MultipartFile petImage) {
 		this.userNickname = userNickname;
 		this.description = description;
 		this.petType = petType;
-		this.petAge = petAge;
+		this.petAge = Integer.parseInt(petAge);
 		this.petName = petName;
 		this.profileImage = profileImage;
 		this.petImage = petImage;
