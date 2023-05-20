@@ -1,5 +1,5 @@
 [[Question-API]]
-== Question API
+== Question-API
 
 [[Question-모든-조회-조회]]
 === Question 모든 질문 조회

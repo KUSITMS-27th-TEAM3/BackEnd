@@ -482,10 +482,11 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 149
+Content-Length: 187
 
 {
   "petName" : "testPet",
+  "petNickname" : "testPetNickname",
   "petImageUrl" : "testImageUrl",
   "description" : "testDescription",
   "petType" : "testPetType",
@@ -514,6 +515,11 @@ Content-Length: 149
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petNickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 별명</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petImageUrl</code></p></td>
@@ -568,9 +574,9 @@ Content-Disposition: form-data; name=petType
 
 testUpdatePetType
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Content-Disposition: form-data; name=nickname
+Content-Disposition: form-data; name=petNickname
 
-testUpdateNickname
+testUpdatePetNickname
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=petImage; filename=test.png
 Content-Type: image/png
@@ -637,8 +643,8 @@ test
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 종류</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nickname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 아이디</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petNickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 별명</p></td>
 </tr>
 </tbody>
 </table>
@@ -649,10 +655,11 @@ test
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 173
+Content-Length: 198
 
 {
   "petName" : "testUpdatePet",
+  "petNickname" : null,
   "petImageUrl" : "testUpdateImageUrl",
   "description" : "testUpdateDescription",
   "petType" : "testUpdatePetType",
@@ -681,6 +688,11 @@ Content-Length: 173
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petNickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 별명</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petImageUrl</code></p></td>
@@ -712,7 +724,7 @@ Content-Length: 173
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-18 21:39:32 +0900
+Last updated 2023-05-20 05:14:01 +0900
 </div>
 </div>
 </body>
