@@ -1,5 +1,17 @@
 package com.kusitms.samsion.domain.comment.presentation;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.kusitms.samsion.common.consts.CachingStoreConst;
 import com.kusitms.samsion.common.slice.SliceResponse;
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentCreateRequest;
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentUpdateRequest;
@@ -8,9 +20,8 @@ import com.kusitms.samsion.domain.comment.application.service.CommentCreateUseCa
 import com.kusitms.samsion.domain.comment.application.service.CommentDeleteUseCase;
 import com.kusitms.samsion.domain.comment.application.service.CommentReadUseCase;
 import com.kusitms.samsion.domain.comment.application.service.CommentUpdateUseCase;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/album")
@@ -33,11 +44,13 @@ public class CommentController {
         return commentCreateUseCase.createReComment(albumId, commentId, commentCreateRequest);
     }
 
+    @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#comment.albumId")
     @PutMapping("/comment/{commentId}")
     public CommentInfoResponse update(@PathVariable Long commentId, @RequestBody CommentUpdateRequest commentUpdateRequest){
         return commentUpdateUseCase.updateComment(commentId, commentUpdateRequest);
     }
 
+    @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#comment.albumId")
     @DeleteMapping("/comment/{commentId}")
     public void delete(@PathVariable Long commentId){
         commentDeleteUseCase.deleteComment(commentId);
