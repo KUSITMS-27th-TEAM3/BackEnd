@@ -753,11 +753,11 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 187
+Content-Length: 170
 
 {
+  "userNickname" : "test",
   "petName" : "testPet",
-  "petNickname" : "testPetNickname",
   "petImageUrl" : "testImageUrl",
   "description" : "testDescription",
   "petType" : "testPetType",
@@ -783,14 +783,14 @@ Content-Length: 187
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>userNickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 닉네임</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petNickname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 별명</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petImageUrl</code></p></td>
@@ -845,9 +845,9 @@ Content-Disposition: form-data; name=petType
 
 testUpdatePetType
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Content-Disposition: form-data; name=petNickname
+Content-Disposition: form-data; name=userNickname
 
-testUpdatePetNickname
+testUpdateNickname
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=petImage; filename=test.png
 Content-Type: image/png
@@ -898,6 +898,10 @@ test
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>userNickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 닉네임</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이름</p></td>
 </tr>
@@ -913,10 +917,6 @@ test
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petType</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 종류</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petNickname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 별명</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -926,11 +926,11 @@ test
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 198
+Content-Length: 208
 
 {
+  "userNickname" : "testUpdateNickname",
   "petName" : "testUpdatePet",
-  "petNickname" : null,
   "petImageUrl" : "testUpdateImageUrl",
   "description" : "testUpdateDescription",
   "petType" : "testUpdatePetType",
@@ -956,14 +956,14 @@ Content-Length: 198
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>userNickname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 닉네임</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이름</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petNickname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 별명</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petImageUrl</code></p></td>
@@ -1058,7 +1058,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 201
+Content-Length: 192
 
 {
   "content" : [ {
@@ -1133,7 +1133,7 @@ Content-Length: 201
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /question/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer testAccessToken
-Content-Length: 53
+Content-Length: 51
 Host: localhost:8080
 
 {
@@ -1228,7 +1228,7 @@ Host: localhost:8080
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /question/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer testAccessToken
-Content-Length: 53
+Content-Length: 51
 Host: localhost:8080
 
 {
@@ -1388,7 +1388,7 @@ Host: localhost:8080</code></pre>
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /album/1/comment HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 48
+Content-Length: 46
 Host: localhost:8080
 
 {
@@ -1470,7 +1470,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 135
+Content-Length: 130
 
 {
   "commentId" : 1,
@@ -1531,7 +1531,7 @@ Content-Length: 135
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /album/1/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 53
+Content-Length: 51
 Host: localhost:8080
 
 {
@@ -1617,7 +1617,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 140
+Content-Length: 135
 
 {
   "commentId" : 2,
@@ -1678,7 +1678,7 @@ Content-Length: 140
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /album/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 54
+Content-Length: 52
 Host: localhost:8080
 
 {
@@ -1760,7 +1760,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 141
+Content-Length: 136
 
 {
   "commentId" : 1,
@@ -1911,6 +1911,31 @@ Host: localhost:8080</code></pre>
 </table>
 </div>
 <div class="sect3">
+<h4 id="Comment-댓글-조회_request_parameters"><a class="link" href="#Comment-댓글-조회_request_parameters">Request parameters</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 사이즈</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
 <h4 id="Comment-댓글-조회_path_parameters"><a class="link" href="#Comment-댓글-조회_path_parameters">Path parameters</a></h4>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. /album/{albumId}/comment</caption>
@@ -1938,7 +1963,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 403
+Content-Length: 387
 
 {
   "content" : [ {
@@ -2041,7 +2066,7 @@ Content-Length: 403
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-20 03:21:50 +0900
+Last updated 2023-05-20 11:21:48 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
