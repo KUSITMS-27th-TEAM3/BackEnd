@@ -1,15 +1,19 @@
 package com.kusitms.samsion.domain.comment.domain.service;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.kusitms.samsion.common.annotation.DomainService;
 import com.kusitms.samsion.common.exception.Error;
 import com.kusitms.samsion.domain.comment.domain.entity.Comment;
 import com.kusitms.samsion.domain.comment.domain.exception.CommentNotFoundException;
 import com.kusitms.samsion.domain.comment.domain.repository.CommentRepository;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 
 @DomainService
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class CommentQueryService {
 
