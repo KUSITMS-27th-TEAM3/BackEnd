@@ -67,7 +67,7 @@ class MyPetUpdateUseCaseTest {
 			.description(TestConst.TEST_UPDATE_DESCRIPTION)
 			.petImage(TestConst.TEST_MULTIPART_FILE)
 			.profileImage(TestConst.TEST_MULTIPART_FILE)
-			.petAge(TestConst.TEST_UPDATE_PET_AGE)
+			.petAge(String.valueOf(TestConst.TEST_UPDATE_PET_AGE))
 			.petType(TestConst.TEST_UPDATE_PET_TYPE)
 			.build();
 	}
