@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 public class MyPetResponse {
 
+	private String userNickname;
 	private String petName;
-	private String petNickname;
 	private String petImageUrl;
 	private String description;
 
@@ -15,9 +15,9 @@ public class MyPetResponse {
 	private int petAge;
 
 	@Builder
-	public MyPetResponse(String petName, String petNickname, String petImageUrl, String description, String petType, int petAge) {
+	public MyPetResponse(String userNickname, String petName,  String petImageUrl, String description, String petType, int petAge) {
 		this.petName = petName;
-		this.petNickname = petNickname;
+		this.userNickname = userNickname;
 		this.petImageUrl = petImageUrl;
 		this.description = description;
 		this.petType = petType;
