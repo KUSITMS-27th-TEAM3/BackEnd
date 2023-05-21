@@ -64,5 +64,22 @@ public class TestConst {
 	public static final Long TEST_ANSWER_ID = 1L;
 	public static final String TEST_ANSWER_DESCRIPTION = "testAnswerDescription";
 
+	//장례정보
+	public static final Long TEST_FUNERALSHOP_ID = 1L;
+	public static final String TEST_SHOP_IMG_URL = "imageurl";
+	public static final String TEST_RUN_TYPE = "FULL_TIME";
 
+	public static final String TEST_OPENTIME = "6:00";
+
+	public static final String TEST_CLOSINGTIME = "18:00";
+
+	public static final String TEST_AREA = "경기";
+
+	public static final String TEST_SHOPNAME = "위드천사";
+
+	public static final String TEST_ADDRESS = "경기도 강주시 초월음 산월리 592-20";
+
+	public static final String TEST_PHONENUMBER = "1588-4377";
+
+	public static final String TEST_URL = "shopurl";
 }

@@ -1,0 +1,8 @@
+[[FuneralShop-API]]
+== FuneralShop-API
+
+[[FuneralShop-가게-정보-조회]]
+=== FuneralShop 가게 정보 조회
+operation::funeral-shop-controller-test/장례정보_조회[snippets='http-request,request-headers,request-parameters,http-response,response-fields']
+
+---
