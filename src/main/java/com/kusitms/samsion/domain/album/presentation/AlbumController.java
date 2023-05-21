@@ -3,6 +3,7 @@ package com.kusitms.samsion.domain.album.presentation;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.kusitms.samsion.domain.album.application.dto.request.AlbumUpdateReque
 import com.kusitms.samsion.domain.album.application.dto.response.AlbumInfoResponse;
 import com.kusitms.samsion.domain.album.application.dto.response.AlbumSimpleResponse;
 import com.kusitms.samsion.domain.album.application.service.AlbumCreateUseCase;
+import com.kusitms.samsion.domain.album.application.service.AlbumDeleteUseCase;
 import com.kusitms.samsion.domain.album.application.service.AlbumReadUseCase;
 import com.kusitms.samsion.domain.album.application.service.AlbumUpdateUseCase;
 
@@ -34,6 +36,7 @@ public class AlbumController {
 	private final AlbumReadUseCase albumReadUseCase;
 	private final AlbumCreateUseCase albumCreateUseCase;
 	private final AlbumUpdateUseCase albumUpdateUseCase;
+	private final AlbumDeleteUseCase albumDeleteUseCase;
 
 	/**
 	 * 기존 jpa : 앨범 10개 조회 기준, 3회 warmup, 4회 테스트 평균 853ms
@@ -79,6 +82,11 @@ public class AlbumController {
 	@PostMapping("/{albumId}")
 	public void updateAlbum(@PathVariable Long albumId, @ModelAttribute AlbumUpdateRequest request){
 		albumUpdateUseCase.updateAlbum(albumId, request);
+	}
+
+	@DeleteMapping("/{albumId}")
+	public void deleteAlbum(@PathVariable Long albumId) {
+		albumDeleteUseCase.deleteAlbum(albumId);
 	}
 
 }

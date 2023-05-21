@@ -17,6 +17,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.kusitms.samsion.common.domain.BaseEntity;
 import com.kusitms.samsion.domain.comment.domain.entity.Comment;
 import com.kusitms.samsion.domain.empathy.domain.entity.Empathy;
@@ -29,6 +32,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@SQLDelete(sql = "UPDATE album SET is_deleted = true WHERE album_id = ?")
+@Where(clause = "is_deleted = false")
 public class Album extends BaseEntity {
 
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +42,8 @@ public class Album extends BaseEntity {
 
 	private String title;
 	private String description;
+
+	private boolean isDeleted = Boolean.FALSE;
 
 	@Enumerated(EnumType.STRING)
 	private Visibility visibility;
