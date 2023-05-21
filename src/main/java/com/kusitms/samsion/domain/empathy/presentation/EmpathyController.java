@@ -16,7 +16,7 @@ public class EmpathyController {
 
 	private final EmpathyToggleUseCase empathyToggleUseCase;
 
-	@CacheEvict(value = CachingStoreConst.EMPATHY_COUNT_CACHE_NAME, key = "#comment.albumId")
+	@CacheEvict(value = CachingStoreConst.EMPATHY_COUNT_CACHE_NAME, key = "#albumId")
 	@GetMapping("/album/{albumId}/empathy")
 	public void addEmpathy(@PathVariable Long albumId) {
 		empathyToggleUseCase.toggleEmpathy(albumId);

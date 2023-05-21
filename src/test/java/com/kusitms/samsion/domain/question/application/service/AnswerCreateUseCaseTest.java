@@ -20,7 +20,7 @@ import com.kusitms.samsion.domain.question.domain.service.QuestionQueryService;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("AnswerCreateService 테스트")
+@DisplayName("AnswerCreateUseCase 테스트")
 class AnswerCreateUseCaseTest {
 
 	@Mock
