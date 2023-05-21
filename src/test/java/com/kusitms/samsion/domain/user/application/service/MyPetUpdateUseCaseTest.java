@@ -55,7 +55,7 @@ class MyPetUpdateUseCaseTest {
 		Assertions.assertThat(myPetResponse).isNotNull();
 		Assertions.assertThat(myPetResponse.getPetName()).isEqualTo(mockRequest.getPetName());
 		Assertions.assertThat(myPetResponse.getDescription()).isEqualTo(mockRequest.getDescription());
-		Assertions.assertThat(myPetResponse.getPetImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PET_IMAGE_URL);
+		Assertions.assertThat(myPetResponse.getProfileImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PET_IMAGE_URL);
 		Assertions.assertThat(myPetResponse.getPetAge()).isEqualTo(mockRequest.getPetAge());
 		Assertions.assertThat(myPetResponse.getPetType()).isEqualTo(mockRequest.getPetType());
 		Assertions.assertThat(myPetResponse.getUserNickname()).isEqualTo(mockRequest.getUserNickname());

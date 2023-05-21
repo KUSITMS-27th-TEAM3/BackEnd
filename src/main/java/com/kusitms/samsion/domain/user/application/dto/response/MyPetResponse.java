@@ -8,17 +8,17 @@ public class MyPetResponse {
 
 	private String userNickname;
 	private String petName;
-	private String petImageUrl;
+	private String profileImageUrl;
 	private String description;
 
 	private String petType;
 	private int petAge;
 
 	@Builder
-	public MyPetResponse(String userNickname, String petName,  String petImageUrl, String description, String petType, int petAge) {
+	public MyPetResponse(String userNickname, String petName,  String profileImageUrl, String description, String petType, int petAge) {
 		this.petName = petName;
 		this.userNickname = userNickname;
-		this.petImageUrl = petImageUrl;
+		this.profileImageUrl = profileImageUrl;
 		this.description = description;
 		this.petType = petType;
 		this.petAge = petAge;

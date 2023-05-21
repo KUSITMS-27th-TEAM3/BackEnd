@@ -43,7 +43,7 @@ class MyPetInfoUseCaseTest {
 		Assertions.assertThat(myPetInfo.getPetName()).isEqualTo(mockMyPet.getPetName());
 		Assertions.assertThat(myPetInfo.getUserNickname()).isEqualTo(mockUser.getNickname());
 		Assertions.assertThat(myPetInfo.getDescription()).isEqualTo(mockMyPet.getDescription());
-		Assertions.assertThat(myPetInfo.getPetImageUrl()).isEqualTo(mockMyPet.getPetImageUrl());
+		Assertions.assertThat(myPetInfo.getProfileImageUrl()).isEqualTo(mockMyPet.getPetImageUrl());
 		Assertions.assertThat(myPetInfo.getPetType()).isEqualTo(mockMyPet.getPetType());
 		Assertions.assertThat(myPetInfo.getPetAge()).isEqualTo(mockMyPet.getPetAge());
 	}
