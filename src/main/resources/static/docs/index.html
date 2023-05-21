@@ -2473,13 +2473,14 @@ albumImages
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 319
+Content-Length: 342
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
   "title" : "testAlbumTitle",
   "description" : "testAlbumDescription",
   "visibility" : "PUBLIC",
+  "changeable" : true,
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
@@ -2583,6 +2584,7 @@ Content-Length: 319
   "title" : "testAlbumTitle",
   "description" : "testAlbumDescription",
   "visibility" : "PUBLIC",
+  "changeable" : true,
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
@@ -2628,6 +2630,11 @@ Content-Length: 319
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>visibility</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">공개 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정 가능 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writer</code></p></td>
@@ -2975,13 +2982,14 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 319
+Content-Length: 342
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
   "title" : "testAlbumTitle",
   "description" : "testAlbumDescription",
   "visibility" : "PUBLIC",
+  "changeable" : true,
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
@@ -3061,6 +3069,7 @@ Content-Length: 319
   "title" : "testAlbumTitle",
   "description" : "testAlbumDescription",
   "visibility" : "PUBLIC",
+  "changeable" : true,
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
@@ -3106,6 +3115,11 @@ Content-Length: 319
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>visibility</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">공개 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정 가능 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writer</code></p></td>
