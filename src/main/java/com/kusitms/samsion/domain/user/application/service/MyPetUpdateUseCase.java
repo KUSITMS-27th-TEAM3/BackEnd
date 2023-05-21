@@ -1,7 +1,9 @@
 package com.kusitms.samsion.domain.user.application.service;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kusitms.samsion.domain.grid.application.dto.request.GridUpdateRequest;
 import com.kusitms.samsion.domain.user.application.dto.request.MyPetUpdateRequest;
 import com.kusitms.samsion.domain.user.application.dto.response.MyPetResponse;
 import com.kusitms.samsion.domain.user.application.mapper.MyPetMapper;
@@ -21,6 +23,7 @@ public class MyPetUpdateUseCase {
 
 	private final UserUtils userUtils;
 	private final S3UploadService s3UploadService;
+	private final ApplicationEventPublisher applicationEventPublisher;
 
 	@Transactional
 	public MyPetResponse updateMyPetInfo(final MyPetUpdateRequest request){
@@ -30,6 +33,9 @@ public class MyPetUpdateUseCase {
 		user.updateUserInfo(request.getUserNickname(),profileImageUrl);
 		final MyPet myPet = MyPetMapper.mapToMyPetUpdateRequest(request, petImageUrl);
 		user.updateMyPet(myPet);
+
+		applicationEventPublisher.publishEvent(new GridUpdateRequest(user.getId(), petImageUrl));
+
 
 		return MyPetMapper.mapToMyPetResponse(user);
 	}

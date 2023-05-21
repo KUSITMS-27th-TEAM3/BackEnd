@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 
 import com.kusitms.samsion.domain.user.application.dto.request.MyPetUpdateRequest;
 import com.kusitms.samsion.domain.user.application.dto.response.MyPetResponse;
@@ -22,24 +23,26 @@ import com.kusitms.samsion.common.infrastructure.s3.S3UploadService;
 @DisplayName("MyPetUpdateUseCase 테스트")
 class MyPetUpdateUseCaseTest {
 
+	MyPetUpdateUseCase myPetUpdateUseCase;
 	@Mock
 	private UserUtils userUtils;
 	@Mock
 	private S3UploadService s3UploadService;
-
-	MyPetUpdateUseCase myPetUpdateUseCase;
+	@Mock
+	private ApplicationEventPublisher applicationEventPublisher;
 
 	@BeforeEach
 	void setUp() {
-		myPetUpdateUseCase = new MyPetUpdateUseCase(userUtils, s3UploadService);
+		myPetUpdateUseCase = new MyPetUpdateUseCase(userUtils, s3UploadService, applicationEventPublisher);
 	}
 
 	@Test
-	void 현재_사용자의_mypet_정보를_업데이트한다(){
+	void 현재_사용자의_mypet_정보를_업데이트한다() {
 		//given
 		final MyPetUpdateRequest mockRequest = getMockMyPetUpdateRequest();
 		final User mockUser = UserTestUtils.getMockUser();
-		given(s3UploadService.uploadImg(mockRequest.getProfileImage())).willReturn(TestConst.TEST_UPDATE_PROFILE_IMAGE_URL);
+		given(s3UploadService.uploadImg(mockRequest.getProfileImage())).willReturn(
+			TestConst.TEST_UPDATE_PROFILE_IMAGE_URL);
 		given(s3UploadService.uploadImg(mockRequest.getPetImage())).willReturn(TestConst.TEST_UPDATE_PET_IMAGE_URL);
 		given(userUtils.getUser()).willReturn(mockUser);
 		//when
