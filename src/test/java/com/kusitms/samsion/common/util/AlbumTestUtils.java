@@ -13,7 +13,7 @@ public class AlbumTestUtils {
         Album mockAlbum = Album.builder()
                 .writer(mockUser)
                 .visibility(Visibility.PUBLIC)
-                .description("album description")
+                .description(TestConst.TEST_DESCRIPTION)
                 .build();
         ReflectionTestUtils.setField(mockAlbum, "id", TestConst.TEST_ALBUM_ID);
         return mockAlbum;
