@@ -33,24 +33,25 @@ public class CommentController {
     private final CommentDeleteUseCase commentDeleteUseCase;
     private final CommentReadUseCase commentReadUseCase;
 
+    @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#albumId")
     @PostMapping("/{albumId}/comment")
     public CommentInfoResponse createComment(@PathVariable Long albumId, @RequestBody CommentCreateRequest commentCreateRequest) {
         return commentCreateUseCase.createComment(albumId, commentCreateRequest);
     }
 
+    @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#albumId")
     @PostMapping("/{albumId}/comment/{commentId}")
     public CommentInfoResponse createReComment(@PathVariable Long albumId, @PathVariable Long commentId,
                                                @RequestBody CommentCreateRequest commentCreateRequest) {
         return commentCreateUseCase.createReComment(albumId, commentId, commentCreateRequest);
     }
 
-    @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#comment.albumId")
     @PutMapping("/{albumId}/comment/{commentId}")
     public CommentInfoResponse update(@PathVariable Long commentId, @RequestBody CommentUpdateRequest commentUpdateRequest){
         return commentUpdateUseCase.updateComment(commentId, commentUpdateRequest);
     }
 
-    @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#comment.albumId")
+    @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#albumId")
     @DeleteMapping("/{albumId}/comment/{commentId}")
     public void delete(@PathVariable Long commentId){
         commentDeleteUseCase.deleteComment(commentId);
