@@ -14,7 +14,7 @@ public class MyPetMapper {
 		return MyPetResponse.builder()
 			.userNickname(user.getNickname())
 			.petName(mypet.getPetName())
-			.petImageUrl(mypet.getPetImageUrl())
+			.profileImageUrl(mypet.getPetImageUrl())
 			.description(mypet.getDescription())
 			.petType(mypet.getPetType())
 			.petAge(mypet.getPetAge())

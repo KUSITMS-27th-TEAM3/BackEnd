@@ -38,7 +38,7 @@ public class UserControllerTest extends CommonRestDocs {
 		MyPetResponse myPetResponse = MyPetResponse.builder()
 			.userNickname(TestConst.TEST_NICKNAME)
 			.description(TestConst.TEST_DESCRIPTION)
-			.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
+			.profileImageUrl(TestConst.TEST_PROFILE_IMAGE_URL)
 			.petName(TestConst.TEST_PET_NAME)
 			.petAge(TestConst.TEST_PET_AGE)
 			.petType(TestConst.TEST_PET_TYPE)
@@ -57,7 +57,7 @@ public class UserControllerTest extends CommonRestDocs {
 					responseFields(
 						fieldWithPath("userNickname").description("사용자 닉네임"),
 						fieldWithPath("petName").description("반려동물 이름"),
-						fieldWithPath("petImageUrl").description("반려동물 이미지 URL"),
+						fieldWithPath("profileImageUrl").description("사용자 이미지 URL"),
 						fieldWithPath("description").description("반려동물 설명"),
 						fieldWithPath("petAge").description("반려동물 나이"),
 						fieldWithPath("petType").description("반려동물 종류")
@@ -75,7 +75,7 @@ public class UserControllerTest extends CommonRestDocs {
 		MyPetResponse myPetResponse = MyPetResponse.builder()
 			.userNickname(TestConst.TEST_UPDATE_NICKNAME)
 			.description(TestConst.TEST_UPDATE_DESCRIPTION)
-			.petImageUrl(TestConst.TEST_UPDATE_PET_IMAGE_URL)
+			.profileImageUrl(TestConst.TEST_UPDATE_PROFILE_IMAGE_URL)
 			.petName(TestConst.TEST_UPDATE_PET_NAME)
 			.petAge(TestConst.TEST_UPDATE_PET_AGE)
 			.petType(TestConst.TEST_UPDATE_PET_TYPE)
@@ -113,7 +113,7 @@ public class UserControllerTest extends CommonRestDocs {
 					responseFields(
 						fieldWithPath("userNickname").description("사용자 닉네임"),
 						fieldWithPath("petName").description("반려동물 이름"),
-						fieldWithPath("petImageUrl").description("반려동물 이미지 URL"),
+						fieldWithPath("profileImageUrl").description("사용자 이미지 URL"),
 						fieldWithPath("description").description("반려동물 설명"),
 						fieldWithPath("petAge").description("반려동물 나이"),
 						fieldWithPath("petType").description("반려동물 종류")

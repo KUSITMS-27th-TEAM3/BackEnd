@@ -901,12 +901,12 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 170
+Content-Length: 174
 
 {
   "userNickname" : "test",
   "petName" : "testPet",
-  "petImageUrl" : "testImageUrl",
+  "profileImageUrl" : "testImageUrl",
   "description" : "testDescription",
   "petType" : "testPetType",
   "petAge" : 1
@@ -941,9 +941,9 @@ Content-Length: 170
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petImageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이미지 URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 이미지 URL</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
@@ -1074,12 +1074,12 @@ test
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 208
+Content-Length: 212
 
 {
   "userNickname" : "testUpdateNickname",
   "petName" : "testUpdatePet",
-  "petImageUrl" : "testUpdateImageUrl",
+  "profileImageUrl" : "testUpdateImageUrl",
   "description" : "testUpdateDescription",
   "petType" : "testUpdatePetType",
   "petAge" : 2
@@ -1114,9 +1114,9 @@ Content-Length: 208
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petImageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이미지 URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 이미지 URL</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
@@ -2227,7 +2227,7 @@ Content-Length: 387
 <h4 id="Album-조회_curl_request"><a class="link" href="#Album-조회_curl_request">Curl request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;emotionTagList=CHEERFUL&amp;sortType=DEFAULT' -i -X GET \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT' -i -X GET \
     -H 'Authorization: Bearer testAccessToken'</code></pre>
 </div>
 </div>
@@ -2236,7 +2236,7 @@ Content-Length: 387
 <h4 id="Album-조회_http_request"><a class="link" href="#Album-조회_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;emotionTagList=CHEERFUL&amp;sortType=DEFAULT HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT HTTP/1.1
 Authorization: Bearer testAccessToken
 Host: localhost:8080</code></pre>
 </div>
@@ -2269,7 +2269,7 @@ Content-Length: 213
 <h4 id="Album-조회_httpie_request"><a class="link" href="#Album-조회_httpie_request">HTTPie request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ http GET 'http://localhost:8080/album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;emotionTagList=CHEERFUL&amp;sortType=DEFAULT' \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ http GET 'http://localhost:8080/album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT' \
     'Authorization:Bearer testAccessToken'</code></pre>
 </div>
 </div>
@@ -2473,12 +2473,14 @@ albumImages
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 292
+Content-Length: 342
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
   "title" : "testAlbumTitle",
   "description" : "testAlbumDescription",
+  "visibility" : "PUBLIC",
+  "changeable" : true,
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
@@ -2581,6 +2583,8 @@ Content-Length: 292
   "imageUrlList" : [ "testAlbumImageUrl" ],
   "title" : "testAlbumTitle",
   "description" : "testAlbumDescription",
+  "visibility" : "PUBLIC",
+  "changeable" : true,
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
@@ -2621,6 +2625,16 @@ Content-Length: 292
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">앨범 설명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>visibility</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">공개 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정 가능 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writer</code></p></td>
@@ -2968,12 +2982,14 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 292
+Content-Length: 342
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
   "title" : "testAlbumTitle",
   "description" : "testAlbumDescription",
+  "visibility" : "PUBLIC",
+  "changeable" : true,
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
@@ -3052,6 +3068,8 @@ Content-Length: 292
   "imageUrlList" : [ "testAlbumImageUrl" ],
   "title" : "testAlbumTitle",
   "description" : "testAlbumDescription",
+  "visibility" : "PUBLIC",
+  "changeable" : true,
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
@@ -3094,6 +3112,16 @@ Content-Length: 292
 <td class="tableblock halign-left valign-top"><p class="tableblock">앨범 설명</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>visibility</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">공개 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정 가능 여부</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writer</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">앨범 작성자</p></td>
@@ -3134,7 +3162,7 @@ Content-Length: 292
 <h4 id="Album-개인-앨범-조회_curl_request"><a class="link" href="#Album-개인-앨범-조회_curl_request">Curl request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/album/private?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;emotionTagList=CHEERFUL&amp;sortType=DEFAULT' -i -X GET \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/album/private?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT' -i -X GET \
     -H 'Authorization: Bearer testAccessToken'</code></pre>
 </div>
 </div>
@@ -3143,7 +3171,7 @@ Content-Length: 292
 <h4 id="Album-개인-앨범-조회_http_request"><a class="link" href="#Album-개인-앨범-조회_http_request">HTTP request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /album/private?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;emotionTagList=CHEERFUL&amp;sortType=DEFAULT HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /album/private?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT HTTP/1.1
 Authorization: Bearer testAccessToken
 Host: localhost:8080</code></pre>
 </div>
@@ -3176,7 +3204,7 @@ Content-Length: 213
 <h4 id="Album-개인-앨범-조회_httpie_request"><a class="link" href="#Album-개인-앨범-조회_httpie_request">HTTPie request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ http GET 'http://localhost:8080/album/private?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;emotionTagList=CHEERFUL&amp;sortType=DEFAULT' \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ http GET 'http://localhost:8080/album/private?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT' \
     'Authorization:Bearer testAccessToken'</code></pre>
 </div>
 </div>
