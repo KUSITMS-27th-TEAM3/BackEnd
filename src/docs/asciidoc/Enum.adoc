@@ -2,7 +2,7 @@
 -- Enum
 
 [[감정태그]]
-=== 감정태그|===
+=== 감정태그
 
 |===
 |Path|Type|Description
