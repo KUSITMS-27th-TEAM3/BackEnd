@@ -69,7 +69,7 @@ public class S3UploadService {
     //파일 확장자 체크
     private String getFileExtension(String fileName) {
         String ext = fileName.substring(fileName.lastIndexOf('.'));
-        if (!ext.equals(".jpg") && !ext.equals(".png") && !ext.equals(".jpeg") && !ext.equals(".svg+xml")) {
+        if (!ext.equals(".jpg") && !ext.equals(".png") && !ext.equals(".jpeg") && !ext.equals(".svg+xml") && !ext.equals(".svg")) {
             throw new FileExtentionException(Error.FILE_EXTENTION_ERROR);
         }
         return ext;
