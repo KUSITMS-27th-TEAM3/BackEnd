@@ -21,7 +21,7 @@ import com.kusitms.samsion.domain.empathy.domain.service.EmpathySaveService;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("EmpathyToggleService 테스트")
+@DisplayName("EmpathyToggleUsecase 테스트")
 class EmpathyToggleUseCaseTest {
 
 	@Mock

@@ -30,7 +30,7 @@ import com.kusitms.samsion.domain.question.domain.service.QuestionQueryService;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("QuestionReadService 테스트")
+@DisplayName("QuestionReadUseCase 테스트")
 class QuestionReadUseCaseTest {
 
 	@Mock

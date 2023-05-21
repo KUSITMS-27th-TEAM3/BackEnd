@@ -19,7 +19,7 @@ import com.kusitms.samsion.domain.user.domain.entity.User;
 import com.kusitms.samsion.common.infrastructure.s3.S3UploadService;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("MyPetUpdateService 테스트")
+@DisplayName("MyPetUpdateUseCase 테스트")
 class MyPetUpdateUseCaseTest {
 
 	@Mock

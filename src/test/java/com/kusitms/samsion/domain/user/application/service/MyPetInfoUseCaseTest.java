@@ -17,7 +17,7 @@ import com.kusitms.samsion.domain.user.domain.entity.MyPet;
 import com.kusitms.samsion.domain.user.domain.entity.User;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("MyPetInfoService 테스트")
+@DisplayName("MyPetInfoUseCase 테스트")
 class MyPetInfoUseCaseTest {
 
 	@Mock
