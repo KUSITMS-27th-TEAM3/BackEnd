@@ -21,6 +21,7 @@ public class AlbumInfoResponse {
 	private String title;
 	private String description;
 	private Visibility visibility;
+	private Boolean changeable;
 
 	private String writer;
 	private String petName;
@@ -31,12 +32,14 @@ public class AlbumInfoResponse {
 
 
 	@Builder
-	public AlbumInfoResponse(List<String> imageUrlList, String title, String description, Visibility visibility, String writer, String petName, String writerProfileImageUrl,
+	public AlbumInfoResponse(List<String> imageUrlList, String title, String description, Visibility visibility,
+		Boolean changeable, String writer, String petName, String writerProfileImageUrl,
 		long commentCount, long empathyCount, List<EmotionTag> emotionTagList) {
 		this.imageUrlList = imageUrlList;
 		this.title = title;
 		this.description = description;
 		this.visibility = visibility;
+		this.changeable = changeable;
 		this.writer = writer;
 		this.petName = petName;
 		this.writerProfileImageUrl = writerProfileImageUrl;

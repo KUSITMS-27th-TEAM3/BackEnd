@@ -68,6 +68,7 @@ class AlbumControllerTest extends CommonRestDocs {
 			.title(TestConst.TEST_ALBUM_TITLE)
 			.description(TestConst.TEST_ALBUM_DESCRIPTION)
 			.visibility(Visibility.PUBLIC)
+			.changeable(true)
 			.writer(TestConst.TEST_NICKNAME)
 			.petName(TestConst.TEST_PET_NAME)
 			.writerProfileImageUrl(TestConst.TEST_PROFILE_IMAGE_URL)
@@ -195,6 +196,7 @@ class AlbumControllerTest extends CommonRestDocs {
 					fieldWithPath("title").description("앨범 제목"),
 					fieldWithPath("description").description("앨범 설명"),
 					fieldWithPath("visibility").description("공개 여부"),
+					fieldWithPath("changeable").description("수정 가능 여부"),
 					fieldWithPath("writer").description("앨범 작성자"),
 					fieldWithPath("petName").description("앨범 작성자의 반려동물 이름"),
 					fieldWithPath("writerProfileImageUrl").description("앨범 작성자의 프로필 이미지 URL"),
@@ -246,6 +248,7 @@ class AlbumControllerTest extends CommonRestDocs {
 					fieldWithPath("title").description("앨범 제목"),
 					fieldWithPath("description").description("앨범 설명"),
 					fieldWithPath("visibility").description("공개 여부"),
+					fieldWithPath("changeable").description("수정 가능 여부"),
 					fieldWithPath("writer").description("앨범 작성자"),
 					fieldWithPath("petName").description("앨범 작성자의 반려동물 이름"),
 					fieldWithPath("writerProfileImageUrl").description("앨범 작성자의 프로필 이미지 URL"),
