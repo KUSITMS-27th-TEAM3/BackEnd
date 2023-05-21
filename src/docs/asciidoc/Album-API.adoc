@@ -1,0 +1,42 @@
+[[Album-API]]
+== Album-API
+
+[[Album-조회]]
+=== Album 조회
+
+operation::album-controller-test/모든_앨범을_조회한다[snippents='http-request.adoc, http-response.adoc']
+
+---
+
+[[Album-생성]]
+=== Album 생성
+
+operation::album-controller-test/앨범_생성[snippents='http-request.adoc, http-response.adoc']
+
+---
+
+[[Album-수정]]
+=== Album 수정
+
+operation::album-controller-test/앨범_수정[snippents='http-request.adoc, http-response.adoc']
+
+---
+
+[[Album-삭제]]
+=== Album 삭제
+
+operation::album-controller-test/앨범_삭제[snippents='http-request.adoc, http-response.adoc']
+
+---
+
+[[Album-상세조회]]
+=== Album 상세조회
+
+operation::album-controller-test/앨범_상세_조회[snippents='http-request.adoc, http-response.adoc']
+
+---
+
+[[Album-개인-앨범-조회]]
+=== Album 개인 앨범 조회
+
+operation::album-controller-test/개인_앨범_전체_조회[snippents='http-request.adoc, http-response.adoc']

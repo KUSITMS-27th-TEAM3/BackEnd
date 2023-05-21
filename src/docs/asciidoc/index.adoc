@@ -17,3 +17,5 @@ include::Question-API.adoc[]
 include::Empathy-API.adoc[]
 
 include::Comment-API.adoc[]
+
+include::Album-API.adoc[]
