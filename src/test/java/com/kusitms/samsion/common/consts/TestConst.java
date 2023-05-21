@@ -37,9 +37,16 @@ public class TestConst {
 
 	// 공감
 	public static final Long TEST_EMPATHY_ID = 1L;
+	public static final long TEST_EMPATHY_COUNT = 1L;
 
 	// 앨범
 	public static final Long TEST_ALBUM_ID = 1L;
+	public static final String TEST_ALBUM_TITLE = "testAlbumTitle";
+	public static final String TEST_ALBUM_DESCRIPTION = "testAlbumDescription";
+	public static final String TEST_ALBUM_IMAGE_URL = "testAlbumImageUrl";
+	public static final String TEST_UPDATE_ALBUM_TITLE = "testUpdateAlbumTitle";
+	public static final String TEST_UPDATE_ALBUM_DESCRIPTION = "testUpdateAlbumDescription";
+	public static final String TEST_UPDATE_ALBUM_IMAGE_URL = "testUpdateAlbumImageUrl";
 
 	// 댓글
 	public static final Long TEST_COMMENT_ID = 1L;
@@ -47,6 +54,7 @@ public class TestConst {
 	public static final String TEST_COMMENT_DESCRIPTION = "testCommentDescription";
 	public static final String TEST_CHILD_COMMENT_DESCRIPTION = "testChildCommentDescription";
 	public static final String TEST_UPDATE_COMMENT_DESCRIPTION = "testUpdateCommentDescription";
+	public static final long TEST_COMMENT_COUNT = 1L;
 
 
 	// 질문

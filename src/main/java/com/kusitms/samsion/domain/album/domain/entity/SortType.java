@@ -5,14 +5,14 @@ import lombok.Getter;
 @Getter
 public enum SortType {
 
-	DEFAULT("createdDate"),
-	COMMENT("comments"),
-	EMPATHY("empathies");
+	DEFAULT("생성순"),
+	COMMENT("댓글수 순"),
+	EMPATHY("공감수 순");
 
-	private final String type;
+	private final String description;
 
-	SortType(String type){
-		this.type = type;
+	SortType(String description){
+		this.description = description;
 	}
 
 }

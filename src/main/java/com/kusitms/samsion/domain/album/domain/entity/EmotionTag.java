@@ -1,5 +1,8 @@
 package com.kusitms.samsion.domain.album.domain.entity;
 
+import lombok.Getter;
+
+@Getter
 public enum EmotionTag {
 
 	COZY("아늑함"),
