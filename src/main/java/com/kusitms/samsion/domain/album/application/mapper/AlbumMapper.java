@@ -31,6 +31,7 @@ public class AlbumMapper {
 			.imageUrlList(album.getAlbumImages().stream().map(AlbumImage::getImageUrl).collect(Collectors.toList()))
 			.title(album.getTitle())
 			.description(album.getDescription())
+			.visibility(album.getVisibility())
 			.writer(writer.getNickname())
 			.petName(writer.getMypet().getPetName())
 			.writerProfileImageUrl(writer.getMypet().getPetImageUrl())
