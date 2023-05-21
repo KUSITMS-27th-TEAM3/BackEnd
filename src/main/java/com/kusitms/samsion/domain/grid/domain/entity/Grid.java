@@ -58,4 +58,10 @@ public class Grid extends BaseEntity {
 			this.gridStatus = GridStatus.STAMP;
 		}
 	}
+
+	public void updateGridImageUrl(String gridImageUrl) {
+		if(!Objects.equals(gridImageUrl, this.gridImageUrl)&&Objects.nonNull(gridImageUrl)) {
+			this.gridImageUrl = gridImageUrl;
+		}
+	}
 }
