@@ -22,7 +22,6 @@ public class TagUpdateService {
 		final List<Tag> tagList = emotionTagList.stream()
 				.map(tag -> new Tag(tag, album))
 				.collect(Collectors.toList());
-		album.changeAllTag(tagList);
 		tagRepository.saveAll(tagList);
 	}
 }

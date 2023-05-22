@@ -37,6 +37,7 @@ class TagUpdateServiceTest {
         // given
         User mockUser = UserTestUtils.getMockUser();
         Album mockAlbum = AlbumTestUtils.getMockAlbum(mockUser);
+        mockAlbum.clearAllTag();
         List<EmotionTag> emotionTagList = TestConst.EMOTION_TAG_LIST;
         // when
         tagUpdateService.updateTag(mockAlbum, emotionTagList);
