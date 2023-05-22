@@ -42,14 +42,14 @@ public class AlbumReadUseCase {
 	 */
 	public SliceResponse<AlbumSimpleResponse> getAlbumList(Pageable pageable, AlbumSearchRequest request){
 
-		Slice<Album> albumList = albumQueryService.getAlbumList(pageable,request.getEmotionTagList(), request.getSortType());
+		Slice<Album> albumList = albumQueryService.findAlbumList(pageable,request.getEmotionTagList(), request.getSortType());
 
 		return getSliceResponseAboutAlbumSimpleResponse(albumList);
 	}
 
 	public SliceResponse<AlbumSimpleResponse> getMyAlbumList(Pageable pageable, AlbumSearchRequest request){
 		Slice<Album> myAlbumList =
-			albumQueryService.getMyAlbumList(pageable, request.getEmotionTagList(), request.getSortType(), userUtils.getUser().getId());
+			albumQueryService.findMyAlbumList(pageable, request.getEmotionTagList(), request.getSortType(), userUtils.getUser().getId());
 
 		return getSliceResponseAboutAlbumSimpleResponse(myAlbumList);
 	}

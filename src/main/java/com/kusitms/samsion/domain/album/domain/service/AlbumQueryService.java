@@ -25,11 +25,11 @@ public class AlbumQueryService {
 		return albumRepository.findById(albumId).orElseThrow(() -> new AlbumNotFoundException(Error.ALBUM_NOT_FOUND));
 	}
 
-	public Slice<Album> getAlbumList(Pageable pageable, List<EmotionTag> emotionTagList, SortType sortType){
+	public Slice<Album> findAlbumList(Pageable pageable, List<EmotionTag> emotionTagList, SortType sortType){
 		return albumRepository.findAlbumList(pageable, emotionTagList, sortType);
 	}
 
-	public Slice<Album> getMyAlbumList(Pageable pageable, List<EmotionTag> emotionTagList, SortType sortType, Long userId){
+	public Slice<Album> findMyAlbumList(Pageable pageable, List<EmotionTag> emotionTagList, SortType sortType, Long userId){
 		return albumRepository.findMyAlbumList(pageable, emotionTagList, sortType, userId);
 	}
 
