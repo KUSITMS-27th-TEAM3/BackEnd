@@ -17,8 +17,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.then;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,13 +41,16 @@ class AlbumImageUpdateServiceTest {
         //given
         User mockUser = UserTestUtils.getMockUser();
         Album mockAlbum = AlbumTestUtils.getMockAlbum(mockUser);
-        List<AlbumImage> albumImageList = Stream.of(TestConst.TEST_UPDATE_ALBUM_IMAGE_URL)
-                .map(url -> new AlbumImage(url, mockAlbum))
-                .collect(Collectors.toList());
+        mockAlbum.clearAllImage();
+        List<String> oldImageUrlList = List.of(TestConst.TEST_ALBUM_IMAGE_URL);
+        List<String> newImageUrlList = List.of(TestConst.TEST_UPDATE_ALBUM_IMAGE_URL);
         //when
-        albumImageUpdateService.updateAlbumImage(mockAlbum, albumImageList);
+        albumImageUpdateService.updateAlbumImage(mockAlbum, oldImageUrlList, newImageUrlList);
         //then
-        then(albumImageRepository).should().saveAll(albumImageList);
-        Assertions.assertThat(mockAlbum.getAlbumImages()).isEqualTo(albumImageList);
+        then(albumImageRepository).should().saveAll(any());
+        Assertions.assertThat(mockAlbum.getAlbumImages()).hasSize(oldImageUrlList.size() + newImageUrlList.size());
+        List<String> imageUrlList = mockAlbum.getAlbumImages().stream().map(AlbumImage::getImageUrl).collect(Collectors.toList());
+        Assertions.assertThat(imageUrlList).contains(TestConst.TEST_ALBUM_IMAGE_URL);
+        Assertions.assertThat(imageUrlList).contains(TestConst.TEST_UPDATE_ALBUM_IMAGE_URL);
     }
 }
