@@ -114,12 +114,10 @@ public class Album extends BaseEntity {
 	}
 
 	public void clearAllImage(){
-		this.albumImages.clear();
-		// this.albumImages= new ArrayList<>();
+		this.albumImages= new ArrayList<>();
 	}
 
 	public void clearAllTag() {
-		this.tags.clear();
-		// this.tags = new ArrayList<>();
+		this.tags = new ArrayList<>();
 	}
 }
