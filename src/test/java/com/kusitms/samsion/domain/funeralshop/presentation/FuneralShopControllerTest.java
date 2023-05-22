@@ -11,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -38,6 +39,7 @@ public class FuneralShopControllerTest extends CommonRestDocs {
     @Test
     void 장례정보_조회() throws Exception {
         //given
+        Pageable mockPageable = SliceTestUtils.getMockPageable();
         FuneralShopInfoResponse funeralShopInfoResponse = FuneralShopInfoResponse.builder()
                 .imgurl(TestConst.TEST_SHOP_IMG_URL)
                 .runtype(TestConst.TEST_RUN_TYPE)
@@ -49,7 +51,6 @@ public class FuneralShopControllerTest extends CommonRestDocs {
                 .phoneNumber(TestConst.TEST_PHONENUMBER)
                 .url(TestConst.TEST_URL)
                 .build();
-        List<String> areaTagList = Arrays.asList(TestConst.TEST_AREA);
         SliceResponse<FuneralShopInfoResponse> mockPageResponse = SliceTestUtils.getMockSliceResponse(funeralShopInfoResponse);
         given(funeralShopReadUseCase.getFuneralShopList(any(), any())).willReturn(mockPageResponse);
 
@@ -60,6 +61,8 @@ public class FuneralShopControllerTest extends CommonRestDocs {
                 get("/funeral")
                         .header(ApplicationConst.ACCESS_TOKEN_HEADER, "access token")
                         .contentType(MediaType.APPLICATION_JSON)
+                        .param("size", String.valueOf(mockPageable.getPageSize()))
+                        .param("page", String.valueOf(mockPageable.getPageNumber()))
                         .param("areaTagList", TestConst.TEST_AREA)
         );
 
@@ -71,6 +74,8 @@ public class FuneralShopControllerTest extends CommonRestDocs {
                                         headerWithName("Authorization").description("access token")
                                 ),
                                 requestParameters(
+                                        parameterWithName("size").description("페이지 사이즈"),
+                                        parameterWithName("page").description("현재 페이지 번호"),
                                         parameterWithName("areaTagList").description("지역 태그 리스트")
                                 ),
                                 responseFields(
