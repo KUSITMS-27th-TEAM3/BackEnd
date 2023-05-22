@@ -1,33 +1,19 @@
 package com.kusitms.samsion.domain.album.domain.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-
 import com.kusitms.samsion.common.domain.BaseEntity;
 import com.kusitms.samsion.domain.comment.domain.entity.Comment;
 import com.kusitms.samsion.domain.empathy.domain.entity.Empathy;
 import com.kusitms.samsion.domain.user.domain.entity.User;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -72,25 +58,19 @@ public class Album extends BaseEntity {
 		this.writer = writer;
 	}
 
-	public void updateAlbum(String title, String description, Visibility visibility) {
-		updateTitle(title);
-		updateDescription(description);
-		updateVisibility(visibility);
-	}
-
-	private void updateTitle(String title) {
+	public void updateTitle(String title) {
 		if(!Objects.equals(this.title, title)&& title != null) {
 			this.title = title;
 		}
 	}
 
-	private void updateDescription(String description) {
+	public void updateDescription(String description) {
 		if(!Objects.equals(this.description, description)&& description != null) {
 			this.description = description;
 		}
 	}
 
-	private void updateVisibility(Visibility visibility) {
+	public void updateVisibility(Visibility visibility) {
 		if(!Objects.equals(this.visibility, visibility)&& visibility != null) {
 			this.visibility = visibility;
 		}
