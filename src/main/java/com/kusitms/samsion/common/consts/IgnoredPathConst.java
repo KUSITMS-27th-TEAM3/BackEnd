@@ -11,6 +11,7 @@ public final class IgnoredPathConst {
 			"/info",
 			"/reissue",
 			"/album",
+			"/funeral",
 			"/docs/index.html",
 			"/favicon.ico"};
 }
