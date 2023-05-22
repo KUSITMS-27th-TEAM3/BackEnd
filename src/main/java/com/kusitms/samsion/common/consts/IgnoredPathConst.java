@@ -10,7 +10,8 @@ public final class IgnoredPathConst {
 			"/oauth2/**",
 			"/info",
 			"/reissue",
-			"/success",
+			"/album",
+			"/funeral",
 			"/docs/index.html",
 			"/favicon.ico"};
 }
