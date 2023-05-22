@@ -38,6 +38,11 @@ public class FuneralShopRepositoryImpl implements FuneralShopRepositoryCustom {
         if (areaTagList == null || areaTagList.isEmpty()) {
             return null;
         }
+
+        if (areaTagList.contains("전체")) {
+            return null; // 전체를 클릭하면 조건을 생략하여 전체 데이터를 반환
+        }
+
         StringPath areaPath = QFuneralShop.funeralShop.area;
         return areaPath.in(areaTagList);
     }
