@@ -19,3 +19,5 @@ include::Empathy-API.adoc[]
 include::Comment-API.adoc[]
 
 include::Album-API.adoc[]
+
+include::FuneralShop-API.adoc[]
