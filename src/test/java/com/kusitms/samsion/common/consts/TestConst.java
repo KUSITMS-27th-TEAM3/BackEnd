@@ -1,7 +1,12 @@
 package com.kusitms.samsion.common.consts;
 
+import java.util.List;
+
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
+import com.kusitms.samsion.domain.album.domain.entity.SortType;
 
 public class TestConst {
 
@@ -47,6 +52,7 @@ public class TestConst {
 	public static final String TEST_UPDATE_ALBUM_TITLE = "testUpdateAlbumTitle";
 	public static final String TEST_UPDATE_ALBUM_DESCRIPTION = "testUpdateAlbumDescription";
 	public static final String TEST_UPDATE_ALBUM_IMAGE_URL = "testUpdateAlbumImageUrl";
+	public static final SortType TEST_SORT_TYPE = SortType.DEFAULT;
 
 	// 댓글
 	public static final Long TEST_COMMENT_ID = 1L;
@@ -82,4 +88,12 @@ public class TestConst {
 	public static final String TEST_PHONENUMBER = "1588-4377";
 
 	public static final String TEST_URL = "shopurl";
+
+
+	// 태그
+	public static final List<EmotionTag> EMOTION_TAG_LIST = List.of(EmotionTag.COMFORTABLE);
+	public static final Long TEST_TAG_ID = 1L;
+
+	// 앨범 이미지
+	public static final Long TEST_ALBUM_IMAGE_ID = 1L;
 }

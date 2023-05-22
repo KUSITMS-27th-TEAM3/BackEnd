@@ -94,17 +94,13 @@ class AlbumControllerTest extends CommonRestDocs {
 		MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(ALBUM_URL)
 			.param("size", String.valueOf(mockPageable.getPageSize()))
 			.param("page", String.valueOf(mockPageable.getPageNumber()))
-			.params(params)
-			.header(ApplicationConst.ACCESS_TOKEN_HEADER, TestConst.TEST_ACCESS_TOKEN);
+			.params(params);
 		// when
 		ResultActions result = mockMvc.perform(request);
 		// then
 		result.andExpect(status().isOk())
 			.andDo(print())
 			.andDo(restDocs.document(
-				requestHeaders(
-					headerWithName("Authorization").description("access token")
-				),
 				requestParameters(
 					parameterWithName("size").description("페이지 사이즈"),
 					parameterWithName("page").description("현재 페이지 번호"),
