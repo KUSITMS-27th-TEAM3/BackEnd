@@ -44,6 +44,9 @@ public class AlbumUpdateUseCase {
 		albumUpdateService.updateAlbum(album, request.getTitle(), request.getDescription(), request.getVisibility());
 		albumImageDeleteService.deleteAlbumImageList(album);
 		tagDeleteService.deleteTagList(album);
+
+
+
 		applicationEventPublisher.publishEvent(new AlbumImageUpdateRequest(album.getId(), request.getImageUrlList(),request.getAddImageList()));
 		applicationEventPublisher.publishEvent(new TagUpdateRequest(album.getId(), request.getEmotionTagList()));
 	}

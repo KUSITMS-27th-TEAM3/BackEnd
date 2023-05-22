@@ -1,12 +1,12 @@
 package com.kusitms.samsion.common.consts;
 
-import java.util.List;
-
+import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
+import com.kusitms.samsion.domain.album.domain.entity.SortType;
+import com.kusitms.samsion.domain.album.domain.entity.Visibility;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
-import com.kusitms.samsion.domain.album.domain.entity.SortType;
+import java.util.List;
 
 public class TestConst {
 
@@ -49,9 +49,11 @@ public class TestConst {
 	public static final String TEST_ALBUM_TITLE = "testAlbumTitle";
 	public static final String TEST_ALBUM_DESCRIPTION = "testAlbumDescription";
 	public static final String TEST_ALBUM_IMAGE_URL = "testAlbumImageUrl";
+	public static final Visibility TEST_ALBUM_VISIBILITY = Visibility.PUBLIC;
 	public static final String TEST_UPDATE_ALBUM_TITLE = "testUpdateAlbumTitle";
 	public static final String TEST_UPDATE_ALBUM_DESCRIPTION = "testUpdateAlbumDescription";
 	public static final String TEST_UPDATE_ALBUM_IMAGE_URL = "testUpdateAlbumImageUrl";
+	public static final Visibility TEST_UPDATE_ALBUM_VISIBILITY = Visibility.PRIVATE;
 	public static final SortType TEST_SORT_TYPE = SortType.DEFAULT;
 
 	// 댓글

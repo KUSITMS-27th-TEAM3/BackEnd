@@ -449,8 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="Album-조회_curl_request">Curl request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT' -i -X GET \
-    -H 'Authorization: Bearer testAccessToken'</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT' -i -X GET</code></pre>
 </div>
 </div>
 </div>
@@ -459,7 +458,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT HTTP/1.1
-Authorization: Bearer testAccessToken
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -470,7 +468,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 224
+Content-Length: 213
 
 {
   "content" : [ {
@@ -491,8 +489,7 @@ Content-Length: 224
 <h4 id="Album-조회_httpie_request">HTTPie request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ http GET 'http://localhost:8080/album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT' \
-    'Authorization:Bearer testAccessToken'</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ http GET 'http://localhost:8080/album?size=10&amp;page=0&amp;emotionTagList=HAPPY&amp;sortType=DEFAULT'</code></pre>
 </div>
 </div>
 </div>
@@ -503,27 +500,6 @@ Content-Length: 224
 <pre class="highlight nowrap"><code></code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="Album-조회_request_headers">Request headers</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">access token</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect3">
 <h4 id="Album-조회_request_parameters">Request parameters</h4>
@@ -695,7 +671,7 @@ albumImages
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 354
+Content-Length: 342
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
@@ -1204,7 +1180,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 354
+Content-Length: 342
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
@@ -1405,7 +1381,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 224
+Content-Length: 213
 
 {
   "content" : [ {
@@ -1578,7 +1554,7 @@ Content-Length: 224
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-22 17:53:54 +0900
+Last updated 2023-05-21 20:31:10 +0900
 </div>
 </div>
 </body>

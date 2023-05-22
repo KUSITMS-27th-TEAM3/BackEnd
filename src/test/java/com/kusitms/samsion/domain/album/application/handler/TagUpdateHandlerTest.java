@@ -1,14 +1,5 @@
 package com.kusitms.samsion.domain.album.application.handler;
 
-import static org.mockito.BDDMockito.*;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.common.util.AlbumTestUtils;
 import com.kusitms.samsion.common.util.UserTestUtils;
@@ -17,6 +8,14 @@ import com.kusitms.samsion.domain.album.domain.entity.Album;
 import com.kusitms.samsion.domain.album.domain.service.AlbumQueryService;
 import com.kusitms.samsion.domain.album.domain.service.TagUpdateService;
 import com.kusitms.samsion.domain.user.domain.entity.User;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("TagUpdateHandler 테스트")
@@ -45,7 +44,7 @@ class TagUpdateHandlerTest {
 		tagUpdateHandler.updateTag(getMockTagUpdateRequest(mockAlbum.getId()));
 		//then
 		then(tagUpdateService).should(times(1))
-			.updateTag(eq(mockAlbum), eq(mockAlbum.getTags()));
+			.updateTag(eq(mockAlbum), eq(TestConst.EMOTION_TAG_LIST));
 	}
 
 	TagUpdateRequest getMockTagUpdateRequest(Long mockAlbumId) {

@@ -1,21 +1,17 @@
 package com.kusitms.samsion.domain.album.application.handler;
 
-import java.util.List;
-
+import com.kusitms.samsion.common.annotation.UseCase;
+import com.kusitms.samsion.common.infrastructure.s3.S3UploadService;
+import com.kusitms.samsion.domain.album.application.dto.request.AlbumImageUpdateRequest;
+import com.kusitms.samsion.domain.album.domain.entity.Album;
+import com.kusitms.samsion.domain.album.domain.service.AlbumImageUpdateService;
+import com.kusitms.samsion.domain.album.domain.service.AlbumQueryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.event.TransactionalEventListener;
 
-import com.kusitms.samsion.common.annotation.UseCase;
-import com.kusitms.samsion.common.infrastructure.s3.S3UploadService;
-import com.kusitms.samsion.domain.album.application.dto.request.AlbumImageUpdateRequest;
-import com.kusitms.samsion.domain.album.application.mapper.AlbumImageMapper;
-import com.kusitms.samsion.domain.album.domain.entity.Album;
-import com.kusitms.samsion.domain.album.domain.entity.AlbumImage;
-import com.kusitms.samsion.domain.album.domain.service.AlbumImageUpdateService;
-import com.kusitms.samsion.domain.album.domain.service.AlbumQueryService;
-
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 @UseCase
 @RequiredArgsConstructor
@@ -29,9 +25,7 @@ public class AlbumImageUpdateHandler {
 	@TransactionalEventListener
 	public void updateAlbumImage(AlbumImageUpdateRequest albumImageUpdateRequest) {
 		final Album album = albumQueryService.findAlbumById(albumImageUpdateRequest.getAlbumId());
-		List<String> uploadImgList = s3UploadService.uploadImgList(albumImageUpdateRequest.getAddImageList());
-		final List<AlbumImage> albumImages =
-			AlbumImageMapper.mapToAlbumImageListWithNewAlbumImage(albumImageUpdateRequest.getImageUrlList(), uploadImgList, album);
-		albumImageUpdateService.updateAlbumImage(album, albumImages);
+		final List<String> uploadImgList = s3UploadService.uploadImgList(albumImageUpdateRequest.getAddImageList());
+		albumImageUpdateService.updateAlbumImage(album,albumImageUpdateRequest.getImageUrlList(), uploadImgList);
 	}
 }
