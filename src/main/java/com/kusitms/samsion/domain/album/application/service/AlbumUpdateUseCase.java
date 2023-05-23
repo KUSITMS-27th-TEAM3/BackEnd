@@ -5,6 +5,7 @@ import com.kusitms.samsion.common.util.UserUtils;
 import com.kusitms.samsion.domain.album.application.dto.request.AlbumImageUpdateRequest;
 import com.kusitms.samsion.domain.album.application.dto.request.AlbumUpdateRequest;
 import com.kusitms.samsion.domain.album.application.dto.request.TagUpdateRequest;
+import com.kusitms.samsion.domain.album.application.handler.AlbumImageUpdateHandler;
 import com.kusitms.samsion.domain.album.domain.entity.Album;
 import com.kusitms.samsion.domain.album.domain.service.*;
 import com.kusitms.samsion.domain.user.domain.entity.User;
@@ -25,6 +26,9 @@ public class AlbumUpdateUseCase {
 	private final AlbumUpdateService albumUpdateService;
 	private final AlbumImageDeleteService albumImageDeleteService;
 	private final TagDeleteService tagDeleteService;
+
+	private final AlbumImageUpdateHandler albumImageUpdateHandler;
+
 
 	private final ApplicationEventPublisher applicationEventPublisher;
 
