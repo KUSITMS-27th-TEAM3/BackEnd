@@ -1,20 +1,17 @@
 package com.kusitms.samsion.domain.album.application.dto.request;
 
-import java.util.List;
-
+import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
+import com.kusitms.samsion.domain.album.domain.entity.SortType;
+import lombok.Getter;
 import org.springframework.lang.Nullable;
 
-import com.kusitms.samsion.domain.album.domain.entity.SortType;
-import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
-
-import lombok.Getter;
+import java.util.List;
 
 @Getter
 public class AlbumSearchRequest {
 
 	@Nullable
 	private final List<EmotionTag> emotionTagList;
-	@Nullable
 	private final SortType sortType;
 
 	public AlbumSearchRequest(List<EmotionTag> emotionTagList, SortType sortType) {

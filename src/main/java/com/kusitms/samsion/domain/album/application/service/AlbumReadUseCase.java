@@ -57,9 +57,7 @@ public class AlbumReadUseCase {
 		Album album = albumQueryService.findAlbumById(albumId);
 		final List<EmotionTag> emotionTagList  = album.getTags().stream().map(Tag::getEmotionTag).collect(Collectors.toList());
 		albumValidAccessService.validateAccess(album, user.getId());
-		final long commentCountByAlbumId = commentQueryService.getCommentCountByAlbumId(album.getId());
-		final long empathyCountByAlbumId = empathyQueryService.getEmpathyCountByAlbumId(album.getId());
-		return AlbumMapper.mapToAlbumInfoResponse(album, commentCountByAlbumId, empathyCountByAlbumId, emotionTagList, user);
+		return AlbumMapper.mapToAlbumInfoResponse(album, emotionTagList, user);
 	}
 
 	/**

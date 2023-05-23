@@ -44,9 +44,6 @@ public class AlbumController {
 	 *
 	 * 캐시 미적용 : 3회 warmup 4회 테스트 평균 200ms
 	 * 캐시 적용(댓글, 공감 수 캐싱) : 3회 warmup 4회 테스트 평균 150ms
-	 *
-	 * jdk 11 : 3회 warmup 4회 테스트 평균 110ms
-	 *
 	 */
 	@GetMapping
 	public SliceResponse<AlbumSimpleResponse> getAlbumList(Pageable pageable, @ModelAttribute AlbumSearchRequest request){
@@ -58,11 +55,6 @@ public class AlbumController {
 		return albumReadUseCase.getMyAlbumList(pageable, request);
 	}
 
-
-	/**
-	 * 이미지 2개, 태그 5개 기준으로 생성시간 3회 warmup, 4회 테스트 진행시 평균 1000ms
-	 *
-	 */
 	@PostMapping()
 	public AlbumInfoResponse createAlbum(@ModelAttribute AlbumCreateRequest request){
 		return albumCreateUseCase.createAlbum(request);
@@ -79,7 +71,8 @@ public class AlbumController {
 	}
 
 	/**
-	 * 앨범 수정, 삭제 기능 추가해야함
+	 * 비동기 실행 : 100회 요청 4s82ms
+	 * 동기 실행 : 100회
 	 */
 	@CacheEvict(value = CachingStoreConst.ALBUM_CACHE_NAME, key = "#albumId")
 	@PostMapping("/{albumId}")

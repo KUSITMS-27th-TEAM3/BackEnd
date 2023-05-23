@@ -17,16 +17,20 @@ import java.util.stream.Collectors;
 public class AlbumMapper {
 
     public static AlbumSimpleResponse mapToAlbumSimpleResponse(Album album, long commentCnt, long empathyCnt) {
+        String imageUrl= null;
+        if(!album.getAlbumImages().isEmpty()){
+            imageUrl = album.getAlbumImages().get(0).getImageUrl();
+        }
         return AlbumSimpleResponse.builder()
                 .albumId(album.getId())
                 .title(album.getTitle())
-                .imageUrl(album.getAlbumImages().get(0).getImageUrl())
+                .imageUrl(imageUrl)
                 .commentCount(commentCnt)
                 .empathyCount(empathyCnt)
                 .build();
     }
 
-    public static AlbumInfoResponse mapToAlbumInfoResponse(Album album, long commentCnt, long empathyCnt, List<EmotionTag> emotionTagList, User accessUser) {
+    public static AlbumInfoResponse mapToAlbumInfoResponse(Album album, List<EmotionTag> emotionTagList, User accessUser) {
         final User writer = album.getWriter();
         return AlbumInfoResponse.builder()
                 .imageUrlList(album.getAlbumImages().stream().map(AlbumImage::getImageUrl).collect(Collectors.toList()))
@@ -38,8 +42,6 @@ public class AlbumMapper {
                 .petName(writer.getMypet().getPetName())
                 .writerProfileImageUrl(writer.getProfileImageUrl())
                 .accessUserProfileImageUrl(accessUser.getProfileImageUrl())
-                .commentCount(commentCnt)
-                .empathyCount(empathyCnt)
                 .emotionTagList(emotionTagList)
                 .build();
     }

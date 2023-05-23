@@ -21,22 +21,17 @@ public class AlbumInfoResponse {
 	private String description;
 	private Visibility visibility;
 	private Boolean changeable;
-
 	private String writer;
 	private String petName;
 	private String writerProfileImageUrl;
-
 	private String accessUserProfileImageUrl;
-
-	private long commentCount;
-	private long empathyCount;
 	private List<EmotionTag> emotionTagList;
 
 
 	@Builder
 	public AlbumInfoResponse(List<String> imageUrlList, String title, String description, Visibility visibility,
 							 Boolean changeable, String writer, String petName, String writerProfileImageUrl,
-							 String accessUserProfileImageUrl, long commentCount, long empathyCount, List<EmotionTag> emotionTagList) {
+							 String accessUserProfileImageUrl, List<EmotionTag> emotionTagList) {
 		this.imageUrlList = imageUrlList;
 		this.title = title;
 		this.description = description;
@@ -46,8 +41,6 @@ public class AlbumInfoResponse {
 		this.petName = petName;
 		this.writerProfileImageUrl = writerProfileImageUrl;
 		this.accessUserProfileImageUrl = accessUserProfileImageUrl;
-		this.commentCount = commentCount;
-		this.empathyCount = empathyCount;
 		this.emotionTagList = emotionTagList;
 	}
 }

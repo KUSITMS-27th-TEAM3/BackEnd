@@ -1,14 +1,12 @@
 package com.kusitms.samsion.domain.album.application.dto.request;
 
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
 import com.kusitms.samsion.domain.album.domain.entity.Visibility;
-
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Getter
 public class AlbumUpdateRequest {
