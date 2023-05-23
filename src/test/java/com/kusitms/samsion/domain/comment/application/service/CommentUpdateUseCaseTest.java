@@ -55,6 +55,7 @@ public class CommentUpdateUseCaseTest {
 
         //then
         Assertions.assertThat(commentInfoResponse).isNotNull();
+        Assertions.assertThat(commentInfoResponse.isChangeable()).isEqualTo(Boolean.TRUE);
         Assertions.assertThat(commentInfoResponse.getWriterProfileImageUrl()).isEqualTo(mockUser.getMypet().getPetImageUrl());
         Assertions.assertThat(commentInfoResponse.getDescription()).isEqualTo(commentUpdateRequest.getDescription());
         Assertions.assertThat(commentInfoResponse.getWriter()).isEqualTo(mockUser.getNickname());
