@@ -44,6 +44,9 @@ public class AlbumController {
 	 *
 	 * 캐시 미적용 : 3회 warmup 4회 테스트 평균 200ms
 	 * 캐시 적용(댓글, 공감 수 캐싱) : 3회 warmup 4회 테스트 평균 150ms
+	 *
+	 * jdk 11 : 3회 warmup 4회 테스트 평균 110ms
+	 *
 	 */
 	@GetMapping
 	public SliceResponse<AlbumSimpleResponse> getAlbumList(Pageable pageable, @ModelAttribute AlbumSearchRequest request){
