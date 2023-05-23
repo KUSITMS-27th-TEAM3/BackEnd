@@ -671,7 +671,7 @@ albumImages
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 342
+Content-Length: 390
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
@@ -682,6 +682,7 @@ Content-Length: 342
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
+  "accessUserProfileImageUrl" : "testImageUrl",
   "commentCount" : 1,
   "empathyCount" : 1,
   "emotionTagList" : [ "COMFORTABLE" ]
@@ -786,6 +787,7 @@ Content-Length: 342
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
+  "accessUserProfileImageUrl" : "testImageUrl",
   "commentCount" : 1,
   "empathyCount" : 1,
   "emotionTagList" : [ "COMFORTABLE" ]
@@ -848,6 +850,11 @@ Content-Length: 342
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writerProfileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">앨범 작성자의 프로필 이미지 URL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessUserProfileImageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 접근자의 프로필 이미지 URL</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>empathyCount</code></p></td>
@@ -1180,7 +1187,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 342
+Content-Length: 390
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
@@ -1191,6 +1198,7 @@ Content-Length: 342
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
+  "accessUserProfileImageUrl" : "testImageUrl",
   "commentCount" : 1,
   "empathyCount" : 1,
   "emotionTagList" : [ "COMFORTABLE" ]
@@ -1271,6 +1279,7 @@ Content-Length: 342
   "writer" : "test",
   "petName" : "testPet",
   "writerProfileImageUrl" : "testImageUrl",
+  "accessUserProfileImageUrl" : "testImageUrl",
   "commentCount" : 1,
   "empathyCount" : 1,
   "emotionTagList" : [ "COMFORTABLE" ]
@@ -1333,6 +1342,11 @@ Content-Length: 342
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writerProfileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">앨범 작성자의 프로필 이미지 URL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessUserProfileImageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 접근자의 프로필 이미지 URL</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>empathyCount</code></p></td>
