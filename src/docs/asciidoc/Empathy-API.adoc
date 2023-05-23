@@ -4,3 +4,7 @@
 [[Empathy-공감-생성]]
 === Empathy 공감 생성
 operation::empathy-controller-test/접속중인_앨범에서_공감_get_요청이_정상적으로_들어온다[snippets='http-request,request-headers,path-parameters']
+
+[[Empathy-공감수-조회]]
+=== Empathy 공감수 조회
+operation::empathy-controller-test/접속중인_앨범에서_공감수와_공감여부_확인[snippets='http-request,request-headers,path-parameters,http-response,response-fields']

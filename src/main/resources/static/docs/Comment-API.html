@@ -534,13 +534,14 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 130
+Content-Length: 153
 
 {
   "commentId" : 1,
   "description" : "testCommentDescription",
   "writer" : "test",
-  "writerProfileImageUrl" : "testImageUrl"
+  "writerProfileImageUrl" : "testImageUrl",
+  "changeable" : true
 }</code></pre>
 </div>
 </div>
@@ -580,6 +581,11 @@ Content-Length: 130
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writerProfileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">변경 가능 여부</p></td>
 </tr>
 </tbody>
 </table>
@@ -681,13 +687,14 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 135
+Content-Length: 158
 
 {
   "commentId" : 2,
   "description" : "testChildCommentDescription",
   "writer" : "test",
-  "writerProfileImageUrl" : "testImageUrl"
+  "writerProfileImageUrl" : "testImageUrl",
+  "changeable" : true
 }</code></pre>
 </div>
 </div>
@@ -727,6 +734,11 @@ Content-Length: 135
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writerProfileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">변경 가능 여부</p></td>
 </tr>
 </tbody>
 </table>
@@ -828,13 +840,14 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 136
+Content-Length: 159
 
 {
   "commentId" : 1,
   "description" : "testUpdateCommentDescription",
   "writer" : "test",
-  "writerProfileImageUrl" : "testImageUrl"
+  "writerProfileImageUrl" : "testImageUrl",
+  "changeable" : true
 }</code></pre>
 </div>
 </div>
@@ -874,6 +887,11 @@ Content-Length: 136
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writerProfileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">변경 가능 여부</p></td>
 </tr>
 </tbody>
 </table>
@@ -1035,7 +1053,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 387
+Content-Length: 441
 
 {
   "content" : [ {
@@ -1043,11 +1061,13 @@ Content-Length: 387
     "description" : "testCommentDescription",
     "writer" : "test",
     "writerProfileImageUrl" : "testImageUrl",
+    "changeable" : false,
     "child" : [ {
       "commentId" : 2,
       "description" : "testChildCommentDescription",
       "writer" : "test",
-      "writerProfileImageUrl" : "testImageUrl"
+      "writerProfileImageUrl" : "testImageUrl",
+      "changeable" : false
     } ]
   } ],
   "page" : 0,
@@ -1094,6 +1114,11 @@ Content-Length: 387
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].changeable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">변경 가능 여부</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].child[].commentId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">댓글 ID</p></td>
@@ -1114,6 +1139,11 @@ Content-Length: 387
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].child[].changeable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">변경 가능 여부</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">현재 페이지</p></td>
@@ -1132,13 +1162,107 @@ Content-Length: 387
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="Comment-댓글수-조회">Comment 댓글수 조회</h3>
+<div class="sect3">
+<h4 id="Comment-댓글수-조회_http_request">HTTP request</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /album/1/comment/count HTTP/1.1
+Authorization: access token
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Comment-댓글수-조회_request_headers">Request headers</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">access token</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="Comment-댓글수-조회_path_parameters">Path parameters</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. /album/{albumId}/comment/count</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>albumId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">앨범 ID</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="Comment-댓글수-조회_http_response">HTTP response</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 24
+
+{
+  "commentCount" : 1
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Comment-댓글수-조회_response_fields">Response fields</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>commentCount</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-20 11:21:48 +0900
+Last updated 2023-05-23 20:35:43 +0900
 </div>
 </div>
 </body>

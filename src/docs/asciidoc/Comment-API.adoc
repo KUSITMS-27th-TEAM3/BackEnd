@@ -24,3 +24,7 @@ operation::comment-controller-test/댓글_삭제[snippets='http-request,request-
 [[Comment-댓글-조회]]
 === Comment 댓글 조회
 operation::comment-controller-test/댓글_조회[snippets='http-request,request-headers,request-parameters,path-parameters,http-response,response-fields']
+
+[[Comment-댓글수-조회]]
+=== Comment 댓글수 조회
+operation::comment-controller-test/댓글수_반환한다[snippets='http-request,request-headers,path-parameters,http-response,response-fields']
