@@ -22,6 +22,6 @@ public class CommentUpdateUseCase {
         final Comment comment = commentQueryService.getCommentById(commentId);
         commentValidAccessService.validateAccess(comment, user.getId());
         comment.updateDescription(commentUpdateRequest.getDescription());
-        return CommentMapper.mapToCommentInfoResponse(comment);
+        return CommentMapper.mapToCommentInfoResponse(comment, user);
     }
 }

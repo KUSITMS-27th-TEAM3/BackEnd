@@ -1,27 +1,19 @@
 package com.kusitms.samsion.domain.comment.presentation;
 
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.kusitms.samsion.common.consts.CachingStoreConst;
 import com.kusitms.samsion.common.slice.SliceResponse;
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentCreateRequest;
 import com.kusitms.samsion.domain.comment.application.dto.request.CommentUpdateRequest;
+import com.kusitms.samsion.domain.comment.application.dto.response.CommentCountResponse;
 import com.kusitms.samsion.domain.comment.application.dto.response.CommentInfoResponse;
 import com.kusitms.samsion.domain.comment.application.service.CommentCreateUseCase;
 import com.kusitms.samsion.domain.comment.application.service.CommentDeleteUseCase;
 import com.kusitms.samsion.domain.comment.application.service.CommentReadUseCase;
 import com.kusitms.samsion.domain.comment.application.service.CommentUpdateUseCase;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/album")
@@ -60,5 +52,10 @@ public class CommentController {
     @GetMapping("/{albumId}/comment")
     public SliceResponse<CommentInfoResponse> getCommentList(Pageable pageable, @PathVariable Long albumId){
         return commentReadUseCase.getCommentList(pageable, albumId);
+    }
+
+    @GetMapping("/{albumId}/comment/count")
+    public CommentCountResponse getCommentCount(@PathVariable Long albumId){
+        return commentReadUseCase.getCommentCount(albumId);
     }
 }

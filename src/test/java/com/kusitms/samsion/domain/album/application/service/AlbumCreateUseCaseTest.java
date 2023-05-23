@@ -1,18 +1,5 @@
 package com.kusitms.samsion.domain.album.application.service;
 
-import static org.mockito.BDDMockito.*;
-
-import java.util.List;
-
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.context.ApplicationEventPublisher;
-
 import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.common.infrastructure.s3.S3UploadService;
 import com.kusitms.samsion.common.util.AlbumTestUtils;
@@ -26,6 +13,18 @@ import com.kusitms.samsion.domain.album.domain.service.AlbumSaveService;
 import com.kusitms.samsion.domain.album.domain.service.TagSaveService;
 import com.kusitms.samsion.domain.user.domain.entity.MyPet;
 import com.kusitms.samsion.domain.user.domain.entity.User;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
+
+import java.util.List;
+
+import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("AlbumCreateUseCase 테스트")
@@ -77,8 +76,6 @@ class AlbumCreateUseCaseTest {
 		Assertions.assertThat(albumInfoResponse.getChangeable()).isEqualTo(Boolean.TRUE);
 		Assertions.assertThat(albumInfoResponse.getPetName()).isEqualTo(mockUserMypet.getPetName());
 		Assertions.assertThat(albumInfoResponse.getWriterProfileImageUrl()).isEqualTo(mockUser.getProfileImageUrl());
-		Assertions.assertThat(albumInfoResponse.getCommentCount()).isEqualTo(0);
-		Assertions.assertThat(albumInfoResponse.getEmpathyCount()).isEqualTo(0);
 		Assertions.assertThat(albumInfoResponse.getEmotionTagList()).isEqualTo(mockAlbumCreateRequest.getEmotionTags());
 	}
 

@@ -75,8 +75,6 @@ class AlbumControllerTest extends CommonRestDocs {
                 .petName(TestConst.TEST_PET_NAME)
                 .writerProfileImageUrl(TestConst.TEST_PROFILE_IMAGE_URL)
                 .accessUserProfileImageUrl(TestConst.TEST_PROFILE_IMAGE_URL)
-                .empathyCount(TestConst.TEST_EMPATHY_COUNT)
-                .commentCount(TestConst.TEST_COMMENT_COUNT)
                 .emotionTagList(List.of(EmotionTag.COMFORTABLE))
                 .build();
     }
@@ -200,8 +198,6 @@ class AlbumControllerTest extends CommonRestDocs {
                                 fieldWithPath("petName").description("앨범 작성자의 반려동물 이름"),
                                 fieldWithPath("writerProfileImageUrl").description("앨범 작성자의 프로필 이미지 URL"),
                                 fieldWithPath("accessUserProfileImageUrl").description("앨범 접근자의 프로필 이미지 URL"),
-                                fieldWithPath("empathyCount").description("공감 수"),
-                                fieldWithPath("commentCount").description("댓글 수"),
                                 fieldWithPath("emotionTagList").description("감정 태그 리스트, 감정 태그 리스트 참조")
                         )
                 ));
@@ -253,8 +249,6 @@ class AlbumControllerTest extends CommonRestDocs {
                                 fieldWithPath("petName").description("앨범 작성자의 반려동물 이름"),
                                 fieldWithPath("writerProfileImageUrl").description("앨범 작성자의 프로필 이미지 URL"),
                                 fieldWithPath("accessUserProfileImageUrl").description("앨범 접근자의 프로필 이미지 URL"),
-                                fieldWithPath("empathyCount").description("공감 수"),
-                                fieldWithPath("commentCount").description("댓글 수"),
                                 fieldWithPath("emotionTagList").description("감정 태그 리스트, 감정 태그 리스트 참조")
                         )
                 ));

@@ -110,8 +110,6 @@ class AlbumReadUseCaseTest {
 		Album mockAlbum = AlbumTestUtils.getMockAlbum(mockUser);
 		given(userUtils.getUser()).willReturn(mockUser);
 		given(albumQueryService.findAlbumById(mockAlbum.getId())).willReturn(mockAlbum);
-		given(commentQueryService.getCommentCountByAlbumId(mockAlbum.getId())).willReturn(TestConst.TEST_COMMENT_COUNT);
-		given(empathyQueryService.getEmpathyCountByAlbumId(mockAlbum.getId())).willReturn(TestConst.TEST_EMPATHY_COUNT);
 		//when
 		AlbumInfoResponse albumInfoResponse = albumReadUseCase.getAlbum(mockAlbum.getId());
 		//then
@@ -125,8 +123,6 @@ class AlbumReadUseCaseTest {
 		Assertions.assertThat(albumInfoResponse.getWriterProfileImageUrl()).isEqualTo(mockUser.getProfileImageUrl());
 		Assertions.assertThat(albumInfoResponse.getAccessUserProfileImageUrl()).isEqualTo(mockUser.getProfileImageUrl());
 		Assertions.assertThat(albumInfoResponse.getEmotionTagList()).isEqualTo(mockAlbum.getTags().stream().map(Tag::getEmotionTag).collect(Collectors.toList()));
-		Assertions.assertThat(albumInfoResponse.getCommentCount()).isEqualTo(TestConst.TEST_COMMENT_COUNT);
-		Assertions.assertThat(albumInfoResponse.getEmpathyCount()).isEqualTo(TestConst.TEST_EMPATHY_COUNT);
 	}
 
 	AlbumSearchRequest getMockAlbumSearchRequest() {

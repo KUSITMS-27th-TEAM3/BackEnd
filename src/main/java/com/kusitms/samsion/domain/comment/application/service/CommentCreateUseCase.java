@@ -31,7 +31,7 @@ public class CommentCreateUseCase {
         final Comment comment = CommentMapper.mapToCommentWithUserAndAlbum(commentCreateRequest.getDescription(), album, user);
 
         commentSaveService.saveComment(comment);
-        return CommentMapper.mapToCommentInfoResponse(comment);
+        return CommentMapper.mapToCommentInfoResponse(comment, user);
     }
 
     @Transactional
@@ -42,6 +42,6 @@ public class CommentCreateUseCase {
         final Comment comment = CommentMapper.mapToCommentWithUserAndAlbumAndParent(commentCreateRequest.getDescription(), album, user, parent);
 
         commentSaveService.saveComment(comment);
-        return CommentMapper.mapToCommentInfoResponse(comment);
+        return CommentMapper.mapToCommentInfoResponse(comment, user);
     }
 }
