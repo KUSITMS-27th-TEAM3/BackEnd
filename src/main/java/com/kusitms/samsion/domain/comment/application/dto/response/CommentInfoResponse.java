@@ -17,13 +17,15 @@ public class CommentInfoResponse {
     private final String description;
     private final String writer;
     private final String writerProfileImageUrl;
+    private final boolean changeable;
     private List<CommentInfoResponse> child;
 
     @Builder
-    public CommentInfoResponse(Long commentId, String description, String writer, String writerProfileImageUrl) {
+    public CommentInfoResponse(Long commentId, String description, String writer, String writerProfileImageUrl, boolean changeable) {
         this.commentId = commentId;
         this.description = description;
         this.writer = writer;
         this.writerProfileImageUrl = writerProfileImageUrl;
+        this.changeable = changeable;
     }
 }
