@@ -21,6 +21,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Objects;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 
@@ -63,6 +65,7 @@ public class CommentCreateUseCaseTest {
         //then
         then(commentSaveService).should(times(1)).saveComment(any(Comment.class));
         Assertions.assertThat(commentInfoResponse).isNotNull();
+        Assertions.assertThat(commentInfoResponse.isChangeable()).isEqualTo(Boolean.TRUE);
         Assertions.assertThat(commentInfoResponse.getWriterProfileImageUrl()).isEqualTo(mockUser.getMypet().getPetImageUrl());
         Assertions.assertThat(commentInfoResponse.getDescription()).isEqualTo(commentCreateRequest.getDescription());
         Assertions.assertThat(commentInfoResponse.getWriter()).isEqualTo(mockUser.getNickname());
