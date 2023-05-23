@@ -35,7 +35,7 @@ public class AlbumUpdateUseCase {
 	public void updateAlbum(final Long albumId,final AlbumUpdateRequest request){
 		final User user = userUtils.getUser();
 		final Album album = albumQueryService.findAlbumById(albumId);
-		albumValidAccessService.validateAccess(album, user.getId());
+		albumValidAccessService.validateUpdateAccess(album, user.getId());
 		albumUpdateService.updateAlbum(album, request.getTitle(), request.getDescription(), request.getVisibility());
 		albumImageDeleteService.deleteAlbumImageList(album);
 		tagDeleteService.deleteTagList(album);
