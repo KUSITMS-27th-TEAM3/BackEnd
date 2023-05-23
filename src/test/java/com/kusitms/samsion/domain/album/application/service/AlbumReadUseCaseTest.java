@@ -1,20 +1,5 @@
 package com.kusitms.samsion.domain.album.application.service;
 
-import static org.mockito.BDDMockito.*;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Pageable;
-
 import com.kusitms.samsion.common.consts.TestConst;
 import com.kusitms.samsion.common.slice.SliceResponse;
 import com.kusitms.samsion.common.util.AlbumTestUtils;
@@ -32,6 +17,20 @@ import com.kusitms.samsion.domain.album.domain.service.AlbumValidAccessService;
 import com.kusitms.samsion.domain.comment.domain.service.CommentQueryService;
 import com.kusitms.samsion.domain.empathy.domain.service.EmpathyQueryService;
 import com.kusitms.samsion.domain.user.domain.entity.User;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("AlbumReadUseCase 테스트")
@@ -124,6 +123,7 @@ class AlbumReadUseCaseTest {
 		Assertions.assertThat(albumInfoResponse.getWriter()).isEqualTo(mockUser.getNickname());
 		Assertions.assertThat(albumInfoResponse.getPetName()).isEqualTo(mockUser.getMypet().getPetName());
 		Assertions.assertThat(albumInfoResponse.getWriterProfileImageUrl()).isEqualTo(mockUser.getProfileImageUrl());
+		Assertions.assertThat(albumInfoResponse.getAccessUserProfileImageUrl()).isEqualTo(mockUser.getProfileImageUrl());
 		Assertions.assertThat(albumInfoResponse.getEmotionTagList()).isEqualTo(mockAlbum.getTags().stream().map(Tag::getEmotionTag).collect(Collectors.toList()));
 		Assertions.assertThat(albumInfoResponse.getCommentCount()).isEqualTo(TestConst.TEST_COMMENT_COUNT);
 		Assertions.assertThat(albumInfoResponse.getEmpathyCount()).isEqualTo(TestConst.TEST_EMPATHY_COUNT);

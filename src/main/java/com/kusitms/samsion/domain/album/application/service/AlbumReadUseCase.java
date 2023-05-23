@@ -1,12 +1,5 @@
 package com.kusitms.samsion.domain.album.application.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.kusitms.samsion.common.annotation.UseCase;
 import com.kusitms.samsion.common.slice.SliceResponse;
 import com.kusitms.samsion.common.util.UserUtils;
@@ -22,8 +15,13 @@ import com.kusitms.samsion.domain.album.domain.service.AlbumValidAccessService;
 import com.kusitms.samsion.domain.comment.domain.service.CommentQueryService;
 import com.kusitms.samsion.domain.empathy.domain.service.EmpathyQueryService;
 import com.kusitms.samsion.domain.user.domain.entity.User;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @UseCase

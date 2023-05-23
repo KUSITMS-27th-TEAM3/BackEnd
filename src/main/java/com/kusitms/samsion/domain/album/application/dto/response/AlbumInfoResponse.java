@@ -1,14 +1,13 @@
 package com.kusitms.samsion.domain.album.application.dto.response;
 
-import java.util.List;
-
 import com.kusitms.samsion.domain.album.domain.entity.EmotionTag;
 import com.kusitms.samsion.domain.album.domain.entity.Visibility;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * dto 캐싱할려면 기본생성자 만들어야함
@@ -26,6 +25,9 @@ public class AlbumInfoResponse {
 	private String writer;
 	private String petName;
 	private String writerProfileImageUrl;
+
+	private String accessUserProfileImageUrl;
+
 	private long commentCount;
 	private long empathyCount;
 	private List<EmotionTag> emotionTagList;
@@ -33,8 +35,8 @@ public class AlbumInfoResponse {
 
 	@Builder
 	public AlbumInfoResponse(List<String> imageUrlList, String title, String description, Visibility visibility,
-		Boolean changeable, String writer, String petName, String writerProfileImageUrl,
-		long commentCount, long empathyCount, List<EmotionTag> emotionTagList) {
+							 Boolean changeable, String writer, String petName, String writerProfileImageUrl,
+							 String accessUserProfileImageUrl, long commentCount, long empathyCount, List<EmotionTag> emotionTagList) {
 		this.imageUrlList = imageUrlList;
 		this.title = title;
 		this.description = description;
@@ -43,6 +45,7 @@ public class AlbumInfoResponse {
 		this.writer = writer;
 		this.petName = petName;
 		this.writerProfileImageUrl = writerProfileImageUrl;
+		this.accessUserProfileImageUrl = accessUserProfileImageUrl;
 		this.commentCount = commentCount;
 		this.empathyCount = empathyCount;
 		this.emotionTagList = emotionTagList;
