@@ -19,4 +19,11 @@ public class AlbumValidAccessService {
 			throw new AlbumAccessDeniedException(Error.ALBUM_ACCESS_DENIED);
 		}
 	}
+
+	public void validateUpdateAccess(Album album, Long userId){
+		final Long albumUserId = album.getWriter().getId();
+		if(!Objects.equals(albumUserId,userId)){
+			throw new AlbumAccessDeniedException(Error.ALBUM_ACCESS_DENIED);
+		}
+	}
 }
