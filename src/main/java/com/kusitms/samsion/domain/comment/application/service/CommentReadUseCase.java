@@ -46,7 +46,9 @@ public class CommentReadUseCase {
             commentInfoResponseMap.put(commentInfoResponse.getCommentId(), commentInfoResponse);
             if (comment.getParent() != null) {
                 CommentInfoResponse parentInfoResponse = commentInfoResponseMap.get(comment.getParent().getId());
-                parentInfoResponse.setChild(new ArrayList<>());
+                if (parentInfoResponse.getChild() == null) {
+                    parentInfoResponse.setChild(new ArrayList<>());
+                }
                 parentInfoResponse.getChild().add(commentInfoResponse);
             } else {
                 commentInfoResponseList.add(commentInfoResponse);
