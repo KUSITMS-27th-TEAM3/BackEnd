@@ -1,0 +1,14 @@
+[[Grid-API]]
+== Grid-API
+
+[[Grid-정보-조회]]
+=== Grid 정보 조회
+operation::grid-controller-test/그리드_조회[snippets='http-request,request-headers,http-response,response-fields']
+
+---
+
+[[Stamp-정보-조회]]
+=== Stamp 정보 조회
+operation::grid-controller-test/스탬프_조회[snippets='http-request,request-headers,http-response,response-fields']
+
+---
