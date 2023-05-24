@@ -1,18 +1,17 @@
 package com.kusitms.samsion.domain.user.application.handler;
 
-import static org.mockito.BDDMockito.*;
-
+import com.kusitms.samsion.common.consts.TestConst;
+import com.kusitms.samsion.domain.user.application.dto.request.UserSignUpRequest;
+import com.kusitms.samsion.domain.user.domain.service.UserSaveService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 
-import com.kusitms.samsion.domain.user.application.dto.request.UserSignUpRequest;
-import com.kusitms.samsion.common.consts.TestConst;
-import com.kusitms.samsion.domain.user.application.handler.UserSignUpHandler;
-import com.kusitms.samsion.domain.user.domain.service.UserSaveService;
+import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("UserSignUpHandler 테스트")
@@ -20,12 +19,14 @@ class UserSignUpHandlerTest {
 
 	@Mock
 	UserSaveService userSaveService;
+	@Mock
+	ApplicationEventPublisher applicationEventPublisher;
 
 	UserSignUpHandler userSignUpHandler;
 
 	@BeforeEach
 	void setUp() {
-		userSignUpHandler = new UserSignUpHandler(userSaveService);
+		userSignUpHandler = new UserSignUpHandler(userSaveService, applicationEventPublisher);
 	}
 
 	@Test

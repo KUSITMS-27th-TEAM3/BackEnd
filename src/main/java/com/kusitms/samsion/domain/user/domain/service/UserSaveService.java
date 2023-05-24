@@ -21,4 +21,8 @@ public class UserSaveService {
 		}
 	}
 
+	public void flush(){
+		userRepository.flush();
+	}
+
 }
