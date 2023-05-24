@@ -31,7 +31,7 @@ public class CommentQueryService {
 
     @Cacheable(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#albumId")
     public long getCommentCountByAlbumId(Long albumId){
-        return commentRepository.countByAlbumId(albumId);
+        return commentRepository.countByAlbumIdAndDeletedFalse(albumId);
     }
 
 }
