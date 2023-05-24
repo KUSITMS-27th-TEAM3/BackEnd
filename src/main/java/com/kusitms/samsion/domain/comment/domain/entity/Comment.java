@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
-@SQLDelete(sql = "UPDATE comment SET deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE comment SET deleted = true WHERE comment_id = ?")
+@Where(clause = "deleted = false")
 public class Comment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +42,7 @@ public class Comment extends BaseEntity {
     private Comment parent;
 
     //자식 정의 (대댓글)
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> childList = new ArrayList<>();
 
     public void addChild(Comment child){

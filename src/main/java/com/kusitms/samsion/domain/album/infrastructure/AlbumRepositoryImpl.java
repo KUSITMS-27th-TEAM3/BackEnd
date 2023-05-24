@@ -3,9 +3,6 @@ package com.kusitms.samsion.domain.album.infrastructure;
 import com.kusitms.samsion.common.querydsl.OrderByNull;
 import com.kusitms.samsion.domain.album.domain.entity.*;
 import com.kusitms.samsion.domain.album.domain.repository.AlbumRepositoryCustom;
-import com.kusitms.samsion.domain.comment.domain.entity.QComment;
-import com.querydsl.core.types.Expression;
-import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPAExpressions;
@@ -85,16 +82,9 @@ public class AlbumRepositoryImpl implements AlbumRepositoryCustom {
             case EMPATHY:
                 return QAlbum.album.empathies.size().desc();
             case COMMENT:
-				return new OrderSpecifier<>(Order.DESC, getCommentSubQuery());
+                return QAlbum.album.comments.size().desc();
         }
         return OrderByNull.getDefault();
-    }
-
-    private Expression getCommentSubQuery() {
-        return JPAExpressions.select(QComment.comment.id.count())
-                .from(QComment.comment)
-                .where(QComment.comment.deleted.isFalse(),
-                        QComment.comment.album.id.eq(QAlbum.album.id));
     }
 
 
