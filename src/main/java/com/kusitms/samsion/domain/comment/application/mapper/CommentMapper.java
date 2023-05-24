@@ -37,7 +37,7 @@ public class CommentMapper {
                 .commentId(comment.getId())
                 .description(comment.getDescription())
                 .writer(writer.getNickname())
-                .writerProfileImageUrl(writer.getMypet().getPetImageUrl())
+                .writerProfileImageUrl(writer.getProfileImageUrl())
                 .deleted(comment.isDeleted())
                 .changeable(Objects.equals(writer.getId(), accessUser.getId()))
                 .build();
