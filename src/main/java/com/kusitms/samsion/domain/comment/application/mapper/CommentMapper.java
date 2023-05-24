@@ -38,6 +38,7 @@ public class CommentMapper {
                 .description(comment.getDescription())
                 .writer(writer.getNickname())
                 .writerProfileImageUrl(writer.getMypet().getPetImageUrl())
+                .deleted(comment.isDeleted())
                 .changeable(Objects.equals(writer.getId(), accessUser.getId()))
                 .build();
     }

@@ -45,7 +45,7 @@ public class CommentController {
 
     @CacheEvict(value = CachingStoreConst.COMMENT_COUNT_CACHE_NAME, key = "#albumId",condition="#albumId!=null")
     @DeleteMapping("/{albumId}/comment/{commentId}")
-    public void delete(@PathVariable Long commentId){
+    public void delete(@PathVariable Long albumId,@PathVariable Long commentId){
         commentDeleteUseCase.deleteComment(commentId);
     }
 

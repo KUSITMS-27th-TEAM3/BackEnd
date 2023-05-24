@@ -534,13 +534,14 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 159
+Content-Length: 181
 
 {
   "commentId" : 1,
   "description" : "testCommentDescription",
   "writer" : "test",
   "writerProfileImageUrl" : "testImageUrl",
+  "deleted" : false,
   "changeable" : true
 }</code></pre>
 </div>
@@ -581,6 +582,11 @@ Content-Length: 159
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writerProfileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">삭제 여부. 삭제 되었으면 true, 아니면 false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
@@ -687,13 +693,14 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 164
+Content-Length: 186
 
 {
   "commentId" : 2,
   "description" : "testChildCommentDescription",
   "writer" : "test",
   "writerProfileImageUrl" : "testImageUrl",
+  "deleted" : false,
   "changeable" : true
 }</code></pre>
 </div>
@@ -734,6 +741,11 @@ Content-Length: 164
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writerProfileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">삭제 여부. 삭제 되었으면 true, 아니면 false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
@@ -840,13 +852,14 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 165
+Content-Length: 187
 
 {
   "commentId" : 1,
   "description" : "testUpdateCommentDescription",
   "writer" : "test",
   "writerProfileImageUrl" : "testImageUrl",
+  "deleted" : false,
   "changeable" : true
 }</code></pre>
 </div>
@@ -887,6 +900,11 @@ Content-Length: 165
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>writerProfileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">삭제 여부. 삭제 되었으면 true, 아니면 false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>changeable</code></p></td>
@@ -1053,7 +1071,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 459
+Content-Length: 509
 
 {
   "content" : [ {
@@ -1061,12 +1079,14 @@ Content-Length: 459
     "description" : "testCommentDescription",
     "writer" : "test",
     "writerProfileImageUrl" : "testImageUrl",
+    "deleted" : false,
     "changeable" : false,
     "child" : [ {
       "commentId" : 2,
       "description" : "testChildCommentDescription",
       "writer" : "test",
       "writerProfileImageUrl" : "testImageUrl",
+      "deleted" : false,
       "changeable" : false
     } ]
   } ],
@@ -1114,6 +1134,11 @@ Content-Length: 459
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">삭제 여부. 삭제 되었으면 true, 아니면 false</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].changeable</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">변경 가능 여부</p></td>
@@ -1137,6 +1162,11 @@ Content-Length: 459
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].child[].writerProfileImageUrl</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자 프로필 사진</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].child[].deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">삭제 여부. 삭제 되었으면 true, 아니면 false</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].child[].changeable</code></p></td>

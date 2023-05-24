@@ -60,6 +60,7 @@ public class CommentControllerTest extends CommonRestDocs{
                 .description(TestConst.TEST_COMMENT_DESCRIPTION)
                 .writer(TestConst.TEST_NICKNAME)
                 .writerProfileImageUrl(TestConst.TEST_PET_IMAGE_URL)
+                .deleted(false)
                 .changeable(true)
                 .build();
         given(commentCreateUseCase.createComment(any(), any())).willReturn(commentInfoResponse);
@@ -90,6 +91,7 @@ public class CommentControllerTest extends CommonRestDocs{
                                         fieldWithPath("description").description("댓글 내용"),
                                         fieldWithPath("writer").description("댓글 작성자"),
                                         fieldWithPath("writerProfileImageUrl").description("작성자 프로필 사진"),
+                                        fieldWithPath("deleted").description("삭제 여부. 삭제 되었으면 true, 아니면 false"),
                                         fieldWithPath("changeable").description("변경 가능 여부")
                                 )
                         )
@@ -105,6 +107,7 @@ public class CommentControllerTest extends CommonRestDocs{
                 .description(TestConst.TEST_CHILD_COMMENT_DESCRIPTION)
                 .writer(TestConst.TEST_NICKNAME)
                 .writerProfileImageUrl(TestConst.TEST_PET_IMAGE_URL)
+                .deleted(false)
                 .changeable(true)
                 .build();
         given(commentCreateUseCase.createReComment(any(), any(), any())).willReturn(commentInfoResponse);
@@ -136,6 +139,7 @@ public class CommentControllerTest extends CommonRestDocs{
                                         fieldWithPath("description").description("댓글 내용"),
                                         fieldWithPath("writer").description("댓글 작성자"),
                                         fieldWithPath("writerProfileImageUrl").description("작성자 프로필 사진"),
+                                        fieldWithPath("deleted").description("삭제 여부. 삭제 되었으면 true, 아니면 false"),
                                         fieldWithPath("changeable").description("변경 가능 여부")
                                 )
                         )
@@ -152,6 +156,7 @@ public class CommentControllerTest extends CommonRestDocs{
                 .description(TestConst.TEST_UPDATE_COMMENT_DESCRIPTION)
                 .writer(TestConst.TEST_NICKNAME)
                 .writerProfileImageUrl(TestConst.TEST_PET_IMAGE_URL)
+                .deleted(false)
                 .changeable(true)
                 .build();
         given(commentUpdateUseCase.updateComment(any(), any())).willReturn(commentInfoResponse);
@@ -183,6 +188,7 @@ public class CommentControllerTest extends CommonRestDocs{
                                         fieldWithPath("description").description("댓글 내용"),
                                         fieldWithPath("writer").description("댓글 작성자"),
                                         fieldWithPath("writerProfileImageUrl").description("작성자 프로필 사진"),
+                                        fieldWithPath("deleted").description("삭제 여부. 삭제 되었으면 true, 아니면 false"),
                                         fieldWithPath("changeable").description("변경 가능 여부")
                                 )
                         )
@@ -219,9 +225,9 @@ public class CommentControllerTest extends CommonRestDocs{
         User mockUser = UserTestUtils.getMockUser();
         Pageable pageRequest = SliceTestUtils.getMockPageable();
         List<CommentInfoResponse> children = new ArrayList<>(Arrays.asList(new CommentInfoResponse(TestConst.TEST_CHILD_ID,
-                TestConst.TEST_CHILD_COMMENT_DESCRIPTION, TestConst.TEST_NICKNAME, TestConst.TEST_PET_IMAGE_URL, false)));
+                TestConst.TEST_CHILD_COMMENT_DESCRIPTION, TestConst.TEST_NICKNAME, TestConst.TEST_PET_IMAGE_URL, false, false)));
         CommentInfoResponse commentInfoResponse = new CommentInfoResponse(TestConst.TEST_COMMENT_ID,TestConst.TEST_COMMENT_DESCRIPTION,
-                TestConst.TEST_NICKNAME, TestConst.TEST_PET_IMAGE_URL, false, children);
+                TestConst.TEST_NICKNAME, TestConst.TEST_PET_IMAGE_URL,false, false, children);
         SliceResponse<CommentInfoResponse> mockPageResponse = SliceTestUtils.getMockSliceResponse(commentInfoResponse);
         given(commentReadUseCase.getCommentList(pageRequest, TestConst.TEST_ALBUM_ID)).willReturn(mockPageResponse);
         //when
@@ -250,11 +256,13 @@ public class CommentControllerTest extends CommonRestDocs{
                                         fieldWithPath("content[].description").description("댓글 내용"),
                                         fieldWithPath("content[].writer").description("댓글 작성자"),
                                         fieldWithPath("content[].writerProfileImageUrl").description("작성자 프로필 사진"),
+                                        fieldWithPath("content[].deleted").description("삭제 여부. 삭제 되었으면 true, 아니면 false"),
                                         fieldWithPath("content[].changeable").description("변경 가능 여부"),
                                         fieldWithPath("content[].child[].commentId").description("댓글 ID"),
                                         fieldWithPath("content[].child[].description").description("댓글 내용"),
                                         fieldWithPath("content[].child[].writer").description("댓글 작성자"),
                                         fieldWithPath("content[].child[].writerProfileImageUrl").description("작성자 프로필 사진"),
+                                        fieldWithPath("content[].child[].deleted").description("삭제 여부. 삭제 되었으면 true, 아니면 false"),
                                         fieldWithPath("content[].child[].changeable").description("변경 가능 여부"),
                                         fieldWithPath("page").description("현재 페이지"),
                                         fieldWithPath("size").description("페이지 사이즈"),
