@@ -1,13 +1,12 @@
 package com.kusitms.samsion.domain.user.domain.entity;
 
-import java.util.Objects;
-
-import javax.persistence.Embeddable;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Embeddable
 @Getter
@@ -49,7 +48,7 @@ public class MyPet {
 	}
 
 	private void updatePetName(String petName) {
-		if (!Objects.equals(petName, this.petName))
+		if (!Objects.equals(petName, this.petName)&&Objects.nonNull(petName))
 			this.petName = petName;
 	}
 
@@ -59,7 +58,7 @@ public class MyPet {
 	}
 
 	private void updateDescription(String description) {
-		if (!Objects.equals(description, this.description))
+		if (!Objects.equals(description, this.description)&&Objects.nonNull(description))
 			this.description = description;
 	}
 
@@ -69,7 +68,7 @@ public class MyPet {
 	}
 
 	private void updatePetType(String petType) {
-		if (!Objects.equals(petType, this.petType))
+		if (!Objects.equals(petType, this.petType)&&Objects.nonNull(petType))
 			this.petType = petType;
 	}
 
