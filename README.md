@@ -313,7 +313,7 @@
 
 ## 🔧  ERD
 
-![화면 캡처 2023-05-25 190505](https://github.com/KUSITMS-27th-TEAM3/BackEnd/assets/78543382/7bfbe58d-9ecc-46be-b0b2-8cb2a50b10d8)
+![화면 캡처 2023-05-25 190909](https://github.com/KUSITMS-27th-TEAM3/BackEnd/assets/78543382/594f9ddc-18c7-4697-8d6d-bdd7295331d0)
 
 ## 🔧기능 명세서
 | 구분 | 기능 | 상세 | 우선순위 |
