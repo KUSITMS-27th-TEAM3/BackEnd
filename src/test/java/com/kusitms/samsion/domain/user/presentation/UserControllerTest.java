@@ -1,12 +1,11 @@
 package com.kusitms.samsion.domain.user.presentation;
 
-import static org.mockito.BDDMockito.*;
-import static org.springframework.restdocs.headers.HeaderDocumentation.*;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import com.kusitms.samsion.common.config.CommonRestDocs;
+import com.kusitms.samsion.common.consts.ApplicationConst;
+import com.kusitms.samsion.common.consts.TestConst;
+import com.kusitms.samsion.domain.user.application.dto.response.MyPetResponse;
+import com.kusitms.samsion.domain.user.application.service.MyPetInfoUseCase;
+import com.kusitms.samsion.domain.user.application.service.MyPetUpdateUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,12 +15,16 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import com.kusitms.samsion.common.consts.ApplicationConst;
-import com.kusitms.samsion.common.consts.TestConst;
-import com.kusitms.samsion.domain.user.application.dto.response.MyPetResponse;
-import com.kusitms.samsion.domain.user.application.service.MyPetInfoUseCase;
-import com.kusitms.samsion.domain.user.application.service.MyPetUpdateUseCase;
-import com.kusitms.samsion.common.config.CommonRestDocs;
+import static org.mockito.BDDMockito.any;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
 @DisplayName("UserController 테스트")
@@ -42,6 +45,7 @@ public class UserControllerTest extends CommonRestDocs {
 			.petName(TestConst.TEST_PET_NAME)
 			.petAge(TestConst.TEST_PET_AGE)
 			.petType(TestConst.TEST_PET_TYPE)
+				.petImageUrl(TestConst.TEST_PET_IMAGE_URL)
 			.build();
 		MockHttpServletRequestBuilder request = get("/user/mypet").header(ApplicationConst.ACCESS_TOKEN_HEADER, TestConst.TEST_ACCESS_TOKEN);
 		given(myPetInfoUseCase.getMyPetInfo()).willReturn(myPetResponse);
@@ -60,7 +64,8 @@ public class UserControllerTest extends CommonRestDocs {
 						fieldWithPath("profileImageUrl").description("사용자 이미지 URL"),
 						fieldWithPath("description").description("반려동물 설명"),
 						fieldWithPath("petAge").description("반려동물 나이"),
-						fieldWithPath("petType").description("반려동물 종류")
+						fieldWithPath("petType").description("반려동물 종류"),
+						fieldWithPath("petImageUrl").description("반려동물 이미지 URL")
 					)
 				)
 			);
@@ -79,6 +84,7 @@ public class UserControllerTest extends CommonRestDocs {
 			.petName(TestConst.TEST_UPDATE_PET_NAME)
 			.petAge(TestConst.TEST_UPDATE_PET_AGE)
 			.petType(TestConst.TEST_UPDATE_PET_TYPE)
+				.petImageUrl(TestConst.TEST_UPDATE_PET_IMAGE_URL)
 			.build();
 		given(myPetUpdateUseCase.updateMyPetInfo(any())).willReturn(myPetResponse);
 
@@ -116,7 +122,8 @@ public class UserControllerTest extends CommonRestDocs {
 						fieldWithPath("profileImageUrl").description("사용자 이미지 URL"),
 						fieldWithPath("description").description("반려동물 설명"),
 						fieldWithPath("petAge").description("반려동물 나이"),
-						fieldWithPath("petType").description("반려동물 종류")
+						fieldWithPath("petType").description("반려동물 종류"),
+						fieldWithPath("petImageUrl").description("반려동물 이미지 URL")
 					)
 				)
 			);

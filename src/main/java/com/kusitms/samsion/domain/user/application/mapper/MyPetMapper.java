@@ -9,25 +9,26 @@ import com.kusitms.samsion.domain.user.domain.entity.User;
 @Mapper
 public class MyPetMapper {
 
-	public static MyPetResponse mapToMyPetResponse(User user){
-		MyPet mypet = user.getMypet();
-		return MyPetResponse.builder()
-			.userNickname(user.getNickname())
-			.petName(mypet.getPetName())
-			.profileImageUrl(user.getProfileImageUrl())
-			.description(mypet.getDescription())
-			.petType(mypet.getPetType())
-			.petAge(mypet.getPetAge())
-			.build();
-	}
+    public static MyPetResponse mapToMyPetResponse(User user) {
+        MyPet mypet = user.getMypet();
+        return MyPetResponse.builder()
+                .userNickname(user.getNickname())
+                .petName(mypet.getPetName())
+                .profileImageUrl(user.getProfileImageUrl())
+                .description(mypet.getDescription())
+                .petType(mypet.getPetType())
+                .petAge(mypet.getPetAge())
+                .petImageUrl(mypet.getPetImageUrl())
+                .build();
+    }
 
-	public static MyPet mapToMyPetUpdateRequest(MyPetUpdateRequest request, String imageUrl){
-		return MyPet.builder()
-			.petName(request.getPetName())
-			.petType(request.getPetType())
-			.petAge(request.getPetAge())
-			.petImageUrl(imageUrl)
-			.description(request.getDescription())
-			.build();
-	}
+    public static MyPet mapToMyPetUpdateRequest(MyPetUpdateRequest request, String imageUrl) {
+        return MyPet.builder()
+                .petName(request.getPetName())
+                .petType(request.getPetType())
+                .petAge(request.getPetAge())
+                .petImageUrl(imageUrl)
+                .description(request.getDescription())
+                .build();
+    }
 }
