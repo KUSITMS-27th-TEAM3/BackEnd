@@ -13,14 +13,17 @@ public class MyPetResponse {
 
 	private String petType;
 	private int petAge;
+	private String petImageUrl;
+
 
 	@Builder
-	public MyPetResponse(String userNickname, String petName,  String profileImageUrl, String description, String petType, int petAge) {
+	public MyPetResponse(String userNickname, String petName, String profileImageUrl, String description, String petType, int petAge, String petImageUrl) {
 		this.petName = petName;
 		this.userNickname = userNickname;
 		this.profileImageUrl = profileImageUrl;
 		this.description = description;
 		this.petType = petType;
 		this.petAge = petAge;
+		this.petImageUrl = petImageUrl;
 	}
 }

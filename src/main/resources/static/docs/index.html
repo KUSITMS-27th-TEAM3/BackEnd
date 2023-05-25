@@ -908,7 +908,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 181
+Content-Length: 208
 
 {
   "userNickname" : "test",
@@ -916,7 +916,8 @@ Content-Length: 181
   "profileImageUrl" : "testImageUrl",
   "description" : "testDescription",
   "petType" : "testPetType",
-  "petAge" : 1
+  "petAge" : 1,
+  "petImageUrl" : "testImageUrl"
 }</code></pre>
 </div>
 </div>
@@ -966,6 +967,11 @@ Content-Length: 181
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petType</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 종류</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petImageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이미지 URL</p></td>
 </tr>
 </tbody>
 </table>
@@ -1081,7 +1087,7 @@ test
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 219
+Content-Length: 252
 
 {
   "userNickname" : "testUpdateNickname",
@@ -1089,7 +1095,8 @@ Content-Length: 219
   "profileImageUrl" : "testUpdateImageUrl",
   "description" : "testUpdateDescription",
   "petType" : "testUpdatePetType",
-  "petAge" : 2
+  "petAge" : 2,
+  "petImageUrl" : "testUpdateImageUrl"
 }</code></pre>
 </div>
 </div>
@@ -1139,6 +1146,11 @@ Content-Length: 219
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>petType</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 종류</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>petImageUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">반려동물 이미지 URL</p></td>
 </tr>
 </tbody>
 </table>
@@ -1213,7 +1225,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 201
+Content-Length: 192
 
 {
   "content" : [ {
@@ -1288,7 +1300,7 @@ Content-Length: 201
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /question/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer testAccessToken
-Content-Length: 53
+Content-Length: 51
 Host: localhost:8080
 
 {
@@ -1383,7 +1395,7 @@ Host: localhost:8080
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /question/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: Bearer testAccessToken
-Content-Length: 53
+Content-Length: 51
 Host: localhost:8080
 
 {
@@ -1590,7 +1602,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 61
+Content-Length: 58
 
 {
   "empathyCount" : 1,
@@ -1643,7 +1655,7 @@ Content-Length: 61
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /album/1/comment HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 48
+Content-Length: 46
 Host: localhost:8080
 
 {
@@ -1725,7 +1737,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 181
+Content-Length: 174
 
 {
   "commentId" : 1,
@@ -1798,7 +1810,7 @@ Content-Length: 181
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /album/1/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 53
+Content-Length: 51
 Host: localhost:8080
 
 {
@@ -1884,7 +1896,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 186
+Content-Length: 179
 
 {
   "commentId" : 2,
@@ -1957,7 +1969,7 @@ Content-Length: 186
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /album/1/comment/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Authorization: access token
-Content-Length: 54
+Content-Length: 52
 Host: localhost:8080
 
 {
@@ -2043,7 +2055,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 187
+Content-Length: 180
 
 {
   "commentId" : 1,
@@ -2262,7 +2274,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 509
+Content-Length: 489
 
 {
   "content" : [ {
@@ -2444,7 +2456,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 26
+Content-Length: 24
 
 {
   "commentCount" : 1
@@ -2507,7 +2519,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 224
+Content-Length: 213
 
 {
   "content" : [ {
@@ -2710,7 +2722,7 @@ albumImages
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 357
+Content-Length: 346
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
@@ -3212,7 +3224,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 357
+Content-Length: 346
 
 {
   "imageUrlList" : [ "testAlbumImageUrl" ],
@@ -3406,7 +3418,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 224
+Content-Length: 213
 
 {
   "content" : [ {
@@ -3647,7 +3659,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 379
+Content-Length: 364
 
 {
   "content" : [ {
@@ -3755,7 +3767,7 @@ Content-Length: 379
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-05-23 01:16:25 +0900
+Last updated 2023-05-22 11:55:46 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
