@@ -69,7 +69,7 @@ public class MyPet {
 	}
 
 	private void updatePetType(String petType) {
-		if (!Objects.equals(petType, this.petType)&&Objects.nonNull(petType))
+		if (!Objects.equals(petType, this.petType)&&StringUtils.hasText(petType))
 			this.petType = petType;
 	}
 

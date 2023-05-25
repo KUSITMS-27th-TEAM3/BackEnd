@@ -1,6 +1,7 @@
 package com.kusitms.samsion.domain.user.application.dto.request;
 
 import org.springframework.lang.Nullable;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Builder;
@@ -26,9 +27,20 @@ public class MyPetUpdateRequest {
 		this.userNickname = userNickname;
 		this.description = description;
 		this.petType = petType;
-		this.petAge = Integer.parseInt(petAge);
+		this.petAge = petAgeParse(petAge);
 		this.petName = petName;
 		this.profileImage = profileImage;
 		this.petImage = petImage;
+	}
+
+	private int petAgeParse(String petAge) {
+		if(StringUtils.hasText(petAge)){
+			try{
+				return Integer.parseInt(petAge);
+			}catch (NumberFormatException e){
+				return 0;
+			}
+		}
+		return 0;
 	}
 }
