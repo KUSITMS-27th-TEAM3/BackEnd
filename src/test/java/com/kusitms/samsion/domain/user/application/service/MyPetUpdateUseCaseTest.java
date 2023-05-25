@@ -1,7 +1,12 @@
 package com.kusitms.samsion.domain.user.application.service;
 
-import static org.mockito.BDDMockito.*;
-
+import com.kusitms.samsion.common.consts.TestConst;
+import com.kusitms.samsion.common.infrastructure.s3.S3UploadService;
+import com.kusitms.samsion.common.util.UserTestUtils;
+import com.kusitms.samsion.common.util.UserUtils;
+import com.kusitms.samsion.domain.user.application.dto.request.MyPetUpdateRequest;
+import com.kusitms.samsion.domain.user.application.dto.response.MyPetResponse;
+import com.kusitms.samsion.domain.user.domain.entity.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,13 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 
-import com.kusitms.samsion.domain.user.application.dto.request.MyPetUpdateRequest;
-import com.kusitms.samsion.domain.user.application.dto.response.MyPetResponse;
-import com.kusitms.samsion.common.consts.TestConst;
-import com.kusitms.samsion.common.util.UserTestUtils;
-import com.kusitms.samsion.common.util.UserUtils;
-import com.kusitms.samsion.domain.user.domain.entity.User;
-import com.kusitms.samsion.common.infrastructure.s3.S3UploadService;
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("MyPetUpdateUseCase 테스트")
@@ -54,11 +53,11 @@ class MyPetUpdateUseCaseTest {
 		Assertions.assertThat(mockUser.getMypet().getPetType()).isEqualTo(mockRequest.getPetType());
 		Assertions.assertThat(mockUser.getMypet().getPetImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PET_IMAGE_URL);
 		Assertions.assertThat(mockUser.getNickname()).isEqualTo(mockRequest.getUserNickname());
-		Assertions.assertThat(mockUser.getProfileImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PET_IMAGE_URL);
+		Assertions.assertThat(mockUser.getProfileImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PROFILE_IMAGE_URL);
 		Assertions.assertThat(myPetResponse).isNotNull();
 		Assertions.assertThat(myPetResponse.getPetName()).isEqualTo(mockRequest.getPetName());
 		Assertions.assertThat(myPetResponse.getDescription()).isEqualTo(mockRequest.getDescription());
-		Assertions.assertThat(myPetResponse.getProfileImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PET_IMAGE_URL);
+		Assertions.assertThat(myPetResponse.getProfileImageUrl()).isEqualTo(TestConst.TEST_UPDATE_PROFILE_IMAGE_URL);
 		Assertions.assertThat(myPetResponse.getPetAge()).isEqualTo(mockRequest.getPetAge());
 		Assertions.assertThat(myPetResponse.getPetType()).isEqualTo(mockRequest.getPetType());
 		Assertions.assertThat(myPetResponse.getUserNickname()).isEqualTo(mockRequest.getUserNickname());
@@ -72,6 +71,7 @@ class MyPetUpdateUseCaseTest {
 			.profileImage(TestConst.TEST_MULTIPART_FILE)
 			.petAge(String.valueOf(TestConst.TEST_UPDATE_PET_AGE))
 			.petType(TestConst.TEST_UPDATE_PET_TYPE)
+				.userNickname(TestConst.TEST_UPDATE_NICKNAME)
 			.build();
 	}
 }

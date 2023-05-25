@@ -1,20 +1,13 @@
 package com.kusitms.samsion.domain.user.domain.entity;
 
-import java.util.Objects;
-
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import com.kusitms.samsion.common.domain.BaseEntity;
-
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.Objects;
 
 @Getter
 @Entity
@@ -51,7 +44,7 @@ public class User extends BaseEntity {
 	}
 
 	public void updateNickname(String nickname){
-		if(!Objects.equals(nickname, this.nickname))
+		if(!Objects.equals(nickname, this.nickname)&&Objects.nonNull(nickname))
 			this.nickname = nickname;
 	}
 
