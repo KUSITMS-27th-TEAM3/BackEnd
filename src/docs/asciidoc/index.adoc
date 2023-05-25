@@ -21,3 +21,5 @@ include::Comment-API.adoc[]
 include::Album-API.adoc[]
 
 include::FuneralShop-API.adoc[]
+
+include::Grid-API.adoc[]
