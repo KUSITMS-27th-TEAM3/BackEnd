@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -44,7 +45,7 @@ public class User extends BaseEntity {
 	}
 
 	public void updateNickname(String nickname){
-		if(!Objects.equals(nickname, this.nickname)&&Objects.nonNull(nickname))
+		if(!Objects.equals(nickname, this.nickname)&& StringUtils.hasText(nickname))
 			this.nickname = nickname;
 	}
 
