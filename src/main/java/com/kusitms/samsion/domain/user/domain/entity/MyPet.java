@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.Embeddable;
 import java.util.Objects;
@@ -48,17 +49,17 @@ public class MyPet {
 	}
 
 	private void updatePetName(String petName) {
-		if (!Objects.equals(petName, this.petName)&&Objects.nonNull(petName))
+		if (!Objects.equals(petName, this.petName)&& StringUtils.hasText(petName))
 			this.petName = petName;
 	}
 
 	private void updatePetImageUrl(String petImageUrl) {
-		if (!Objects.equals(petImageUrl, this.petImageUrl) && Objects.nonNull(petImageUrl))
+		if (!Objects.equals(petImageUrl, this.petImageUrl) && StringUtils.hasText(petImageUrl))
 			this.petImageUrl = petImageUrl;
 	}
 
 	private void updateDescription(String description) {
-		if (!Objects.equals(description, this.description)&&Objects.nonNull(description))
+		if (!Objects.equals(description, this.description)&&StringUtils.hasText(description))
 			this.description = description;
 	}
 
