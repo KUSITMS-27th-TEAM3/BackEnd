@@ -1,5 +1,6 @@
 package com.kusitms.samsion.domain.user.application.dto.request;
 
+import org.springframework.lang.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Builder;
@@ -14,7 +15,9 @@ public class MyPetUpdateRequest {
 	private int petAge;
 	private String petName;
 
+	@Nullable
 	private MultipartFile profileImage;
+	@Nullable
 	private MultipartFile petImage;
 
 	@Builder

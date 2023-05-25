@@ -45,6 +45,7 @@ public class S3UploadService {
 
     //단일 이미지 업로드
     public String uploadImg(MultipartFile file) {
+        if(Objects.isNull(file)) return null;
         if(file.isEmpty()) return null;
 
         String originFileName = Normalizer.normalize(file.getOriginalFilename(), Normalizer.Form.NFC);
