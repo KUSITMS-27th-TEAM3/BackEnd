@@ -98,4 +98,9 @@ public class TestConst {
 
 	// 앨범 이미지
 	public static final Long TEST_ALBUM_IMAGE_ID = 1L;
+
+	//그리드
+	public static final Long TEST_GRID_ID = 1L;
+	public static final String TEST_GRID_IMG_URL = "imageurl";
+	public static final String TEST_GRID_CREATED_DATE = "2023-05-25T00:00:00";
 }
