@@ -38,9 +38,9 @@ public class MyPetUpdateRequest {
 			try{
 				return Integer.parseInt(petAge);
 			}catch (NumberFormatException e){
-				return 0;
+				return -1;
 			}
 		}
-		return 0;
+		return -1;
 	}
 }

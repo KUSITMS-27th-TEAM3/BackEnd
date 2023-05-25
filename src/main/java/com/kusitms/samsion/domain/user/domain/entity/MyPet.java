@@ -64,7 +64,7 @@ public class MyPet {
 	}
 
 	private void updatePetAge(int petAge) {
-		if (!Objects.equals(petAge, this.petAge))
+		if (!Objects.equals(petAge, this.petAge)&&petAge>=0)
 			this.petAge = petAge;
 	}
 
